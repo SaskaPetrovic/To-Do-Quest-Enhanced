@@ -5,6 +5,21 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get '/dashboard', to: 'dashboard#index'
+
+  resources :tasks do
+    patch :accept, on: :member
+  end
+
+  resources :achievements, only: [:index, :create]
+
+  patch '/users/:id', to: 'users#update'
+  put '/users/:id', to: 'users#update'
+
+  resources :users do
+    member do
+      patch 'update'
+      put 'update'
+    end
+  end
 end
