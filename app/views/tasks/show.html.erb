@@ -1,0 +1,10 @@
+<h1><%= @task.title %></h1>
+
+<p>Description: <%= @task.description %></p>
+<p><>Category: <%= @task.category %></p>
+<p><>Checkpoint: <%= @task.checkpoint %></p>
+<p><>Duration: <%= @task.duration.strftime("%H:%M") %></p>
+<p><>Priority: <%= @task.priority.capitalize %></p>
+
+<%= link_to 'Edit', edit_task_path(@task), class: 'button-edit' %> |
+<%= link_to 'Back to List', tasks_path, class: 'button-return' %>
