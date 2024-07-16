@@ -1,0 +1,12 @@
+<h1>QUESTS</h1>
+
+<!-- Onglets pour filtrer les tâches -->
+<div>
+  <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-button #{params[:status] == 'in_progress' ? 'active' : ''}" %>
+  <%= link_to 'New', tasks_path(status: 'not_started'), class: "tab-button #{params[:status] == 'not_started' ? 'active' : ''}" %>
+</div>
+
+<!-- Bouton pour ajouter une quête personnalisée affiché uniquement si l'onglet New est sélectionné -->
+<% if params[:status] == 'not_started' %>
+  <%= link_to 'Add Custom Quest', new_task_path %>
+<% end %>
