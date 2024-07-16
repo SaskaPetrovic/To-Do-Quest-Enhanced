@@ -1,1 +1,142 @@
 // Specific CSS for your home-page
+
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('Pink-City-Pixelart.webp');
+  background-color: #333;
+  overflow: hidden;
+}
+
+.container {
+  margin: auto;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #ffffff;
+  min-height: calc(70vh - 44px);
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  min-height: calc(100vh - 44px);
+  font-size: 1.8rem;
+}
+
+.eightbit-btn {
+  font-size: 16px;
+  text-decoration: none;
+  background-color: #76c442;
+  color: #fff;
+
+}
+
+.footer {
+  font-size: 0.9rem;
+  text-align: center !important;
+  color: #fff !important;
+  opacity: 95% !important;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+ /* 8-bit */
+
+ $outline-width: 6px;
+$shadow-width: 4px;
+
+$button-background: #92cd41;
+$sec-button-background: #76c442;
+$shadow-color: #4aa52e;
+
+$alt-button-background: #f7d51d;
+$alt-sec-button-background: #f2c409;
+$alt-shadow-color: #e59400;
+
+$reset-button-background: #e76e55;
+$reset-sec-button-background: #ce372b;
+$reset-shadow-color: #8c2022;
+
+.eightbit-btn {
+    background: $button-background;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px $shadow-color;
+
+    &:hover,
+    &:focus {
+        background: $sec-button-background;
+        box-shadow: inset (-$shadow-width * 1.5) (-$shadow-width * 1.5) 0px 0px
+            $shadow-color;
+    }
+
+    &:active {
+        box-shadow: inset $shadow-width $shadow-width 0px 0px $shadow-color;
+    }
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: content-box;
+    }
+
+    &:before {
+        top: -$outline-width;
+        left: 0;
+        border-top: $outline-width black solid;
+        border-bottom: $outline-width black solid;
+    }
+
+    &:after {
+        left: -$outline-width;
+        top: 0;
+        border-left: $outline-width black solid;
+        border-right: $outline-width black solid;
+    }
+
+    &--reset {
+        background: $reset-button-background;
+        box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px
+            $reset-shadow-color;
+
+        &:hover,
+        &:focus {
+            background: $reset-sec-button-background;
+            box-shadow: inset (-$shadow-width * 1.5) (-$shadow-width * 1.5) 0px
+                0px $reset-shadow-color;
+        }
+
+        &:active {
+            box-shadow: inset $shadow-width $shadow-width 0px 0px
+                $reset-shadow-color;
+        }
+    }
+
+    &--proceed {
+        background: $alt-button-background;
+        box-shadow: inset (-$shadow-width) (-$shadow-width) 0px 0px
+            $alt-shadow-color;
+
+        &:hover,
+        &:focus {
+            background: $alt-sec-button-background;
+            box-shadow: inset (-$shadow-width * 1.5) (-$shadow-width * 1.5) 0px
+                0px $alt-shadow-color;
+        }
+
+        &:active {
+            box-shadow: inset $shadow-width $shadow-width 0px 0px
+                $alt-shadow-color;
+        }
+    }
+}
