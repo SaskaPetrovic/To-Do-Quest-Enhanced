@@ -5,7 +5,9 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :achievements
 
-  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 50 }
+  validates :username, :roles, presence: true
+  validates :email, uniqueness: true
+  validates :experience, :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def stats
     {
