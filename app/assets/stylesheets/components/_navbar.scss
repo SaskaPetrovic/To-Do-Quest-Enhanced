@@ -4,9 +4,35 @@
 }
 
 .navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+  transition: none !important;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+
+.full-screen-dropdown {
+  width: 100%;
+  height: 100vh;
+}
+
+
+.navbar-brand {
+
+  width: 45px; /* Ajustez cette valeur pour la taille souhaitée */
+  height: 55px; /* Ajustez cette valeur pour la taille souhaitée */
+}
+
+.avatar-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.avatar-frame {
+  position: absolute;
+  top: -5px;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  display: block;
 }

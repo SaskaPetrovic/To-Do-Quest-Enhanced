@@ -1,0 +1,28 @@
+<h1>ADD QUEST</h1>
+
+<%= simple_form_for @task, html: { local: true } do |form| %>
+  <div>
+    <%= form.input :title, label: "Set a Title", required: true %>
+  </div>
+
+  <div>
+    <%= form.input :description, label: "Add a Description", required: true %>
+  </div>
+
+  <div>
+    <%= form.association :sub_category, label: "Select Category", prompt: 'Choose a category', required: true %>
+  </div>
+
+  <div>
+    <%= form.input :time, label: "Set Duration",html5:true, step: 60, placeholder: 'HH:MM', required: true %>
+  </div>
+
+  <div>
+    <%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, label: "Choose Priority" %>
+  </div>
+
+  <div>
+    <%= form.button :submit, 'Confirm' %>
+    <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
+  </div>
+<% end %>
