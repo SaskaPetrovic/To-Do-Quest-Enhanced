@@ -13,13 +13,5 @@ Rails.application.routes.draw do
 
   resources :achievements, only: [:index, :create]
 
-  patch '/users/:id', to: 'users#update'
-  put '/users/:id', to: 'users#update'
-
-  resources :users do
-    member do
-      patch 'update'
-      put 'update'
-    end
-  end
+  resources :users, only: [:update]
 end
