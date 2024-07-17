@@ -1,2 +1,28 @@
 // Import page-specific CSS files here.
 @import "home";
+h2{
+  text-align: center;
+  margin: 30px 0;
+}
+
+h5,h6{
+  font-size: 12px;
+}
+
+h5{
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.icons{
+  width: 30px;
+  height: 30px;
+}
+
+.profile-image {
+  display: block;
+  margin: auto;
+  vertical-align: middle;
+  position: relative;
+  top: -10px; /* Ajuster pour que l'image soit un peu au-dessus du texte */
+}
