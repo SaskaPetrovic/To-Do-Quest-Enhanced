@@ -11,6 +11,7 @@ class SubCategoriesController < ApplicationController
   def new
     @sub_category = SubCategory.new
     @categories = Category.all
+
   end
 
   def create
