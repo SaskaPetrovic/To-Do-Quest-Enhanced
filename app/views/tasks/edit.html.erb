@@ -1,1 +1,29 @@
-<h1>EDIT QUEST</h1>
+<h1>Edit Quest</h1>
+
+<%= simple_form_for @task, html: { local: true } do |form| %>
+  <div>
+    <%= form.input :title, label: "Set a Title", required: true %>
+  </div>
+
+  <div>
+    <%= form.input :description, label: "Add a Description", required: true %>
+  </div>
+
+  <div>
+    <%= form.association :sub_category, label: "Select Category", prompt: 'Choose a category', required: true %>
+  </div>
+
+  <div>
+    <%= form.input :time, as: :string, input_html: { class: 'time-input', placeholder: 'HH:MM', required: true } %>
+  </div>
+
+  <div>
+    <%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, label: "Choose Priority" %>
+  </div>
+
+  <div>
+    <%= form.button :submit, 'Update Quest' %>
+    <%= link_to 'Delete Quest', task_path(@task), method: :delete, data: { confirm: 'Are you sure you want to delete this Quest?' }, class: 'button-delete' %>
+    <%= link_to 'Return to Quest List', tasks_path, class: 'button-return' %>
+  </div>
+<% end %>
