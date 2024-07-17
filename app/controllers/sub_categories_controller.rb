@@ -1,15 +1,16 @@
 class SubCategoriesController < ApplicationController
 
   def index
-    @sub_categories = SubCategory.all
+
   end
 
   def show
-    @sub_category = SubCategory.find(params[:id])
+
   end
 
   def new
     @sub_category = SubCategory.new
+    @categories = Category.all
   end
 
   def create
@@ -17,12 +18,14 @@ class SubCategoriesController < ApplicationController
     if @sub_category.save
       redirect_to sub_categories_path
     else
+      @categories = Category.all
       render :new
     end
   end
 
   def edit
     @sub_category = SubCategory.find(params[:id])
+    @categories = Category.all
   end
 
   def update
@@ -30,6 +33,7 @@ class SubCategoriesController < ApplicationController
     if @sub_category.update(sub_category_params)
       redirect_to sub_categories_path
     else
+      @categories = Category.all
       render :edit
     end
   end
