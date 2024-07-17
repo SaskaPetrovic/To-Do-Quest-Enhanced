@@ -1,4 +1,4 @@
-<h1>ADD QUEST</h1>
+<h1><%= @task.persisted? ? 'Edit Quest' : 'Add Quest' %></h1>
 
 <%= simple_form_for @task, html: { local: true } do |form| %>
   <div>
@@ -14,15 +14,18 @@
   </div>
 
   <div>
-    <%= form.input :time, label: "Set Duration",html5:true, step: 60, placeholder: 'HH:MM', required: true %>
+    <%= form.input :time, as: :string, input_html: { class: 'time-input', placeholder: 'HH:MM', required: true } %>
   </div>
 
   <div>
     <%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, label: "Choose Priority" %>
   </div>
 
+  <h2>Checkpoints</h2>
+
   <div>
     <%= form.button :submit, 'Confirm' %>
     <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
   </div>
+
 <% end %>
