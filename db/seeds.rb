@@ -13,6 +13,7 @@ dexterity = Category.create!(title: "Leisure & Social", description: "Social and
 strength = Category.create!(title: "Health & Wellness", description: "Physical tasks and activities where power and coordination are important")
 charisma = Category.create!(title: "Personal Growth", description: "Tasks aimed at self-improvement and continuous learning, requiring mental energy")
 
+puts "Categories created!"
 #creation de 5 sub_categories(=class) pour chaque category
 
 rogue1 = SubCategory.create!(title: "Moving furniture", description: "Embarking on a quest to rearrange the fortress, shifting the colossal structures to bring a fresh aura to your stronghold", category: intellect)
@@ -45,6 +46,7 @@ bard3 = SubCategory.create!(title: "Practicing a hobby", description: "Mastering
 bard4 = SubCategory.create!(title: "Journaling", description: "Harnessing the power of expression, you record the thoughts and emotions of the fortress, capturing the essence of the moment with the power of words", category: charisma)
 bard5 = SubCategory.create!(title: "Planning the week ahead", description: "Navigating the realm of strategy and foresight, you prepare for the challenges and opportunities of the future, organizing the tasks and goals of the week with the power of planning", category: charisma)
 
+puts "SubCategories created!"
 #création de 5 tasks (par sub_category)(donc par class)
 
 Task.create!(title: "Moving the couch", description: "Move the couch from the living room to the bedroom", status: "pending", urgence: "high", time: Time.now , rewards: "100xp", user: user, sub_category: rogue1)
@@ -78,3 +80,16 @@ Task.create!(title: "Journaling", description: "Write in your journal about your
 Task.create!(title: "Planning the week ahead", description: "Plan the tasks and goals for the upcoming week", status: "pending", urgence: "high", time: Time.now, rewards: "100xp", user: user, sub_category: bard5)
 
 puts "Tasks created!"
+
+#creation de 5 achievements
+
+Achievement.create!(title: "Master of the House", description: "Complete all the domestic tasks", points: 100, user: user)
+Achievement.create!(title: "Academic Excellence", description: "Complete all the academic tasks", points: 100, user: user)
+Achievement.create!(title: "Social Butterfly", description: "Complete all the social tasks", points: 100, user: user)
+Achievement.create!(title: "Wellness Warrior", description: "Complete all the health and wellness tasks", points: 100, user: user)
+Achievement.create!(title: "Personal Growth Champion", description: "Complete all the personal growth tasks", points: 100, user: user)
+
+#creation de 5 achievements tasks
+# AchievementTask.create!(achievement: Achievement.first, task: Task.first)
+
+# puts "Achievements tasks created!"
