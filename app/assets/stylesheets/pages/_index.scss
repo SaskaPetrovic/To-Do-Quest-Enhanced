@@ -5,12 +5,12 @@ h2{
   margin: 30px 0;
 }
 
-h5,h6{
-  font-size: 12px;
+h6{
+  font-size: 14px;
 }
 
 h5{
-  font-size: 12px;
+  font-size: 14px;
   text-transform: uppercase;
 }
 
@@ -19,10 +19,61 @@ h5{
   height: 30px;
 }
 
-.profile-image {
-  display: block;
-  margin: auto;
-  vertical-align: middle;
-  position: relative;
-  top: -10px; /* Ajuster pour que l'image soit un peu au-dessus du texte */
+.padding-fixed{
+  padding-left: 0 !important;
+  padding-right: 28px !important;
+}
+
+.border-bottom{
+  border-bottom: 1.5px solid #D04B22 !important;
+
+}
+
+.username-profile{
+  margin-left: 5px;
+}
+
+
+.padding-user{
+  margin-left: 9px;
+}
+
+.padding-lv{
+  margin-left: 29px;
+}
+
+
+// tabs
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.tab-link {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: grey;
+  outline: none;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-link:not(.active):hover {
+  color: darkgrey;
+}
+
+.tab-link.active {
+  color: black;
+  border-bottom: 2px solid black;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
 }
