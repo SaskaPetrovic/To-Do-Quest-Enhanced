@@ -1,6 +1,4 @@
-<h1>Edit Quest</h1>
-
-<%= simple_form_for @task, html: { local: true } do |form| %>
+<%= simple_form_for @task do |form| %>
   <div>
     <%= form.input :title, label: "Set a Title", required: true %>
   </div>
@@ -23,7 +21,7 @@
 
   <div>
     <%= form.button :submit, 'Update Quest' %>
-    <%= link_to 'Delete Quest', task_path(@task), method: :delete, data: { confirm: 'Are you sure you want to delete this Quest?' }, class: 'button-delete' %>
     <%= link_to 'Return to Quest List', tasks_path, class: 'button-return' %>
+    <%= link_to 'Delete Quest', task_path(@task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this Quest?' }, class: 'button-delete' %>
   </div>
 <% end %>

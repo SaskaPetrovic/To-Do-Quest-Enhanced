@@ -5,8 +5,20 @@
 <p><strong>Estimated Duration:</strong> <%= @task.time %></p>
 <p><strong>Priority:</strong> <%= @task.urgence %></p>
 
-<h2>Checkpoints</h2>
+<h2>Steps</h2>
 
+<% if @task.steps.any? %>
+  <ul>
+    <% @task.steps.each do |step| %>
+      <li>
+        <p><strong>Content:</strong> <%= step.content %></p>
+        <p><strong>Completed:</strong> <%= step.completed ? 'Yes' : 'No' %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No steps available for this task.</p>
+<% end %>
 
 <%= link_to 'Edit', edit_task_path(@task), class: 'button-edit' %>
 <%= link_to 'Return to List', tasks_path, class: 'button-return' %>

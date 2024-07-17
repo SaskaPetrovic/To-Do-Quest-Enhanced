@@ -23,9 +23,14 @@
 
   <h2>Checkpoints</h2>
 
+  <div id="steps">
+  </div>
+  <div>
+    <%= link_to 'Add Step', '#', id: 'add-step', class: 'button' %>
+  </div>
+
   <div>
     <%= form.button :submit, 'Confirm' %>
     <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
   </div>
-
 <% end %>
