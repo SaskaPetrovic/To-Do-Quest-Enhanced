@@ -1,54 +1,62 @@
 class SubCategoriesController < ApplicationController
+  before_action :set_sub_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category
 
+  # GET /categories/:category_id/sub_categories
   def index
-
+    @sub_categories = @category.sub_categories
   end
 
+  # GET /categories/:category_id/sub_categories/1
   def show
-
   end
 
+  # GET /categories/:category_id/sub_categories/new
   def new
-    @sub_category = SubCategory.new
-    @categories = Category.all
-
+    @sub_category = @category.sub_categories.build
   end
 
+  # GET /categories/:category_id/sub_categories/1/edit
+  def edit
+  end
+
+  # POST /categories/:category_id/sub_categories
   def create
-    @sub_category = SubCategory.new(sub_category_params)
+    @sub_category = @category.sub_categories.build(sub_category_params)
+
     if @sub_category.save
-      redirect_to sub_categories_path
+      redirect_to category_sub_category_path(@category, @sub_category), notice: 'SubCategory was successfully created.'
     else
-      @categories = Category.all
       render :new
     end
   end
 
-  def edit
-    @sub_category = SubCategory.find(params[:id])
-    @categories = Category.all
-  end
-
+  # PATCH/PUT /categories/:category_id/sub_categories/1
   def update
-    @sub_category = SubCategory.find(params[:id])
     if @sub_category.update(sub_category_params)
-      redirect_to sub_categories_path
+      redirect_to category_sub_category_path(@category, @sub_category), notice: 'SubCategory was successfully updated.'
     else
-      @categories = Category.all
       render :edit
     end
   end
 
+  # DELETE /categories/:category_id/sub_categories/1
   def destroy
-    @sub_category = SubCategory.find(params[:id])
     @sub_category.destroy
-    redirect_to sub_categories_path
+    redirect_to category_sub_categories_path(@category), notice: 'SubCategory was successfully destroyed.'
   end
 
   private
 
-  def sub_category_params
-    params.require(:sub_category).permit(:title, :description, :category_id)
-  end
+    def set_sub_category
+      @sub_category = SubCategory.find(params[:id])
+    end
 
+    def set_category
+      @category = Category.find(params[:category_id])
+    end
+
+    def sub_category_params
+      params.require(:sub_category).permit(:name, :description, :category_id)
+    end
 end
