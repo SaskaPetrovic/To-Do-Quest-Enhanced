@@ -6,7 +6,26 @@
   <%= link_to 'New', tasks_path(status: 'not_started'), class: "tab-button #{params[:status] == 'not_started' ? 'active' : ''}" %>
 </div>
 
-<!-- Bouton pour ajouter une quête personnalisée affiché uniquement si l'onglet New est sélectionné -->
 <% if params[:status] == 'not_started' %>
   <%= link_to 'Add Custom Quest', new_task_path %>
+<% end %>
+
+<!-- Affichage des quêtes en cours -->
+<% if @tasks.any? %>
+  <h2>Ongoing Quests</h2>
+  <div class="tasks-list">
+    <% @tasks.each do |task| %>
+      <div class="task-item">
+        <%= link_to task_path(task) do %>
+          <h3><%= task.title %></h3>
+          <p><%= task.description %></p>
+          <p><strong>Category:</strong> <%= task.sub_category.title %></p>
+          <p><strong>Time:</strong> <%= task.time %></p>
+          <p><strong>Priority:</strong> <%= task.urgence %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No ongoing quests found.</p>
 <% end %>
