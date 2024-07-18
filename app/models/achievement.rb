@@ -4,8 +4,6 @@ class Achievement < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :points, presence: true
   validates :user_id, presence: true
   validates :sub_category_id, presence: true
-
 end
