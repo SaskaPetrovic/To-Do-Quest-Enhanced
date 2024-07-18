@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :achievements
 
-  validates :username, :roles, presence: true
+  # validates :username, :roles, presence: true
+
   validates :email, uniqueness: true
   validates :experience, :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
