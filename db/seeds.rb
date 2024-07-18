@@ -88,9 +88,10 @@ puts "Tasks created!"
 
 #creation d'un achievement pour une task deja accomplie
 Achievement.create!(title: "Minstrel apprentice", description: "You have successfully completed the task of playing guitar", user: user, sub_category: bard3)
-
-# creation d'un achievement pour une task lorsqu'elle sera accomplie par mon user
-
-
+#creation d'autre faux achievements de tasks deja accomplies
+Achievement.create!(title: "Gardener apprentice", description: "You have successfully completed the task of planting flowers", user: user, sub_category: rogue2)
+Achievement.create!(title: "Knight apprentice", description: "You have successfully completed the task of doing a workout routine", user: user, sub_category: knight2)
+Achievement.create!(title: "Ranger apprentice", description: "You have successfully completed the task of watching a movie", user: user, sub_category: ranger1)
+Achievement.create!(title: "Mage apprentice", description: "You have successfully completed the task of answering emails", user: user, sub_category: mage1)
 
 puts "Achievement created!"
