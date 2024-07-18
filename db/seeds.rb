@@ -89,4 +89,8 @@ puts "Tasks created!"
 #creation d'un achievement pour une task deja accomplie
 Achievement.create!(title: "Minstrel apprentice", description: "You have successfully completed the task of playing guitar", user: user, sub_category: bard3)
 
+# creation d'un achievement pour une task lorsqu'elle sera accomplie par mon user
+
+
+
 puts "Achievement created!"
