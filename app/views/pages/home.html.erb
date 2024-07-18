@@ -4,7 +4,7 @@
         <h1>TO-DO <br> QUEST</h1>
         <div class="select">
           <a href="#" class="eightbit-btn">new game</a><hr/>
-          <a href="#" class="eightbit-btn eightbit-btn--proceed">continue</a><hr/>
+          <%= link_to "continue", dashboard_path, class:"eightbit-btn eightbit-btn--proceed", id:"continue-btn" %>
         </div>
     </div>
   </div>
@@ -14,3 +14,18 @@
       </div>
   </footer>
 </div>
+
+<audio id="audio" src="<%= asset_path('game-start.mp3') %>" preload="auto"></audio>
+
+<script>
+  document.getElementById('continue-btn').addEventListener('click', function(event) {
+    event.preventDefault();
+    var audio = document.getElementById('audio');
+    audio.play();
+
+    // Délai de 1s avant la navigation vers le dashboard
+    setTimeout(function() {
+      window.location.href = "<%= dashboard_path %>";
+    }, 1000);
+  });
+</script>
