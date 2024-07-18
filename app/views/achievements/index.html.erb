@@ -1,8 +1,10 @@
 <h2>Achievements🏆</h2>
 
+
+Total : <%= @achievements.count %>
+Progress : <%= @achievements.count / 10.0 * 100 %>%
+
     <% @achievements.each do |achievement| %>
-      <li>
-        <%= link_to achievement.title, achievement %>
-      </li>
+      <li><%= achievement.title.upcase %>🎸</li>
+      - <%= achievement.description %>
     <% end %>
-  </ul>

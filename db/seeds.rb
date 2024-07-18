@@ -86,8 +86,7 @@ Task.create!(title: "Planning the week ahead", description: "Plan the tasks and 
 
 puts "Tasks created!"
 
-#creation d'un achievement pour une task fictive
-Achievement.create!(title: "Wizard of coding", description: "You have completed the task 'Le Wagon'", user: user, sub_category: mage1, :created_at => Time.now)
-
+#creation d'un achievement pour une task deja accomplie
+Achievement.create!(title: "Minstrel apprentice", description: "You have successfully completed the task of playing guitar", user: user, sub_category: bard3)
 
 puts "Achievement created!"
