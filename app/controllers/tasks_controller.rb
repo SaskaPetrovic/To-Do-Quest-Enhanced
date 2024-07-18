@@ -50,6 +50,16 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :description, :completed, :_destroy])
+    params.require(:task).permit(:title, :description, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed, :_destroy])
+  end
+
+  def update_steps
+    @task = Task.find(params[:id])
+
+    if @task.update(task_params)
+      redirect_to @task, notice: 'The steps have been successfully updated'
+    else
+      render :edit
+    end
   end
 end
