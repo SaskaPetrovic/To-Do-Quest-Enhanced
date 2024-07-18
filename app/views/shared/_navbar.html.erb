@@ -23,11 +23,13 @@
           <%= image_tag 'icons/Kebab_Menu_Vertical.svg', alt: "dropdown menu" %>
         </button>
         <div class="dropdown-menu dropdown-menu-end full-screen-dropdown" aria-labelledby="navbarDropdown">
-          <%= link_to "Menu", "#", class: "dropdown-item mb-4" %>
-          <%= link_to "Profile", "#", class: "dropdown-item" %>
-          <%= link_to "Achievements", "#", class: "dropdown-item" %>
-          <%= link_to "Quests", "#", class: "dropdown-item" %>
-          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          <h5 class="menu-font"> <%= link_to "Menu", "#", class: "dropdown-item mb-5 mt-5" %></h5>
+          <div class="menu-line-height">
+            <h6 class="menu-font"> <%= link_to "Profile", "#", class: "dropdown-item" %></h6>
+            <h6 class="menu-font"> <%= link_to "Achievements", "#", class: "dropdown-item" %></h6>
+            <h6 class="menu-font"> <%= link_to "Quests", "#", class: "dropdown-item" %></h6>
+            <h6 class="menu-font"> <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></h6>
+          </div>
         </div>
     <% else %>
       <%= link_to "Login", new_user_session_path, class: "nav-link" %>
