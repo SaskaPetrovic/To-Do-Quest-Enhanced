@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index'
 
   resources :tasks do
-    patch :accept, on: :member
+    member do
+      patch :accept
+      patch :update_steps
+    end
   end
 
   resources :achievements, only: [:index, :create]
