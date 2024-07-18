@@ -1,6 +1,6 @@
 <h1><%= @task.persisted? ? 'Edit Quest' : 'Add Quest' %></h1>
 
-<%= simple_form_for @task, html: { local: true } do |form| %>
+<%= simple_form_for @task, html: { local: true, data: { controller: "step" } } do |form| %>
   <div>
     <%= form.input :title, label: "Set a Title", required: true %>
   </div>
@@ -23,9 +23,32 @@
 
   <h2>Checkpoints</h2>
 
+  <div id="step" data-step-target="steps"></div>
+<>
+  <div>
+    <%= link_to 'Add Step', '#', id: 'add-step', class: 'button', data: { action: "click->step#addStep" } %>
+  </div>
+
+
+  <template data-step-target="template">
+    <div>
+      <div>
+        <label for="task_steps_attributes_INDEX_title">Step Title</label>
+        <input type="text" name="task[steps_attributes][INDEX][title]" id="task_steps_attributes_INDEX_title" required>
+      </div>
+      <div>
+        <label for="task_steps_attributes_INDEX_description">Description</label>
+        <input type="text" name="task[steps_attributes][INDEX][content]" id="task_steps_attributes_INDEX_description" required>
+      </div>
+      <div>
+        <label for="task_steps_attributes_INDEX_completed">Completed</label>
+        <input type="checkbox" name="task[steps_attributes][INDEX][completed]" id="task_steps_attributes_INDEX_completed">
+      </div>
+    </div>
+  </template>
+
   <div>
     <%= form.button :submit, 'Confirm' %>
     <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
   </div>
-
 <% end %>
