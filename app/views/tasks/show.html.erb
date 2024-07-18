@@ -1,10 +1,11 @@
-<h1><%= @task.title %></h1>
-<p><strong>Description:</strong> <%= @task.description %></p>
-<p><strong>Category:</strong> <%= @task.sub_category.title %></p>
-<p><strong>Estimated Duration:</strong> <%= @task.time %></p>
-<p><strong>Priority:</strong> <%= @task.urgence %></p>
+<div data-controller="progress">
+  <h1><%= @task.title %></h1>
+  <p><strong>Description:</strong> <%= @task.description %></p>
+  <p><strong>Category:</strong> <%= @task.sub_category.title %></p>
+  <p><strong>Estimated Duration:</strong> <%= @task.time %></p>
+  <p><strong>Priority:</strong> <%= @task.urgence %></p>
 
-<h2>Steps</h2>
+  <h2>Steps</h2>
 
 <%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
   <% if @task.steps.any? %>
@@ -18,15 +19,13 @@
           </p>
         </li>
       <% end %>
+
     </ul>
   <% else %>
     <p>No steps available for this task.</p>
   <% end %>
-<% end %>
+  <% end %>
 
-<div data-controller="progress-bar" class="progress-bar">
-  <div data-progress-bar-target="bar" class="progress"></div>
-</div>
-
-<%= link_to 'Edit', edit_task_path(@task), class: 'button-edit' %>
-<%= link_to 'Return to List', tasks_path, class: 'button-return' %>
+  <%= link_to 'Edit', edit_task_path(@task), class: 'button-edit' %>
+  <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
+ </div>
