@@ -33,3 +33,21 @@
   height: 100%;
   display: block;
 }
+
+.menu-font{
+  font-size: 24px;
+}
+
+.menu-line-height .dropdown-item {
+  line-height: 1.6;
+}
+
+.dropdown-menu{
+  --bs-dropdown-spacer: 0 !important;
+}
+
+#navbarDropdown:focus, #navbarDropdown:active, #navbarDropdown {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}

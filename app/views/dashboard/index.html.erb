@@ -53,50 +53,9 @@
       <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
         <h6 class="text-center">Exp.</h6>
     </div>
-    <h5 class="text-center"><%= @user.experience %> To Next Lv.</h5>
-  </div>
-
-    <!-------------------------------------Tabs ---------------------------->
-    <div class="tabs">
-        <button class="tab-link active" onclick="showTab('activity')">Activity</button>
-        <button class="tab-link" onclick="showTab('stats')">Stats</button>
+    <div class="d-flex justify-content-between">
+      <h6 class="text-start pt-3">To Next Lv.</h6>
+      <h6 class="pt-3"><%= @user.experience %></h6>
     </div>
-
-    <!------------------------- Tab Contents --------------------------->
-      <div id="activity" class="tab-content active">
-          <div>
-              <h5>MEMO</h5>
-              <p>Main task</p>
-              <p><%= @user.memo %></p>
-          </div>
-          <div>
-              <h5>STATUS</h5>
-              <p><%= @user.status %></p>
-          </div>
-      </div>
-
-      <div id="stats" class="tab-content">
-          <h5>CHART</h5>
-      </div>
-
-    <!-------------------------------JAVASCRIPT ONGLET----------------------->
-    <script>
-        function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-
-            document.querySelectorAll('.tab-link').forEach(button => {
-                button.classList.remove('active');
-            });
-
-            document.getElementById(tabId).classList.add('active');
-            document.querySelector([onclick="showTab('${tabId}')"]).classList.add('active');
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            showTab('activity');
-        });
-    </script>
   </div>
-</body>
-</html>
+</div>
