@@ -57,5 +57,66 @@
       <h6 class="text-start pt-3">To Next Lv.</h6>
       <h6 class="pt-3"><%= @user.experience %></h6>
     </div>
+
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>MANA</h6>
+        <h6>99</h6> <!-- Remplacer 99 par @user.mana -->
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>DEX</h6>
+        <h6>54</h6> <!-- Remplacer 54 par @user.dex -->
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>STR</h6>
+        <h6>76</h6> <!-- Remplacer 76 par @user.str -->
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>CHA</h6>
+        <h6>90</h6> <!-- Remplacer 90 par @user.cha -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience Bar -->
+  <div class="mt-4">
+    <div class="progress" style="height: 20px;">
+      <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
+        <h6 class="text-center">Exp.</h6>
+    </div>
+    <div class="d-flex justify-content-between">
+      <h6 class="text-start pt-3">To Next Lv.</h6>
+      <h6 class="pt-3"><%= @user.experience %></h6>
+    </div>
+  </div>
+
+    <!-- tabs -->
+    <div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
+      <div class="tabs">
+        <button id="activity-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Activity</button>
+        <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
+      </div>
+
+      <div id="activity" class="tab-content" data-tabs-target="tab">
+        <div>
+          <h5>MEMO</h5>
+          <div class="pixel-corners">
+            <p>Main task</p>
+            <p> <%= @user.memo %> </p>
+          </div>
+        </div>
+        <div>
+          <h5>STATUS</h5>
+          <div class="pixel-corners">
+            <p> <%= @user.status %> </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="stats" class="tab-content" data-tabs-target="tab">
+        <h5>CHART</h5>
+      </div>
+    </div>
+
   </div>
 </div>
