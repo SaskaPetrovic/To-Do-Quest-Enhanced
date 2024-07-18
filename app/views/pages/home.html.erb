@@ -1,22 +1,25 @@
-<div class="home">
-  <div class="container d-flex justify-content-center align-items-center">
-    <div class="text-center">
-        <h1>TO-DO <br> QUEST</h1>
-        <div class="select">
-          <a href="#" class="eightbit-btn">new game</a><hr/>
-          <%= link_to "continue", dashboard_path, class:"eightbit-btn eightbit-btn--proceed", id:"continue-btn" %>
-        </div>
-    </div>
-  </div>
-  <footer class="footer">
-      <div class="container text-center">
-          <p>&copy;2024 All rights reserved.</p>
+<body onclick="playAudio()">
+  <div class="home">
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="text-center">
+          <h1>TO-DO <br> QUEST</h1>
+          <div class="select">
+            <a href="#" class="eightbit-btn">new game</a><hr/>
+            <%= link_to "continue", dashboard_path, class:"eightbit-btn eightbit-btn--proceed", id:"continue-btn" %>
+          </div>
       </div>
-  </footer>
-</div>
+    </div>
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy;2024 All rights reserved.</p>
+        </div>
+    </footer>
+  </div>
 
-<audio id="audio" src="<%= asset_path('game-start.mp3') %>" preload="auto"></audio>
+  <audio id="audio" src="<%= asset_path('game-start.mp3') %>" preload="auto"></audio>
+  <audio id="background-audio" src="<%= asset_path("theme.mp3") %>" loop autoplay></audio>
 
+</body>
 <script>
   document.getElementById('continue-btn').addEventListener('click', function(event) {
     event.preventDefault();
@@ -28,4 +31,14 @@
       window.location.href = "<%= dashboard_path %>";
     }, 1000);
   });
+
+  var audioPlayed = false; // Pour s'assurer que l'audio ne se joue qu'une fois
+function playAudio() {
+    if (!audioPlayed) {
+        var player = document.getElementById('background-audio');
+        player.play().catch(error => console.error("Erreur lors de la lecture : " + error));
+        audioPlayed = true; // Marquer comme joué
+    }
+}
+
 </script>

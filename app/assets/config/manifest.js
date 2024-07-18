@@ -6,3 +6,4 @@
 //= link popper.js
 //= link bootstrap.min.js
 //= link game-start.mp3
+//= link theme.mp3
