@@ -69,21 +69,35 @@
       <div id="activity" class="tab-content" data-tabs-target="tab">
         <div>
           <h5>MEMO</h5>
-          <div class="pixel-corners">
-            <p>Main task</p>
-            <p> <%= @user.memo %> </p>
+          <div class="background-color bg-light">
+            <div class="pixel-corners mb-4">
+              <div class="margins m-2">
+                <p>Main task <br>
+                <hr> </p>
+                <p> <%= @user.memo %> </p>
+              </div>
+            </div>
           </div>
         </div>
         <div>
           <h5>STATUS</h5>
-          <div class="pixel-corners">
-            <p> <%= @user.status %> </p>
+          <div class="background-color bg-light">
+            <div class="pixel-corners mb-4 ml-1 mr-1">
+              <div class="margins m-2">
+                <p> _ _ _ _ _ _ _ _ _ _ _ </p>
+                <hr>
+                <p> <%= @user.status %> </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <div id="stats" class="tab-content" data-tabs-target="tab">
         <h5>CHART</h5>
+          <div class="pixel-corners">
+            <!-- -->
+          </div>
       </div>
     </div>
 
