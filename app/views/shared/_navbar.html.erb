@@ -13,10 +13,11 @@
       <% end %>
 
       <div class="d-flex flex-column ms-2">
-        <% if @user.present? %>
+        <% if user_signed_in? %>
           <%= link_to @user.username, "#", class: "nav-link" %>
+          <h6><%= link_to "LV. #{@user.level}", "#", class: "nav-link" %></h6>
         <% end %>
-        <h6><%= link_to "LV. #{@user.level}", "#", class: "nav-link" %></h6>
+
       </div>
     </div>
 
