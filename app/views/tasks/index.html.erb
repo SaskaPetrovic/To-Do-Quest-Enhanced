@@ -78,7 +78,11 @@
           <h5>MEMO</h5>
           <div class="pixel-corners">
             <p>Main task</p>
-
+            <% if @random_memo.present? %>
+              <p><%= @random_memo.content %></p>
+            <% else %>
+              <p>No memo available.</p>
+            <% end %>
           </div>
         </div>
         <div>
