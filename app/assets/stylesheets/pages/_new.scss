@@ -1,0 +1,21 @@
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form .form-group {
+  margin-bottom: 15px;
+}
+
+.form .btn {
+  margin-right: 10px;
+}
+
+.form .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}

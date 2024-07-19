@@ -1,31 +1,30 @@
-<h1><%= @task.persisted? ? 'Edit Quest' : 'Add Quest' %></h1>
+<h2><%= @task.persisted? ? 'EDIT' : 'ADD QUEST' %></h2>
 
-<%= simple_form_for @task, html: { local: true } do |form| %>
-  <div>
-    <%= form.input :title, label: "Set a Title", required: true %>
+<%= simple_form_for @task, html: { local: true, class: 'form' } do |form| %>
+  <div class="form-group">
+    <%= form.input :title, label: "Set a Title", required: true, input_html: { class: 'form-control' } %>
   </div>
 
-  <div>
-    <%= form.input :description, label: "Add a Description", required: true %>
+  <div class="form-group">
+    <%= form.input :description, label: "Add a Description", required: true, input_html: { class: 'form-control' } %>
   </div>
 
-  <div>
-    <%= form.association :sub_category, label: "Select Category", prompt: 'Choose a category', required: true %>
+  <div class="form-group">
+    <%= form.association :sub_category, label: "Select Category", prompt: 'Choose a category', required: true, input_html: { class: 'form-control' } %>
   </div>
 
-  <div>
-    <%= form.input :time, as: :string, input_html: { class: 'time-input', placeholder: 'HH:MM', required: true } %>
+  <div class="form-group">
+    <%= form.input :time, as: :string, input_html: { class: 'form-control time-input', placeholder: 'HH:MM', required: true } %>
   </div>
 
-  <div>
-    <%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, label: "Choose Priority" %>
+  <div class="form-group">
+    <%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, label: "Choose Priority", item_wrapper_class: 'form-check', label_class: 'form-check-label' %>
   </div>
 
   <h2>Checkpoints</h2>
 
-  <div>
-    <%= form.button :submit, 'Confirm' %>
-    <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
+  <div class="form-group">
+    <%= form.button :submit, 'Confirm', class: 'btn btn-primary' %>
+    <%= link_to 'Return to List', tasks_path, class: 'btn btn-secondary' %>
   </div>
-
 <% end %>
