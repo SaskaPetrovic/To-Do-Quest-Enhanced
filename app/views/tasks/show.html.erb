@@ -1,31 +1,41 @@
 <div data-controller="progress">
-  <h1><%= @task.title %></h1>
-  <h3>Description: <%= @task.description %></h3>
-  <p><strong>Category:</strong> <%= @task.sub_category.title %></p>
-  <p><strong>Estimated Duration:</strong> <%= @task.time %></p>
-  <p><strong>Priority:</strong> <%= @task.urgence %></p>
+  <h2><%= @task.title %></h2>
+  <div class="container">
+    <h5 class="desc-title">Category</h5>
+    <p class="desc-body"> <%= @task.sub_category.title %></p>
+    <h5 class="desc-title">Description</h5>
+    <p class="desc-body"><%= @task.description %></p>
+    <h5 class="desc-title">Estimated Duration</h5>
+    <p class="desc-body"><%= @task.time %></p>
+    <h5 class="desc-title">Priority</h5>
+    <p class="desc-body"><%= @task.urgence %></p>
+    <h5 class="desc-title">Rewards</h5>
+    <p class="desc-reward">+ 30 XP</p>
+    <p class="desc-reward">+ strenght increase</p>
+    <p class="desc-reward end">+ dexterity increase</p>
 
-  <h2>Steps</h2>
+    <h5 class="desc-title">checkpoints</h5>
 
-<%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
-  <% if @task.steps.any? %>
-    <ul id="steps-list">
-      <% @task.steps.each do |step| %>
-        <li data-step-id="<%= step.id %>">
-          <p><%= step.content %></p>
-          <p>
-            <%= form.check_box :completed, checked: step.completed, name: "task[steps_attributes][#{step.id}][completed]", data: { action: 'change->progress-bar#updateProgressBar' } %>
-            <%= form.hidden_field :id, value: step.id, name: "task[steps_attributes][#{step.id}][id]" %>
-          </p>
-        </li>
-      <% end %>
+    <%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
+    <% if @task.steps.any? %>
+      <ul id="steps-list">
+        <% @task.steps.each do |step| %>
+          <li data-step-id="<%= step.id %>">
+            <p><%= step.content %></p>
+            <p>
+              <%= form.check_box :completed, checked: step.completed, name: "task[steps_attributes][#{step.id}][completed]", data: { action: 'change->progress-bar#updateProgressBar' } %>
+              <%= form.hidden_field :id, value: step.id, name: "task[steps_attributes][#{step.id}][id]" %>
+            </p>
+          </li>
+        <% end %>
 
-    </ul>
-  <% else %>
-    <p>No steps available for this task.</p>
-  <% end %>
-  <% end %>
+      </ul>
+    <% else %>
+      <p>No steps available for this task.</p>
+    <% end %>
+    <% end %>
 
-  <%= link_to 'Edit', edit_task_path(@task), class: 'button-edit' %>
-  <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
- </div>
+    <%= link_to 'Edit', edit_task_path(@task), class: 'button-edit' %>
+    <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
+  </div>
+</div>
