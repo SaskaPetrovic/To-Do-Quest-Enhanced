@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @user = current_user
   end
 
   def create
@@ -49,6 +50,7 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all
     end
+    @user = current_user
   end
 
   private
