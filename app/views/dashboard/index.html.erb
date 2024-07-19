@@ -4,7 +4,7 @@
   <!-- Email and Level -->
   <div class="row mb-1">
     <div class="col padding-user">
-      <h5>USERNAME</h5>
+      <h5><%= @user.username %></h5>
     </div>
     <div class="col padding-lv">
       <h6>Lv.<%= @user.level %></h6>
@@ -71,7 +71,7 @@
           <h5>MEMO</h5>
           <div class="pixel-corners">
             <p>Main task</p>
-            <p> <%= @user.memo %> </p>
+            <p><%= @random_memo.content %></p>
           </div>
         </div>
         <div>
