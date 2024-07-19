@@ -3,8 +3,10 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @task.steps.build
+    @user = current_user
   end
+
+
 
   def create
     @task = Task.new(task_params)
@@ -17,7 +19,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task.steps.build if @task.steps.empty?
+    @user = current_user
   end
 
   def update
@@ -29,18 +31,21 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    authorize @task
-    @task.destroy
-    redirect_to tasks_url, notice: 'Quest was successfully destroyed.'
+    if @task.destroy
+      redirect_to tasks_path, notice: 'Quest was successfully destroyed.'
+    else
+      render :edit
+    end
   end
 
   def show
-
+    @task = Task.includes(:steps).find(params[:id])
+    @user = current_user
   end
 
   def index
-    @tasks = Task.where(status: params[:status] || 'in_progress')
     @tasks = Task.all
+    @user = current_user
   end
 
   private
@@ -50,9 +55,16 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(
-      :title, :description, :sub_category_id, :time, :urgence, :status,
-      steps_attributes: [:id, :content, :completed, :_destroy]
-    )
+    params.require(:task).permit(:title, :description, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed, :_destroy])
+  end
+
+  def update_steps
+    @task = Task.find(params[:id])
+
+    if @task.update(task_params)
+      redirect_to @task, notice: 'The steps have been successfully updated'
+    else
+      render :edit
+    end
   end
 end
