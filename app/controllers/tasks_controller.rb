@@ -3,7 +3,10 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @user = current_user
   end
+
+
 
   def create
     @task = Task.new(task_params)
@@ -16,7 +19,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-   # @task.steps.build if @task.steps.empty?
+    @user = current_user
   end
 
   def update
@@ -37,10 +40,12 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.includes(:steps).find(params[:id])
+    @user = current_user
   end
 
   def index
     @tasks = Task.all
+    @user = current_user
   end
 
   private
