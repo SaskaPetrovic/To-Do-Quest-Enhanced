@@ -66,24 +66,40 @@
         <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
       </div>
 
-      <div id="activity" class="tab-content" data-tabs-target="tab">
+           <div id="activity" class="tab-content" data-tabs-target="tab">
         <div>
           <h5>MEMO</h5>
-          <div class="pixel-corners">
-            <p>Main task</p>
-            <p><%= @random_memo.content %></p>
+          <div class="background-color bg-light">
+            <div class="pixel-corners mb-4">
+              <div class="margins p-2">
+                <p>Main task <br>
+                <hr> </p>
+                <p> <%= @user.memo %> </p>
+              </div>
+            </div>
           </div>
         </div>
         <div>
           <h5>STATUS</h5>
-          <div class="pixel-corners">
-            <p> <%= @user.status %> </p>
+          <div class="background-color bg-light">
+            <div class="pixel-corners mb-4">
+              <div class="margins p-2">
+                <p> _ _ _ _ _ _ _ _ _ _ _ </p>
+                <hr>
+                <p> <%= @user.status %> </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
+  
       <div id="stats" class="tab-content" data-tabs-target="tab">
         <h5>CHART</h5>
+          <div class="pixel-corners">
+            <div class="margins p-2">
+            <!-- -->
+            </div>
+          </div>
       </div>
     </div>
 
