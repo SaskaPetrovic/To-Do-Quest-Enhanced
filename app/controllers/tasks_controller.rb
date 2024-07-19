@@ -17,7 +17,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-   # @task.steps.build if @task.steps.empty?
+
   end
 
   def update
@@ -52,7 +52,6 @@ class TasksController < ApplicationController
     end
     @user = current_user
   end
-
   private
 
   def set_task
@@ -65,7 +64,6 @@ class TasksController < ApplicationController
 
   def update_steps
     @task = Task.find(params[:id])
-
     if @task.update(task_params)
       redirect_to @task, notice: 'The steps have been successfully updated'
     else
