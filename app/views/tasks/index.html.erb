@@ -4,13 +4,11 @@
 <div data-controller="tabs" data-tabs-default-tab-value="" data-tabs-active-class="active">
   <div class="tabs">
     <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-button #{params[:status] == 'in_progress' ? 'active' : ''}" %>
-    <%= link_to 'New', tasks_path(status: 'not_started'), data: {turbo: false}, class: "tab-button #{params[:status] == 'not_started' ? 'active' : ''}" %>
+    <%= link_to 'New', tasks_path(status: 'not_started'), data: { turbo: false }, class: "tab-button #{params[:status] == 'not_started' ? 'active' : ''}" %>
   </div>
 
- <% if params[:status] == 'in_progress' %>
-
-
-    <!-- Affichage des quêtes en cours -->
+  <!-- Affichage des quêtes en cours avec des étapes complètes -->
+  <% if params[:status] == 'in_progress' %>
     <div class="container">
       <% if @tasks.any? %>
         <div class="tasks-list">
@@ -30,73 +28,68 @@
           <% end %>
         </div>
       <% else %>
-        <p>No ongoing quests found.</p>
+        <p>No ongoing quests with completed steps found.</p>
       <% end %>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-
-
-<% if params[:status] == 'not_started' %>
-  <%= link_to 'Add Custom Quest', new_task_path %>
-
-  <!-- Affichage des quêtes predefinie -->
-  <div class="container">
-    <% if @tasks.any? %>
-      <div class="tasks-list">
-        <% @tasks.each do |task| %>
-          <div class="task-item mb-2">
-            <div class="p-1">
-              <%= link_to task_path(task), class: 'text-decoration-none' do %>
-                <div class="pixel-corners mb-1">
-                  <div class="p-2 colored">
-                    <h3 class="mb-2"><%= task.title %></h3>
-                    <h4 class="mb-1">Priority: <%= task.urgence %></h4>
+  <!-- Affichage des quêtes non commencées -->
+  <% if params[:status] == 'not_started' %>
+    <%= link_to 'Add Custom Quest', new_task_path %>
+    <div class="container">
+      <% if @tasks.any? %>
+        <div class="tasks-list">
+          <% @tasks.each do |task| %>
+            <div class="task-item mb-2">
+              <div class="p-1">
+                <%= link_to task_path(task), class: 'text-decoration-none' do %>
+                  <div class="pixel-corners mb-1">
+                    <div class="p-2 colored">
+                      <h3 class="mb-2"><%= task.title %></h3>
+                      <h4 class="mb-1">Priority: <%= task.urgence %></h4>
+                    </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>No new quests found.</p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<!-- Tabs for additional content -->
+<div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
+  <div class="tabs">
+    <button id="activity-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Activity</button>
+    <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
+  </div>
+
+  <div id="activity" class="tab-content" data-tabs-target="tab">
+    <div>
+      <h5>MEMO</h5>
+      <div class="pixel-corners">
+        <p>Main task</p>
+        <% if @random_memo.present? %>
+          <p><%= @random_memo.content %></p>
+        <% else %>
+          <p>No memo available.</p>
         <% end %>
       </div>
-    <% else %>
-      <p>No ongoing quests found.</p>
-    <% end %>
-  </div>
-<% end %>
-</div>
-<!-- tabs -->
-    <div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
-      <div class="tabs">
-        <button id="activity-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Activity</button>
-        <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
-      </div>
-
-      <div id="activity" class="tab-content" data-tabs-target="tab">
-        <div>
-          <h5>MEMO</h5>
-          <div class="pixel-corners">
-            <p>Main task</p>
-            <% if @random_memo.present? %>
-              <p><%= @random_memo.content %></p>
-            <% else %>
-              <p>No memo available.</p>
-            <% end %>
-          </div>
-        </div>
-        <div>
-          <h5>STATUS</h5>
-          <div class="pixel-corners">
-
-          </div>
-        </div>
-      </div>
-
-      <div id="stats" class="tab-content" data-tabs-target="tab">
-        <h5>CHART</h5>
+    </div>
+    <div>
+      <h5>STATUS</h5>
+      <div class="pixel-corners">
+        <!-- Additional status content -->
       </div>
     </div>
+  </div>
 
+  <div id="stats" class="tab-content" data-tabs-target="tab">
+    <h5>CHART</h5>
+    <!-- Additional stats content -->
   </div>
 </div>

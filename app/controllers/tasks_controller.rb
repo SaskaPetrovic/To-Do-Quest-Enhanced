@@ -37,10 +37,18 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.includes(:steps).find(params[:id])
+    @user = current_user
   end
 
   def index
     @tasks = Task.all
+    if params[:status] == 'in_progress'
+      @tasks = Task.with_completed_steps
+    elsif params[:status] == 'not_started'
+      @tasks = Task.where(status: 'not_started')
+    else
+      @tasks = Task.all
+    end
   end
 
   private
