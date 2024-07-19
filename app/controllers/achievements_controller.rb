@@ -3,6 +3,7 @@ class AchievementsController < ApplicationController
 
   def index
     @achievements = current_user.achievements
+    @user = current_user
   end
 
   def create
