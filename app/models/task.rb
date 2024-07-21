@@ -5,4 +5,8 @@ class Task < ApplicationRecord
   accepts_nested_attributes_for :steps, allow_destroy: true
   validates :title, :description, :sub_category, :urgence, presence: true
   validates :urgence, inclusion: { in: ['low', 'medium', 'high'] }
+
+  scope :with_completed_steps, -> {
+    joins(:steps).where(steps: { completed: true }).distinct
+  }
 end
