@@ -14,28 +14,29 @@
 
 <div class="container " style="width: 100%; max-width: 390px;">
 
-  <%= simple_form_for @task, html: { local: true, data: { controller: "step" } } do |form| %>
-      <h6 class="customTitleShow">Set a Title</h6>
-      <p><%= form.input :title, required: true, label: false %></p>
+ <%= simple_form_for @task, html: { local: true, data: { controller: "step" } } do |form| %>
+  <h6 class="customTitleShow">Set a Title</h6>
+  <p><%= form.input :title, required: true, label: false %></p>
 
-      <h6 class="customTitleShow pt-2">Add a Description</h6>
-      <p><%= form.input :description, required: true, label: false %></p>
+  <h6 class="customTitleShow pt-2">Add a Description</h6>
+  <p><%= form.input :description, required: true, label: false %></p>
 
-      <h6 class="customTitleShow pt-2">Select Category</h6>
-      <%= form.collection_select :category_id, Category.all, :id, :title, prompt: 'Choose a category', required: true %>
+  <h6 class="customTitleShow pt-2">Select Category</h6>
+  <p><%= form.collection_select :category_id, Category.all, :id, :title, { prompt: 'Choose a category', required: true }, { class: 'form-select' } %></p>
 
-      <h6 class="customTitleShow pt-2">Time</h6>
-      <p><%= form.input :time, as: :string, input_html: { class: 'form-control time-input', placeholder: 'HH:MM', required: true }, label: false %></p>
+  <h6 class="customTitleShow pt-2">Time</h6>
+  <p><%= form.input :time, as: :string, input_html: { class: 'form-control time-input', placeholder: 'HH:MM', required: true }, label: false %></p>
 
-      <h6 class="customTitleShow pt-2">Choose Priority</h6>
-      <p><%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, item_wrapper_class: 'form-check', label_class: 'form-check-label', label: false %></p>
+  <h6 class="customTitleShow pt-2">Choose Priority</h6>
+  <p><%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, item_wrapper_class: 'form-check', label_class: 'form-check-label', label: false %></p>
 
-    <h6 class="customTitleShow pt-4">Checkpoints</h6>
+  <h6 class="customTitleShow pt-4">Checkpoints</h6>
 
-    <div id="step" data-step-target="steps" class="pt-2"></div>
-    <%= link_to '#', id: 'add-step', class: 'add-quest-link noPaddingNew pt-4', data: { action: "click->step#addStep" } do %>
-      <%= image_tag 'icons/Add.png', alt: 'Add Icon' %> Add Step
-    <% end %>
+  <div id="step" data-step-target="steps" class="pt-1"></div>
+  <%= link_to '#', id: 'add-step', class: 'add-quest-link noPaddingNew pt-4', data: { action: "click->step#addStep" } do %>
+    <%= image_tag 'icons/Add.png', alt: 'Add Icon' %> Add Step
+  <% end %>
+
 
     <template data-step-target="template">
       <div class="pt-3">
