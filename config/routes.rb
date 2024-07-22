@@ -9,10 +9,13 @@ Rails.application.routes.draw do
 
   resources :tasks do
     member do
+      get :accept, to: 'tasks#accept', as: :accept
       patch :accept
       patch :update_steps
     end
   end
+
+
 
   resources :achievements, only: [:index, :create]
 

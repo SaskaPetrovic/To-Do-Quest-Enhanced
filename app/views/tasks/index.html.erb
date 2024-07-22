@@ -38,6 +38,7 @@
                 </div>
               </div>
             <% end %>
+            <%= link_to "Accept", accept_task_path(task), method: :patch, class: "btn btn-outline-dark btn-sm" %>
           </div>
         </div>
       <% end %>

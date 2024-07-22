@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :accept]
   before_action :set_user
 
   def new
@@ -56,6 +56,19 @@ class TasksController < ApplicationController
              else
                Task.with_completed_steps
              end
+  end
+
+  def accept
+    if @task.status == "not_started"
+      if @task.update(status: "in_progress")
+        update_user_stats(@user, @task)
+        redirect_to tasks_path, notice: 'Task was successfully accepted.'
+      else
+        render :show, alert: 'Could not update the task.'
+      end
+    else
+      redirect_to @task, alert: 'Task is not in a state that can be accepted.'
+    end
   end
 
   private
