@@ -1,4 +1,17 @@
-<h2>Achievements</h2>
+ <!----------------Title and return link---------------->
+  <div class="container lessPadding">
+    <div class="d-flex align-items-center justify-content-between">
+      <%= link_to dashboard_path, class: 'button-return mb-2' do %>
+        <%= image_tag 'icons/return.svg', alt: 'Return'%>
+      <% end %>
+      <div class="flex-grow-1 text-center">
+        <h2>Achievements</h2>
+      </div>
+      <!-- An empty div to take the same space as the link to ensure the title is centered -->
+      <div style="width: 10px;"></div>
+    </div>
+  </div>
+
 <!--Je n ai pas reussi-->
 <div class="container">
   <h5 class="title-achievement">Total: <%= @achievements.count %> / 200</h5>
