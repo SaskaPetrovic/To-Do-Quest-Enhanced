@@ -36,19 +36,27 @@
   <%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
     <% if @task.steps.any? %>
       <div id="steps-list" class="pixel-corners">
-        <div class="p-3 colored">
+        <div class="p-3 colored " data-progress-target="checkboxes">
           <% @task.steps.each do |step| %>
-            <div class="step-item d-flex align-items-center mb-2" data-step-id="<%= step.id %>">
-              <%= form.check_box :completed, checked: step.completed, name: "task[steps_attributes][#{step.id}][completed]", class: 'me-2', data: { action: 'change->progress-bar#updateProgressBar' } %>
+            <div class="step-item d-flex align-items-center mb-2" data-step-id="<%= step.id %>" >
+              <%= form.check_box :completed, checked: step.completed, name: "task[steps_attributes][#{step.id}][completed]", class: 'id me-2', data: { type:step.completed ? "true": "false", action: 'change->progress#updateProgressBar', progress_target:"checkbox" } %>
               <p class="desc-steps"><%= step.content %></p>
               <%= form.hidden_field :id, value: step.id, name: "task[steps_attributes][#{step.id}][id]" %>
             </div>
           <% end %>
+          <br>
+          <h5 class="desc-title">progress</h5>
+          <div class="progress" data-progress-target="bar">
+            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+          </div>
+
         </div>
       </div>
+
     <% else %>
     <p>No steps available for this task.</p>
   <% end %>
+
 <% end %>
 
     <div class="pt-1">
