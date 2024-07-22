@@ -1,14 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
   def new
     @task = Task.new
-    @user = current_user
   end
 
   def create
     @task = Task.new(task_params)
     @task.user = current_user
+
     if @task.save
       redirect_to @task, notice: 'Quest was successfully created.'
     else
@@ -37,26 +38,31 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.includes(:steps).find(params[:id])
-    @user = current_user
   end
-
   def index
-    @user = current_user
-
-    case params[:status]
-    when 'in_progress'
-      @tasks = Task.with_completed_steps
-    when 'not_started'
-      @tasks = Task.where(status: 'not_started')
-    else
-      @tasks = Task.all
-    end
+    @tasks = if params[:status].present?
+               case params[:status]
+               when 'in_progress'
+                 Task.with_completed_steps
+               when 'not_started'
+                 Task.where(status: 'not_started')
+               else
+                 Task.all
+               end
+             else
+               # Si aucun paramètre status n'est présent, afficher les tâches "in_progress" par défaut
+               Task.with_completed_steps
+             end
   end
 
   private
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def task_params

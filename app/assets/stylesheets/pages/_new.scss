@@ -1,3 +1,4 @@
+// CSS du formulaire de la page NEW
 .form {
   max-width: 600px;
   margin: 0 auto;
@@ -18,4 +19,23 @@
 .form .btn-secondary {
   background-color: #6c757d;
   border-color: #6c757d;
+}
+
+.select {
+  margin-top: 0;
+  font-size: 16px !important;
+}
+
+// Titre H6
+.customTitleShow{
+  font-size: 15px;
+}
+
+.noPaddingNew img{
+  margin-left: 0 !important;
+}
+
+// Moins de padding dans le container pour le titre
+.lessPadding{
+  padding: 15px !important;
 }

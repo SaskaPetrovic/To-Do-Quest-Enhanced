@@ -1,4 +1,4 @@
-<div class="container" style="width: 100%; max-width: 390px;">
+<div class="container profileLessPadding">
   <h2>PROFILE</h2>
 
   <!-- Email and Level -->
@@ -22,7 +22,7 @@
     <div class="col-5 d-flex flex-column align-items-start padding-fixed">
       <div class="d-flex justify-content-between w-100 pb-1 align-items-end border-bottom">
         <h6>Mage</h6>
-        <%= image_tag "icons/mage.png", class: "icons" %>
+        <%= image_tag "icons/mage.png", class: "icons mb-1" %>
       </div>
       <div class="d-flex justify-content-between w-100 mt-3">
         <h6>INT</h6>
@@ -47,21 +47,24 @@
     </div>
   </div>
 
+</div>
+
+<div class="container" style="width: 100%; max-width: 390px;">
   <!-- Experience Bar -->
   <div class="mt-4">
-    <div class="progress" style="height: 20px;">
+    <div class="progress" style="height: 30px;">
       <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
         <h6 class="text-center">Exp.</h6>
     </div>
     <div class="d-flex justify-content-between">
       <h6 class="text-start pt-3">To Next Lv.</h6>
-      <h6 class="pt-3"><%= @user.experience %></h6>
+      <h6 class="pt-3"><%= @user.experience %></h6> <!--ca s affiche pas-->
     </div>
   </div>
 
     <!-- tabs -->
     <div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
-      <div class="tabs">
+      <div class="tabs pt-3 pb-3">
         <button id="activity-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Activity</button>
         <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
       </div>

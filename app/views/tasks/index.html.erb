@@ -1,18 +1,30 @@
-<h2 class="quest-margin">QUESTS</h2>
+<!----------------Title and return link---------------->
+<div class="container lessPadding">
+  <div class="d-flex align-items-center justify-content-between">
+    <%= link_to dashboard_path, class: 'button-return' do %>
+      <%= image_tag 'icons/return.svg', alt: 'Return'%>
+    <% end %>
+    <div class="flex-grow-1 text-center">
+      <h2 class="quest-margin">QUESTS</h2>
+    </div>
+    <!-- An empty div to take the same space as the link to ensure the title is centered -->
+    <div style="width: 24px;"></div>
+  </div>
+</div>
 
 <div class="tabs">
-  <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-link #{params[:status] == 'in_progress' ? 'active' : ''}" %>
+  <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-link #{params[:status] == 'in_progress' || params[:status].blank? ? 'active' : ''}" %>
   <%= link_to 'New', tasks_path(status: 'not_started'), class: "tab-link #{params[:status] == 'not_started' ? 'active' : ''}" %>
 </div>
 
-
 <div class="container">
-<% if params[:status] == 'not_started' %>
-  <%= link_to new_task_path, class: 'add-quest-link' do %>
-    <%= image_tag 'icons/Add.png', alt: 'Add Icon' %>
-    Add Custom Quest
+  <% if params[:status] == 'not_started' %>
+    <%= link_to new_task_path, class: 'add-quest-link' do %>
+      <%= image_tag 'icons/Add.png', alt: 'Add Icon' %>
+      Add Custom Quest
+    <% end %>
   <% end %>
-<% end %>
+
   <% if @tasks.any? %>
     <div class="tasks-list">
       <% @tasks.each do |task| %>
