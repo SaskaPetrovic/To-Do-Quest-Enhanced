@@ -69,10 +69,28 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed, :_destroy])
+    params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed])
   end
 
   def find_sub_category_id(category_id)
     SubCategory.find_by(category_id: category_id)&.id
   end
+end
+
+  def update_user_stats(user, task)
+    rewards = task.category_rewards
+    rewards.each do |reward|
+      case reward
+      when /STR/
+        user.increment!(:str, 1) # Augmente la statistique STR
+      when /INT/
+        user.increment!(:int, 1) # Augmente la statistique INT
+      when /MANA/
+        user.increment!(:mana, 1) # Augmente la statistique MANA
+      when /DEX/
+        user.increment!(:dex, 1) # Augmente la statistique DEX
+      when /CHA/
+        user.increment!(:cha, 1) # Augmente la statistique CHA
+      end
+    end
 end

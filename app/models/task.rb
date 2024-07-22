@@ -32,13 +32,11 @@ class Task < ApplicationRecord
     when 'Work/School'
       ['+1 INT']
     when 'Leisure & Social'
-      ['+1 CHARISMA']
+      ['+1 CHA']
     when 'Health & Wellness'
       ['+1 DEX ']
     when 'Personal Growth'
       ['+1 MANA']
-    else
-      ['+1 Generic reward']
     end
   end
 end
