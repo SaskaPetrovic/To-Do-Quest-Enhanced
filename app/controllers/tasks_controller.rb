@@ -1,14 +1,16 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
+
 
   def new
     @task = Task.new
-    @user = current_user
   end
 
   def create
     @task = Task.new(task_params)
     @task.user = current_user
+
     if @task.save
       redirect_to @task, notice: 'Quest was successfully created.'
     else
@@ -17,7 +19,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -38,36 +39,34 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.includes(:steps).find(params[:id])
-    @user = current_user
   end
 
   def index
-    @tasks = Task.all
-    if params[:status] == 'in_progress'
-      @tasks = Task.with_completed_steps
-    elsif params[:status] == 'not_started'
-      @tasks = Task.where(status: 'not_started')
-    else
-      @tasks = Task.all
-    end
-    @user = current_user
+    @tasks = if params[:status].present?
+               case params[:status]
+               when 'in_progress'
+                 Task.with_completed_steps
+               when 'not_started'
+                 Task.where(status: 'not_started')
+               else
+                 Task.all
+               end
+             else
+               # Si aucun paramètre status n'est présent, afficher les tâches "in_progress" par défaut
+               Task.with_completed_steps
+             end
   end
+
   private
 
   def set_task
     @task = Task.find(params[:id])
   end
+  def set_user
+    @user = current_user
+  end
 
   def task_params
     params.require(:task).permit(:title, :description, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed, :_destroy])
-  end
-
-  def update_steps
-    @task = Task.find(params[:id])
-    if @task.update(task_params)
-      redirect_to @task, notice: 'The steps have been successfully updated'
-    else
-      render :edit
-    end
   end
 end

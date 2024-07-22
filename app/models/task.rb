@@ -6,5 +6,7 @@ class Task < ApplicationRecord
   validates :title, :description, :sub_category, :urgence, presence: true
   validates :urgence, inclusion: { in: ['low', 'medium', 'high'] }
 
-  scope :with_completed_steps, -> { joins(:steps).where(steps: { completed: true }).distinct }
+  scope :with_completed_steps, -> {
+    joins(:steps).where(steps: { completed: true }).distinct
+  }
 end

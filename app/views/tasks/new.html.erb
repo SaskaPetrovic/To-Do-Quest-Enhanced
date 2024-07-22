@@ -1,54 +1,68 @@
-<h2><%= @task.persisted? ? 'EDIT' : 'ADD QUEST' %></h2>
-
-<%= simple_form_for @task, html: { local: true, data: { controller: "step" } } do |form| %>
-  <div>
-    <%= form.input :title, label: "Set a Title", required: true %>
-  </div>
-
-  <div class="form-group">
-    <%= form.input :description, label: "Add a Description", required: true, input_html: { class: 'form-control' } %>
-  </div>
-
-  <div class="form-group">
-    <%= form.association :sub_category, label: "Select Category", prompt: 'Choose a category', required: true, input_html: { class: 'form-control' } %>
-  </div>
-
-  <div class="form-group">
-    <%= form.input :time, as: :string, input_html: { class: 'form-control time-input', placeholder: 'HH:MM', required: true } %>
-  </div>
-
-  <div class="form-group">
-    <%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, label: "Choose Priority", item_wrapper_class: 'form-check', label_class: 'form-check-label' %>
-  </div>
-
-  <h2>Checkpoints</h2>
-
-  <div id="step" data-step-target="steps"></div>
-<>
-  <div>
-    <%= link_to 'Add Step', '#', id: 'add-step', class: 'button', data: { action: "click->step#addStep" } %>
-  </div>
-
-
-  <template data-step-target="template">
-    <div>
-      <div>
-        <label for="task_steps_attributes_INDEX_title">Step Title</label>
-        <input type="text" name="task[steps_attributes][INDEX][title]" id="task_steps_attributes_INDEX_title" required>
-      </div>
-      <div>
-        <label for="task_steps_attributes_INDEX_description">Description</label>
-        <input type="text" name="task[steps_attributes][INDEX][content]" id="task_steps_attributes_INDEX_description" required>
-      </div>
-      <div>
-        <label for="task_steps_attributes_INDEX_completed">Completed</label>
-        <input type="checkbox" name="task[steps_attributes][INDEX][completed]" id="task_steps_attributes_INDEX_completed">
-      </div>
+<!----------------Title and return link---------------->
+<div class="container lessPadding">
+  <div class="d-flex align-items-center justify-content-between">
+    <%= link_to tasks_path, class: 'button-return mb-2' do %>
+      <%= image_tag 'icons/return.svg', alt: 'Return'%>
+    <% end %>
+    <div class="flex-grow-1 text-center">
+        <h2 class="text-center flex-grow-1"><%= @task.persisted? ? 'EDIT' : 'ADD QUEST' %></h2>
     </div>
-  </template>
-
-  <div>
-    <%= form.button :submit, 'Confirm' %>
-    <%= link_to 'Return to List', tasks_path, class: 'button-return' %>
+    <!-- An empty div to take the same space as the link to ensure the title is centered -->
+    <div style="width: 24px;"></div>
   </div>
-<% end %>
+</div>
+
+<div class="container " style="width: 100%; max-width: 390px;">
+
+  <%= simple_form_for @task, html: { local: true, data: { controller: "step" } } do |form| %>
+      <h6 class="customTitleShow">Set a Title</h6>
+      <p><%= form.input :title, required: true, label: false %></p>
+
+      <h6 class="customTitleShow pt-2">Add a Description</h6>
+      <p><%= form.input :description, required: true, label: false %></p>
+
+      <h6 class="customTitleShow pt-2">Select Category</h6>
+      <p><%= form.association :sub_category, prompt: 'Choose a category', required: true, label: false %></p>
+
+      <h6 class="customTitleShow pt-2">Time</h6>
+      <p><%= form.input :time, as: :string, input_html: { class: 'form-control time-input', placeholder: 'HH:MM', required: true }, label: false %></p>
+
+      <h6 class="customTitleShow pt-2">Choose Priority</h6>
+      <p><%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, item_wrapper_class: 'form-check', label_class: 'form-check-label', label: false %></p>
+
+    <h6 class="customTitleShow pt-4">Checkpoints</h6>
+
+    <div id="step" data-step-target="steps" class="pt-2"></div>
+    <%= link_to '#', id: 'add-step', class: 'add-quest-link noPaddingNew pt-4', data: { action: "click->step#addStep" } do %>
+      <%= image_tag 'icons/Add.png', alt: 'Add Icon' %> Add Step
+    <% end %>
+
+
+    <template data-step-target="template">
+      <div class="pt-3">
+        <div class="form-group pt-3">
+          <label for="task_steps_attributes_INDEX_title">Step Title</label>
+          <input type="text" name="task[steps_attributes][INDEX][title]" id="task_steps_attributes_INDEX_title" class="form-control" required>
+        </div>
+       <!--<div class="form-group pt-3">
+          <label for="task_steps_attributes_INDEX_description">Description</label>
+          <input type="text" name="task[steps_attributes][INDEX][content]" id="task_steps_attributes_INDEX_description" class="form-control" required>
+        </div>-->
+        <div class="form-group pt-3">
+          <div class="form-check">
+            <input type="checkbox" name="task[steps_attributes][INDEX][completed]" id="task_steps_attributes_INDEX_completed" class="form-check-input">
+            <label for="task_steps_attributes_INDEX_completed" class="form-check-label">Completed</label>
+          </div>
+        </div>
+      </div>
+    </template>
+
+
+    <div class="pixel-corners margin-button">
+      <h2 class="button-style colored">
+        <%= form.button :submit, 'Confirm' %>
+      </h2>
+    </div>
+
+  <% end %>
+</div>

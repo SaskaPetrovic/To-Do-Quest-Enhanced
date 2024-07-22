@@ -2,7 +2,7 @@ class AchievementsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @achievements = current_user.achievements
+    @achievements = current_user.achievements.includes(:sub_category)
     @user = current_user
   end
 
@@ -20,6 +20,6 @@ class AchievementsController < ApplicationController
   private
 
   def achievement_params
-    params.require(:achievement).permit(:title, :description, :task_id)
+    params.require(:achievement).permit(:title, :description, :sub_category_id)
   end
 end

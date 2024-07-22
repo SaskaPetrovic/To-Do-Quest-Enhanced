@@ -1,95 +1,48 @@
-<h2>QUESTS</h2>
-
-<!-- Onglets pour filtrer les tâches -->
-<div data-controller="tabs" data-tabs-default-tab-value="" data-tabs-active-class="active">
-  <div class="tabs">
-    <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-button #{params[:status] == 'in_progress' ? 'active' : ''}" %>
-    <%= link_to 'New', tasks_path(status: 'not_started'), data: { turbo: false }, class: "tab-button #{params[:status] == 'not_started' ? 'active' : ''}" %>
+<!----------------Title and return link---------------->
+<div class="container lessPadding">
+  <div class="d-flex align-items-center justify-content-between">
+    <%= link_to dashboard_path, class: 'button-return' do %>
+      <%= image_tag 'icons/return.svg', alt: 'Return'%>
+    <% end %>
+    <div class="flex-grow-1 text-center">
+      <h2 class="quest-margin">QUESTS</h2>
+    </div>
+    <!-- An empty div to take the same space as the link to ensure the title is centered -->
+    <div style="width: 24px;"></div>
   </div>
-
-  <!-- Affichage des quêtes en cours avec des étapes complètes -->
-  <% if params[:status] == 'in_progress' %>
-    <div class="container">
-      <% if @tasks.any? %>
-        <div class="tasks-list">
-          <% @tasks.each do |task| %>
-            <div class="task-item mb-2">
-              <div class="p-1">
-                <%= link_to task_path(task), class: 'text-decoration-none' do %>
-                  <div class="pixel-corners mb-1">
-                    <div class="p-2 colored">
-                      <h3 class="mb-2"><%= task.title %></h3>
-                      <h4 class="mb-1">Priority: <%= task.urgence %></h4>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>No ongoing quests with completed steps found.</p>
-      <% end %>
-    </div>
-  <% end %>
-
-  <!-- Affichage des quêtes non commencées -->
-  <% if params[:status] == 'not_started' %>
-    <%= link_to 'Add Custom Quest', new_task_path %>
-    <div class="container">
-      <% if @tasks.any? %>
-        <div class="tasks-list">
-          <% @tasks.each do |task| %>
-            <div class="task-item mb-2">
-              <div class="p-1">
-                <%= link_to task_path(task), class: 'text-decoration-none' do %>
-                  <div class="pixel-corners mb-1">
-                    <div class="p-2 colored">
-                      <h3 class="mb-2"><%= task.title %></h3>
-                      <h4 class="mb-1">Priority: <%= task.urgence %></h4>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>No new quests found.</p>
-      <% end %>
-    </div>
-  <% end %>
 </div>
 
-<!-- Tabs for additional content -->
-<div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
-  <div class="tabs">
-    <button id="activity-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Activity</button>
-    <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
-  </div>
+<div class="tabs">
+  <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-link #{params[:status] == 'in_progress' || params[:status].blank? ? 'active' : ''}" %>
+  <%= link_to 'New', tasks_path(status: 'not_started'), class: "tab-link #{params[:status] == 'not_started' ? 'active' : ''}" %>
+</div>
 
-  <div id="activity" class="tab-content" data-tabs-target="tab">
-    <div>
-      <h5>MEMO</h5>
-      <div class="pixel-corners">
-        <p>Main task</p>
-        <% if @random_memo.present? %>
-          <p><%= @random_memo.content %></p>
-        <% else %>
-          <p>No memo available.</p>
-        <% end %>
-      </div>
-    </div>
-    <div>
-      <h5>STATUS</h5>
-      <div class="pixel-corners">
-        <!-- Additional status content -->
-      </div>
-    </div>
-  </div>
+<div class="container">
+  <% if params[:status] == 'not_started' %>
+    <%= link_to new_task_path, class: 'add-quest-link' do %>
+      <%= image_tag 'icons/Add.png', alt: 'Add Icon' %>
+      Add Custom Quest
+    <% end %>
+  <% end %>
 
-  <div id="stats" class="tab-content" data-tabs-target="tab">
-    <h5>CHART</h5>
-    <!-- Additional stats content -->
-  </div>
+  <% if @tasks.any? %>
+    <div class="tasks-list">
+      <% @tasks.each do |task| %>
+        <div class="task-item mb-2">
+          <div class="p-1">
+            <%= link_to task_path(task), class: 'text-decoration-none' do %>
+              <div class="pixel-corners mb-1">
+                <div class="p-3 colored">
+                  <h3 class="mb-2 title-quest"><%= task.title %></h3>
+                  <h4 class="mb-1 body-quest">Priority: <%= task.urgence %></h4>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p><%= params[:status] == 'not_started' ? 'No new quests found.' : 'No ongoing quests found.' %></p>
+  <% end %>
 </div>

@@ -1,27 +1,43 @@
-<%= simple_form_for @task do |form| %>
-  <div>
-    <%= form.input :title, label: "Set a Title", required: true %>
+<!----------------Title and return link---------------->
+<div class="container lessPadding">
+  <div class="d-flex align-items-center justify-content-between">
+    <%= link_to task_path(@task), class: 'button-return mb-2' do %>
+      <%= image_tag 'icons/return.svg', alt: 'Return' %>
+    <% end %>
+    <div class="flex-grow-1 text-center">
+      <h2 class="text-center flex-grow-1"><%= @task.persisted? ? 'EDIT' : 'ADD QUEST' %></h2>
+    </div>
+    <!-- An empty div to take the same space as the link to ensure the title is centered -->
+     <%= link_to task_path(@task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this Quest?' }, class: 'button-delete mb-2' do %>
+    <%= image_tag 'icons/delete.svg', alt: 'Delete' %>
+  <% end %>
   </div>
+</div>
 
-  <div>
-    <%= form.input :description, label: "Add a Description", required: true %>
-  </div>
+<div class="container" style="width: 100%; max-width: 390px;">
+  <%= simple_form_for @task, html: { local: true, data: { controller: "step" } } do |form| %>
+    <h6 class="customTitleShow">Set a Title</h6>
+    <p><%= form.input :title, required: true, label: false %></p>
 
-  <div>
-    <%= form.association :sub_category, label: "Select Category", prompt: 'Choose a category', required: true %>
-  </div>
+    <h6 class="customTitleShow pt-2">Add a Description</h6>
+    <p><%= form.input :description, required: true, label: false %></p>
 
-  <div>
-    <%= form.input :time, as: :string, input_html: { class: 'time-input', placeholder: 'HH:MM', required: true } %>
-  </div>
+    <h6 class="customTitleShow pt-2">Select Category</h6>
+    <p><%= form.association :sub_category, prompt: 'Choose a category', required: true, label: false %></p>
 
-  <div>
-    <%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, label: "Choose Priority" %>
-  </div>
+    <h6 class="customTitleShow pt-2">Time</h6>
+    <p><%= form.input :time, as: :string, input_html: { class: 'form-control time-input', placeholder: 'HH:MM', required: true }, label: false %></p>
 
-  <div>
-    <%= form.button :submit, 'Update Quest' %>
-    <%= link_to 'Return to Quest List', tasks_path, class: 'button-return' %>
-    <%= link_to 'Delete Quest', task_path(@task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this Quest?' }, class: 'button-delete' %>
+    <h6 class="customTitleShow pt-2">Choose Priority</h6>
+    <p><%= form.input :urgence, collection: ['low', 'medium', 'high'], as: :radio_buttons, item_wrapper_class: 'form-check', label_class: 'form-check-label', label: false %></p>
+
+    <div class="pixel-corners margin-button">
+      <h2 class="button-style colored">
+        <%= form.button :submit, 'Update Quest' %>
+      </h2>
+    </div>
+    <div>
+
   </div>
-<% end %>
+  <% end %>
+</div>

@@ -1,9 +1,49 @@
 // Import page-specific CSS files here.
 @import "home";
 
+//color palette
+
+body{
+ // background: url(bg.jpg) !important ;
+  //background-color: #E4DFDA !important;
+}
+
+//fond de couleur des border quest
+.colored{
+  background-color: antiquewhite
+}
+
+// end color palette
+
+// padding container
+.container{
+  padding: 0 20px !important;
+}
+
+.profileLessPadding{
+  padding: 10px !important;
+}
+// end padding container
+
+.button-edit{
+  text-decoration: none;
+  color: #000000;
+  font-size: 15px !important;
+}
+
+.button-style{
+  padding: 10px 0 !important;
+  margin: 0 !important;
+}
+.margin-button{
+  margin: 30px 0 !important;
+}
+
+// font size
 h2 {
   text-align: center;
   padding: 30px 0;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -26,7 +66,9 @@ h6 {
   font-size: 14px;
 }
 
-//
+// end font size
+
+// Profile
 .icons{
   width: 30px;
   height: 30px;
@@ -67,7 +109,7 @@ hr {
 .tabs {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 0 0 20px;
 }
 
 .tab-link {
@@ -78,6 +120,7 @@ hr {
   color: grey;
   outline: none;
   border-bottom: 2px solid transparent;
+  text-decoration: none;
 }
 
 .tab-link:hover {

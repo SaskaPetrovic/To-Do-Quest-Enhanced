@@ -1,3 +1,33 @@
-.colored{
-  background-color: red;
+// Definition des font size des titre et body dans l'affichage des quetes
+.title-quest{
+  font-size: 15px !important;
+  text-transform: capitalize !important;
+}
+.body-quest{
+  font-size: 13px !important;
+}
+
+// Titre h2
+.quest-margin{
+  margin-bottom: 0;
+  padding-bottom: 25px;
+}
+
+// Button +
+.add-quest-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  padding: 0 10px 12px 0;
+}
+
+.add-quest-link img {
+  margin: 0 10px 0 0px;
+  height: 20px;
+  width: auto;
+}
+
+.add-quest-link:hover {
+  color: black;
 }
