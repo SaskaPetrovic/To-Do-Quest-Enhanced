@@ -23,7 +23,7 @@
       <div class="d-flex justify-content-between w-100 pb-1 align-items-end border-bottom">
         <% if @user.roles.present? && @user.roles != 'None' %>
           <h6><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
-          <%= image_tag "icons/#{@user.roles.downcase}.png", class: "icons mb-1" %>
+          <%= image_tag "icons/class/#{@user.roles.downcase}.png", class: "icons mb-1" %>
         <% else %>
           <h6>Noob</h6>
         <% end %>
@@ -49,10 +49,10 @@
       <h6><%= @user.cha %></h6> <!-- Remplacez 90 par @user.cha -->
     </div>
   </div>
-
+</div>
 </div>
 
-  <div class="container" style="width: 100%; max-width: 390px;">
+<div class="container" style="width: 100%; max-width: 390px;">
     <!-- Experience Bar -->
     <div class="mt-4">
       <div class="progress" style="height: 30px;">
@@ -64,7 +64,7 @@
         <h6 class="pt-3"><%= @user.experience_to_next_level %> XP</h6> <!-- Afficher l'XP manquante -->
       </div>
     </div>
-  </div>
+
 
     <!-- tabs -->
     <div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
