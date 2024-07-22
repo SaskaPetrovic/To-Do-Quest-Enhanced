@@ -22,7 +22,7 @@
       <p><%= form.input :description, required: true, label: false %></p>
 
       <h6 class="customTitleShow pt-2">Select Category</h6>
-      <p><%= form.association :sub_category, prompt: 'Choose a category', required: true, label: false %></p>
+      <%= form.collection_select :category_id, Category.all, :id, :title, prompt: 'Choose a category', required: true %>
 
       <h6 class="customTitleShow pt-2">Time</h6>
       <p><%= form.input :time, as: :string, input_html: { class: 'form-control time-input', placeholder: 'HH:MM', required: true }, label: false %></p>
@@ -36,7 +36,6 @@
     <%= link_to '#', id: 'add-step', class: 'add-quest-link noPaddingNew pt-4', data: { action: "click->step#addStep" } do %>
       <%= image_tag 'icons/Add.png', alt: 'Add Icon' %> Add Step
     <% end %>
-
 
     <template data-step-target="template">
       <div class="pt-3">

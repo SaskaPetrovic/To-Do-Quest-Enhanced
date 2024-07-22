@@ -19,46 +19,50 @@
     </div>
 
     <!-- Stats and Class, rajouter la bonne classe en fonction des stats -->
-    <div class="col-5 d-flex flex-column align-items-start padding-fixed">
+  <div class="col-5 d-flex flex-column align-items-start padding-fixed">
       <div class="d-flex justify-content-between w-100 pb-1 align-items-end border-bottom">
-        <h6>Mage</h6>
-        <%= image_tag "icons/mage.png", class: "icons mb-1" %>
+        <% if @user.roles.present? && @user.roles != 'None' %>
+          <h6><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
+          <%= image_tag "icons/#{@user.roles.downcase}.png", class: "icons mb-1" %>
+        <% else %>
+          <h6>Noob</h6>
+        <% end %>
       </div>
-      <div class="d-flex justify-content-between w-100 mt-3">
-        <h6>INT</h6>
-        <h6>78</h6> <!-- Remplacer 78 par @user.int -->
-      </div>
-      <div class="d-flex justify-content-between w-100">
-        <h6>MANA</h6>
-        <h6>99</h6> <!-- Remplacer 99 par @user.mana -->
-      </div>
-      <div class="d-flex justify-content-between w-100">
-        <h6>DEX</h6>
-        <h6>54</h6> <!-- Remplacer 54 par @user.dex -->
-      </div>
-      <div class="d-flex justify-content-between w-100">
-        <h6>STR</h6>
-        <h6>76</h6> <!-- Remplacer 76 par @user.str -->
-      </div>
-      <div class="d-flex justify-content-between w-100">
-        <h6>CHA</h6>
-        <h6>90</h6> <!-- Remplacer 90 par @user.cha -->
-      </div>
+    <div class="d-flex justify-content-between w-100 mt-3">
+      <h6>INT</h6>
+      <h6><%= @user.int %></h6> <!-- Remplacez 78 par @user.int -->
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <h6>MANA</h6>
+      <h6><%= @user.mana %></h6> <!-- Remplacez 99 par @user.mana -->
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <h6>DEX</h6>
+      <h6><%= @user.dex %></h6> <!-- Remplacez 54 par @user.dex -->
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <h6>STR</h6>
+      <h6><%= @user.str %></h6> <!-- Remplacez 76 par @user.str -->
+    </div>
+    <div class="d-flex justify-content-between w-100">
+      <h6>CHA</h6>
+      <h6><%= @user.cha %></h6> <!-- Remplacez 90 par @user.cha -->
     </div>
   </div>
 
 </div>
 
-<div class="container" style="width: 100%; max-width: 390px;">
-  <!-- Experience Bar -->
-  <div class="mt-4">
-    <div class="progress" style="height: 30px;">
-      <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="container" style="width: 100%; max-width: 390px;">
+    <!-- Experience Bar -->
+    <div class="mt-4">
+      <div class="progress" style="height: 30px;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
         <h6 class="text-center">Exp.</h6>
-    </div>
-    <div class="d-flex justify-content-between">
-      <h6 class="text-start pt-3">To Next Lv.</h6>
-      <h6 class="pt-3"><%= @user.experience %></h6> <!--ca s affiche pas-->
+      </div>
+      <div class="d-flex justify-content-between">
+        <h6 class="text-start pt-3">To Next Lv.</h6>
+        <h6 class="pt-3"><%= @user.experience_to_next_level %> XP</h6> <!-- Afficher l'XP manquante -->
+      </div>
     </div>
   </div>
 
