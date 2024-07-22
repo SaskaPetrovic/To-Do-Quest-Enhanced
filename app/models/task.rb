@@ -9,4 +9,36 @@ class Task < ApplicationRecord
   scope :with_completed_steps, -> {
     joins(:steps).where(steps: { completed: true }).distinct
   }
+
+  attr_accessor :category_id
+
+  def xp_reward
+    case urgence
+    when 'low'
+      10
+    when 'medium'
+      20
+    when 'high'
+      30
+    else
+      0
+    end
+  end
+
+  def category_rewards
+    case sub_category.category.title
+    when 'Domestic'
+      ['+1 STR']
+    when 'Work/School'
+      ['+1 INT']
+    when 'Leisure & Social'
+      ['+1 CHARISMA']
+    when 'Health & Wellness'
+      ['+1 DEX ']
+    when 'Personal Growth'
+      ['+1 MANA']
+    else
+      ['+1 Generic reward']
+    end
+  end
 end
