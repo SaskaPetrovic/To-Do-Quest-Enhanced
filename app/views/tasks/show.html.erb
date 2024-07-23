@@ -85,6 +85,20 @@
       <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
 
+    <div class="pt-1">
+      <div class="pixel-corners margin-button">
+      <h2 class="button-style colored d-flex justify-content-center">
+        <%= button_to "Accept", accept_task_path(@task), method: :patch, class: 'button-accept', style: 'font-size: smaller;' %>
+      </h2>
+      </div>
+    </div>
+
+      <div class="pt-1">
+        <div class="pixel-corners margin-button">
+          <h2 class="button-style colored d-flex justify-content-center">
+           <%= button_to 'Complete Task', completed_task_path(@task), method: :patch, class: 'button-complete', style: 'font-size: smaller;' %>
+          </h2>
+        </div>
 
 <style>
 .popup {

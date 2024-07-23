@@ -1,15 +1,41 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :accept]
   before_action :set_user
+  before_action :set_default_status, only: [:index]
 
   def new
     @task = Task.new
+  end
+
+  def index
+    # Vérifie si le paramètre 'status' est présent
+    if params[:status].present?
+      # Si oui, récupère les tâches avec le statut spécifié et les trie par date de création décroissante
+      @tasks = Task.where(status: params[:status]).order(created_at: :desc)
+    else
+      # Sinon, récupère les tâches dont le statut n'est pas 'completed' ou 'deleted' et les trie par date de création décroissante
+      @tasks = Task.where.not(status: ['completed', 'deleted']).order(created_at: :desc)
+    end
+
+    # Vérifie si le paramètre 'steps' est présent
+    if params[:steps].present?
+      # Si oui, effectue une action en fonction de la valeur du paramètre 'steps'
+      case params[:steps]
+      when 'completed'
+        # Si 'steps' est égal à 'completed', récupère les tâches avec des étapes terminées
+        @tasks = @tasks.with_completed_steps
+      when 'uncompleted'
+        # Si 'steps' est égal à 'uncompleted', récupère les tâches avec des étapes non terminées
+        @tasks = @tasks.with_uncompleted_steps
+      end
+    end
   end
 
   def create
     @task = Task.new(task_params.except(:category_id))
     @task.user = current_user
     @task.sub_category_id = find_sub_category_id(params[:task][:category_id])
+    @task.status = "not_started" # Définit le statut de la tâche à "not_started" par défaut
 
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
@@ -43,22 +69,45 @@ class TasksController < ApplicationController
     @task = Task.includes(:steps).find(params[:id])
   end
 
-  def index
-    @tasks = if params[:status].present?
-      case params[:status]
-      when 'in_progress'
-        Task.with_completed_steps
-      when 'not_started'
-        Task.where(status: 'not_started')
+  def accept
+    if @task.status == "not_started"
+      if @task.update(status: "in_progress")
+        redirect_to tasks_path, notice: 'Task was successfully accepted.'
       else
-        Task.all
+        render :show, alert: 'Could not update the task.'
       end
     else
-      Task.with_completed_steps
+      redirect_to @task, alert: 'Task is not in a state that can be accepted.'
+    end
+  end
+
+  def not_started
+    @tasks = Task.where(status: 'not_started')
+  end
+
+  def in_progress
+    @tasks = Task.where(status: 'in_progress')
+  end
+
+  def completed
+    @task = Task.find(params[:id])
+    if @task.status == "in_progress"
+      if @task.update(status: "completed")
+        update_user_stats(@user, @task)
+        redirect_to tasks_path, notice: 'Task was successfully completed.'
+      else
+        render :show, alert: 'Could not update the task.'
+      end
+    else
+      redirect_to @task, alert: 'Task is not in a state that can be completed.'
     end
   end
 
     private
+
+    def set_default_status
+      params[:status] ||= 'in_progress'
+    end
 
     def set_task
       @task = Task.find(params[:id])
