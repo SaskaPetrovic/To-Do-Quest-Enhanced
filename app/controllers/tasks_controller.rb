@@ -10,6 +10,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params.except(:category_id))
     @task.user = current_user
     @task.sub_category_id = find_sub_category_id(params[:task][:category_id])
+    @task.status = "not_started" # Set the status of the task
 
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
@@ -43,20 +44,20 @@ class TasksController < ApplicationController
     @task = Task.includes(:steps).find(params[:id])
   end
 
-  def index
-    @tasks = if params[:status].present?
-               case params[:status]
-               when 'in_progress'
-                 Task.with_completed_steps
-               when 'not_started'
-                 Task.where(status: 'not_started')
-               else
-                 Task.all
-               end
-             else
-               Task.with_completed_steps
-             end
-  end
+  # def index
+  #   @tasks = if params[:status].present?
+  #              case params[:status]
+  #              when 'in_progress'
+  #                Task.with_completed_steps
+  #              when 'not_started'
+  #                Task.where(status: 'not_started')
+  #              else
+  #                Task.all
+  #              end
+  #            else
+  #              Task.with_completed_steps
+  #            end
+  # end
 
   def accept
     if @task.status == "not_started"
@@ -71,7 +72,37 @@ class TasksController < ApplicationController
     end
   end
 
+  def not_started
+    @tasks = Task.where(status: 'not_started')
+  end
+
+  def in_progress
+    @tasks = Task.where(status: 'in_progress')
+  end
+
+  def completed
+    @tasks = Task.where(status: 'completed')
+  end
+
+  def index
+    if params[:status].present?
+      @tasks = Task.where(status: params[:status])
+    else
+      @tasks = Task.all
+    end
+    case params[:steps]
+    when 'completed'
+      @tasks = @tasks.with_completed_steps
+    when 'uncompleted'
+      @tasks = @tasks.with_uncompleted_steps
+    end
+  end
+
   private
+
+  def set_default_status
+    self.status ||= 'not_started'
+  end
 
   def set_task
     @task = Task.find(params[:id])

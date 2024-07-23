@@ -17,6 +17,8 @@
   <%= link_to 'New', tasks_path(status: 'not_started'), class: "tab-link #{params[:status] == 'not_started' ? 'active' : ''}" %>
 </div>
 
+
+
 <div class="container">
   <% if params[:status] == 'not_started' %>
     <%= link_to new_task_path, class: 'add-quest-link' do %>
@@ -38,7 +40,6 @@
                 </div>
               </div>
             <% end %>
-            <%= link_to "Accept", accept_task_path(task), method: :patch, class: "btn btn-outline-dark btn-sm" %>
           </div>
         </div>
       <% end %>
