@@ -5,10 +5,16 @@ class Task < ApplicationRecord
   accepts_nested_attributes_for :steps, allow_destroy: true
   validates :title, :description, :sub_category, :urgence, presence: true
   validates :urgence, inclusion: { in: ['low', 'medium', 'high'] }
+  validates :status, inclusion: { in: ['not_started', 'in_progress', 'completed'] }
 
   scope :with_completed_steps, -> {
     joins(:steps).where(steps: { completed: true }).distinct
   }
+
+  scope :with_uncompleted_steps, -> {
+    joins(:steps).where(steps: { completed: false }).distinct
+  }
+
 
   attr_accessor :category_id
 
@@ -28,15 +34,15 @@ class Task < ApplicationRecord
   def category_rewards
     case sub_category.category.title
     when 'Domestic'
-      ['+1 STR']
+      ['STR']
     when 'Work/School'
-      ['+1 INT']
+      ['INT']
     when 'Leisure & Social'
-      ['+1 CHA']
+      ['CHA']
     when 'Health & Wellness'
-      ['+1 DEX ']
+      ['DEX']
     when 'Personal Growth'
-      ['+1 MANA']
+      ['MANA']
     end
   end
 end

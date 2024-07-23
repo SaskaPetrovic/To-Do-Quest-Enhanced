@@ -17,15 +17,15 @@
   </div>-->
 
 
-
 <div class="home">
   <div class="container d-flex flex-column justify-content-center align-items-center">
     <div class="text-center">
       <h1>TO-DO <br> QUEST</h1>
-      <div class="border-bottom border-3"></div> <!-- Ajout de la bordure -->
+      <div class="border-bottom border-3"></div>
+      <!-- Ajout de la bordure -->
       <div class="select d-flex flex-column align-items-center">
         <div class="pixel-corners margin-button-home">
-          <h2 class="button-style-home colored">
+          <h2 class="button-style-home colored new-game-btn">
             <%= link_to 'New Game', new_user_registration_path, class: 'button-edit-home p-5' %>
           </h2>
         </div>
@@ -40,20 +40,10 @@
   </div>
   <footer class="footer">
     <div class="container text-center">
-      <p>&copy;2024 All rights reserved.</p>
+      <p>&copy; 2024 TDQ TEAM®, All rights reserved.</p>
     </div>
   </footer>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
   <audio id="audio" src="<%= asset_path('game-start.mp3') %>" preload="auto"></audio>
