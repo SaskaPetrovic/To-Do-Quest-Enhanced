@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params.except(:category_id))
     @task.user = current_user
     @task.sub_category_id = find_sub_category_id(params[:task][:category_id])
-    @task.status = "not_started" # Set the status of the task
+    @task.status = "not_started" # Définit le statut de la tâche à "not_started" par défaut
 
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
@@ -90,19 +90,18 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all
     end
-    case params[:steps]
-    when 'completed'
-      @tasks = @tasks.with_completed_steps
-    when 'uncompleted'
-      @tasks = @tasks.with_uncompleted_steps
+
+    if params[:steps].present?
+      case params[:steps]
+      when 'completed'
+        @tasks = @tasks.with_completed_steps
+      when 'uncompleted'
+        @tasks = @tasks.with_uncompleted_steps
+      end
     end
   end
 
   private
-
-  def set_default_status
-    self.status ||= 'not_started'
-  end
 
   def set_task
     @task = Task.find(params[:id])
