@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :accept]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :accept, :completed]
   before_action :set_user
   before_action :set_default_status, only: [:index]
 
@@ -90,10 +90,12 @@ class TasksController < ApplicationController
   end
 
   def completed
-    @task = Task.find(params[:id])
     if @task.status == "in_progress"
       if @task.update(status: "completed")
-        update_user_stats(@user, @task)
+        # Mettre à jour les statistiques de l'utilisateur
+        @user.update(completed_tasks_count: @user.completed_tasks_count + 1)
+        # Mettre à jour les statistiques de la tâche
+        @task.update(completed_at: Time.now)
         redirect_to tasks_path, notice: 'Task was successfully completed.'
       else
         render :show, alert: 'Could not update the task.'
