@@ -15,8 +15,12 @@
   <!-- Profile Image -->
   <div class="row">
     <div class="col-7 d-flex justify-content-center">
-      <%= image_tag "profile-icon.png", class: "profile-image", style: "width: 90%;" %>
+      <div class="profile-container">
+        <%= image_tag "profile-icon.png", class: "profile-image" %>
+        <%= image_tag "avatar-frame.png", class: "big-frame" %>
+      </div>
     </div>
+
 
     <!-- Stats and Class, rajouter la bonne classe en fonction des stats -->
   <div class="col-5 d-flex flex-column align-items-start padding-fixed">
@@ -25,7 +29,8 @@
           <h6><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
           <%= image_tag "icons/class/#{@user.roles.downcase}.png", class: "icons mb-1" %>
         <% else %>
-          <h6>Noob</h6>
+          <h6>Starter</h6>
+          <%= image_tag "icons/class/noob.png", class: "icons mb-1" %>
         <% end %>
       </div>
     <div class="d-flex justify-content-between w-100 mt-3">
@@ -76,10 +81,10 @@
            <div id="activity" class="tab-content" data-tabs-target="tab">
         <div>
           <h5>MEMO</h5>
-          <div class="background-color bg-light">
+          <div class="background-color">
             <div class="pixel-corners mb-4">
               <div class="margins p-2">
-                <p>Main task <br>
+                <p>Mission <br>
                 <hr> </p>
                 <!--<p> <%= @user.memo %> </p>-->
                 <p>Complete at least 5 quests this week !</p>
@@ -89,10 +94,10 @@
         </div>
         <div>
           <h5>STATUS</h5>
-          <div class="background-color bg-light">
+          <div class="background-color">
             <div class="pixel-corners mb-4">
               <div class="margins p-2">
-                <p> _ _ _ _ _ _ _ _ _ _ _ </p>
+                <p>Ongoing Quests</p>
                 <hr>
                 <p> <%= @user.status %> </p>
               </div>

@@ -5,12 +5,12 @@
 
 body{
  // background: url(bg.jpg) !important ;
-  //background-color: #E4DFDA !important;
+  background-color: #F1EEE6 !important;
 }
 
 //fond de couleur des border quest
 .colored{
-  background-color: antiquewhite
+  background-color: #FFFDF5 !important;
 }
 
 // end color palette
@@ -97,6 +97,30 @@ h6 {
   margin-left: 29px;
 }
 
+// profile avatar
+.profile-container {
+  position: relative;
+  width: 90%;
+  display: inline-block;
+}
+
+.profile-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 80%;
+}
+
+.big-frame {
+  position: absolute;
+  top: 0;
+  left: -6px;
+  width: 105%;
+  height: 100%;
+}
+
 // divider
 hr {
   margin-top: 1rem;
@@ -143,7 +167,7 @@ hr {
 // pixel-box
 
 .margins {
-  background-color: antiquewhite;
+  background-color: #FFFDF5 !important;
 }
 
 .pixel-corners,
@@ -306,4 +330,8 @@ hr {
 }
 .pixel-corners::after {
   margin: -4px;
+}
+
+hr {
+  border: solid 1.5px #163290;
 }
