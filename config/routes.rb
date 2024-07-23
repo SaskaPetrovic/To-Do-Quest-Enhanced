@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       patch :accept
       patch :update_steps
+      patch :completed
     end
   end
 
