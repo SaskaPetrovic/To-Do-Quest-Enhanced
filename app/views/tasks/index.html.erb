@@ -13,7 +13,7 @@
 </div>
 
 <div class="tabs">
-  <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-link #{params[:status] == 'in_progress' || params[:status].blank? ? 'active' : ''}" %>
+  <%= link_to 'Ongoing', tasks_path(status: 'in_progress'), class: "tab-link #{params[:status] == 'in_progress' ? 'active' : ''}" %>
   <%= link_to 'New', tasks_path(status: 'not_started'), class: "tab-link #{params[:status] == 'not_started' ? 'active' : ''}" %>
 </div>
 
