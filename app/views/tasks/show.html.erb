@@ -32,9 +32,8 @@
 
     <h5 class="desc-title">Rewards</h5>
     <p class="desc-reward">+ <%= @task.xp_reward %> XP</p>
-
     <% @task.category_rewards.each do |reward| %>
-      <p class="desc-reward"><%= reward %></p>
+      <p class="desc-reward">+1 <%= reward %></p>
     <% end %>
 
 
@@ -42,38 +41,49 @@
 
     <h5 class="desc-title">checkpoints</h5>
 
-  <%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
-    <% if @task.steps.any? %>
-      <div id="steps-list" class="pixel-corners">
-        <div class="p-3 colored " data-progress-target="checkboxes">
-          <% @task.steps.each do |step| %>
-            <div class="step-item d-flex align-items-center mb-2" data-step-id="<%= step.id %>" >
-              <%= form.check_box :completed, checked: step.completed, name: "task[steps_attributes][#{step.id}][completed]", class: 'id me-2', data: { type:step.completed ? "true": "false", action: 'change->progress#updateProgressBar', progress_target:"checkbox" } %>
-              <p class="desc-steps"><%= step.content %></p>
-              <%= form.hidden_field :id, value: step.id, name: "task[steps_attributes][#{step.id}][id]" %>
+    <%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
+      <% if @task.steps.any? %>
+        <div id="steps-list" class="pixel-corners">
+          <div class="p-3 colored" data-progress-target="checkboxes">
+            <% @task.steps.each do |step| %>
+              <div class="step-item d-flex align-items-center mb-2" data-step-id="<%= step.id %>">
+                <%= form.check_box :completed, checked: step.completed, name: "task[steps_attributes][#{step.id}][completed]", class: 'id me-2', data: { type: step.completed ? "true" : "false", action: 'change->progress#updateProgressBar', progress_target: "checkbox" } %>
+                <p class="desc-steps"><%= step.content %></p>
+                <%= form.hidden_field :id, value: step.id, name: "task[steps_attributes][#{step.id}][id]" %>
+              </div>
+            <% end %>
+            <br>
+            <h5 class="desc-title">progress</h5>
+            <div class="progress" data-progress-target="bar">
+              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
             </div>
-          <% end %>
-          <br>
-          <h5 class="desc-title">progress</h5>
-          <div class="progress" data-progress-target="bar">
-            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
           </div>
-
         </div>
-      </div>
 
-    <% else %>
-    <p>No steps available for this task.</p>
-  <% end %>
-  <% end %>
+      <% else %>
+        <p>No steps available for this task.</p>
+      <% end %>
+    <% end %>
 
-    <div class="pt-1">
-      <div class="pixel-corners margin-button">
-        <h2 class="button-style colored d-flex justify-content-center">
-          <%= link_to 'Edit', edit_task_path(@task), class: 'button-edit' %>
-        </h2>
-      </div>
-    </div>
+<div id="completion-popup" class="popup hidden" data-progress-target="popup">
+  <div class="popup-content">
+    <span id="close-popup" class="close" data-action="click->progress#closePopup">&times;</span>
+    <h2>Quest Completed!</h2>
+    <p>Congratulations! You have completed this task.</p>
+    <h5 class="desc-title">Rewards</h5>
+    <p class="desc-reward">+ <%= @task.xp_reward %> XP</p>
+    <% @task.category_rewards.each do |reward| %>
+      <p class="desc-reward"><%= reward %></p>
+    <% end %>
+    <form id="validate-rewards-form" action="/rewards/validate" method="post" data-controller="progress" data-action="submit->progress#handleRewardValidation">
+      <input type="hidden" name="xp_reward" value="<%= @task.xp_reward %>">
+      <% @task.category_rewards.each do |reward| %>
+        <input type="hidden" name="rewards[]" value="+1 <%= reward %>">
+         <input type="hidden" name="task[]" value="<%= @task.id %>">
+      <% end %>
+
+      <button type="submit" class="btn btn-primary">Confirm</button>
+    </form>
 
     <div class="pt-1">
       <div class="pixel-corners margin-button">
@@ -90,6 +100,46 @@
           </h2>
         </div>
 
-  </div>
-</div>
- </div>
+<style>
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  max-width: 90%;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.desc-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.desc-reward {
+  margin: 5px 0;
+}
+</style>

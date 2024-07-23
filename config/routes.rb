@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :achievements, only: [:index, :create]
 
   resources :users, only: [:update]
+
+  post 'rewards/validate', to: 'rewards#validate'
 end

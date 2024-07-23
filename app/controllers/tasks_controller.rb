@@ -100,47 +100,28 @@ class TasksController < ApplicationController
       end
     else
       redirect_to @task, alert: 'Task is not in a state that can be completed.'
-
     end
   end
 
-  private
+    private
 
-  def set_default_status
-    params[:status] ||= 'in_progress'
-  end
+    def set_default_status
+      params[:status] ||= 'in_progress'
+    end
 
-  def set_task
-    @task = Task.find(params[:id])
-  end
+    def set_task
+      @task = Task.find(params[:id])
+    end
 
-  def set_user
-    @user = current_user
-  end
+    def set_user
+      @user = current_user
+    end
 
-  def task_params
-    params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed])
-  end
+    def task_params
+      params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed])
+    end
 
-  def find_sub_category_id(category_id)
-    SubCategory.find_by(category_id: category_id)&.id
-  end
-end
-
-  def update_user_stats(user, task)
-    rewards = task.category_rewards
-    rewards.each do |reward|
-      case reward
-      when /STR/
-        user.increment!(:str, 1) # Augmente la statistique STR
-      when /INT/
-        user.increment!(:int, 1) # Augmente la statistique INT
-      when /MANA/
-        user.increment!(:mana, 1) # Augmente la statistique MANA
-      when /DEX/
-        user.increment!(:dex, 1) # Augmente la statistique DEX
-      when /CHA/
-        user.increment!(:cha, 1) # Augmente la statistique CHA
-      end
+    def find_sub_category_id(category_id)
+      SubCategory.find_by(category_id: category_id)&.id
     end
 end
