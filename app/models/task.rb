@@ -10,6 +10,7 @@ class Task < ApplicationRecord
     joins(:steps).where(steps: { completed: true }).distinct
   }
 
+
   attr_accessor :category_id
 
   def xp_reward
@@ -28,15 +29,15 @@ class Task < ApplicationRecord
   def category_rewards
     case sub_category.category.title
     when 'Domestic'
-      ['+1 STR']
+      ['STR']
     when 'Work/School'
-      ['+1 INT']
+      ['INT']
     when 'Leisure & Social'
-      ['+1 CHA']
+      ['CHA']
     when 'Health & Wellness'
-      ['+1 DEX ']
+      ['DEX']
     when 'Personal Growth'
-      ['+1 MANA']
+      ['MANA']
     end
   end
 end

@@ -1,11 +1,16 @@
 class User < ApplicationRecord
+  ROLES_CRITERIA = {
+    'Mage' => { mana: 5 },
+    'Rogue' => { int: 5 },
+    'Ranger' => { dex: 5 },
+    'Knight' => { str: 5 },
+    'Bard' => { cha: 5 }
+  }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :tasks, dependent: :destroy
   has_many :achievements
-
-  #validates :username, :roles, presence: true
 
   validates :email, uniqueness: true
 
@@ -48,6 +53,20 @@ class User < ApplicationRecord
     [max_experience - experience, 0].max
   end
 
+  def add_experience(points)
+    self.experience += points
+    while self.experience >= experience_for_next_level
+      level_up
+    end
+    save
+  end
+
+  def level_up
+    #increment!(:level, 1)
+    self.experience = 0
+    save
+  end
+
   def experience
     super || 0
   end
@@ -56,7 +75,6 @@ class User < ApplicationRecord
     self[:level] || 1
   end
 
-
   def update_user_stats(task)
     rewards = task.category_rewards
     rewards.each do |reward|
@@ -64,45 +82,17 @@ class User < ApplicationRecord
 
       case stat
       when 'STR'
-        increment!(:str, 1)
+        self.str += 1
       when 'INT'
-        increment!(:int, 1)
+        self.int += 1
       when 'MANA'
-        increment!(:mana, 1)
+        self.mana += 1
       when 'DEX'
-        increment!(:dex, 1)
+        self.dex += 1
       when 'CHA'
-        increment!(:cha, 1)
+        self.cha += 1
       end
     end
-
-    assign_role
   end
 
-  ROLES_CRITERIA = {
-    'Mage' => { mana: 5 },
-    'Rogue' => { int: 5},
-    'Ranger' => { dex: 5},
-    'Knight' => { str: 5},
-    'Bard' => { cha: 5}
-  }
-
-  def assign_role
-    role = 'None' # Rôle par défaut si aucun critère n'est rempli
-
-    ROLES_CRITERIA.each do |r, criteria|
-      if meets_criteria?(criteria)
-        role = r
-        break
-      end
-    end
-
-    update(roles: role)
-  end
-
-  private
-
-  def meets_criteria?(criteria)
-    criteria.all? { |stat, value| send(stat) >= value }
-  end
 end
