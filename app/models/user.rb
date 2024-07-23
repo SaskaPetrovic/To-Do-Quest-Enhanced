@@ -45,7 +45,7 @@ class User < ApplicationRecord
     base_experience = 100
     growth_rate = 0.10
 
-    base_experience * ((1 + growth_rate) ** (level - 1)).to_i
+    (base_experience * ((1 + growth_rate) ** (level - 1))).to_i
   end
 
   def experience_to_next_level
@@ -62,9 +62,8 @@ class User < ApplicationRecord
   end
 
   def level_up
-    #increment!(:level, 1)
+    self.increment!(:level)
     self.experience = 0
-    save
   end
 
   def experience
@@ -93,6 +92,6 @@ class User < ApplicationRecord
         self.cha += 1
       end
     end
+    save
   end
-
 end
