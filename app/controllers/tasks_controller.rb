@@ -90,22 +90,45 @@ class TasksController < ApplicationController
   end
 
   def completed
-    if @task.status == "in_progress"
-      if @task.update(status: "completed")
-        # Mettre à jour les statistiques de l'utilisateur
-        @user.update(completed_tasks_count: @user.completed_tasks_count + 1)
-        # Mettre à jour les statistiques de la tâche
-        @task.update(completed_at: Time.now)
-        redirect_to tasks_path, notice: 'Task was successfully completed.'
+    @task = Task.find(params[:id])
+    if @task.status == 'in_progress'# Vérifie si la tâche est en cours
+      if @task.update(status: 'completed') # Met à jour le statut de la tâche
+        update_user_stats(@task) # Met à jour les statistiques de l'utilisateur
+        check_and_create_achievement(@task.user) # Vérifie et crée des achievements après la mise à jour des stats de l'utilisateur
+        redirect_to tasks_path, notice: 'Task completed successfully.'
       else
-        render :show, alert: 'Could not update the task.'
+        redirect_to @task, alert: 'Task could not be completed.'
       end
     else
       redirect_to @task, alert: 'Task is not in a state that can be completed.'
     end
   end
 
-    private
+  private
+
+  def check_and_create_achievement(user)
+    case user.completed_tasks_count
+    when 1
+      create_achievement(user, 'First Task Completed', 'You have completed your first task!')
+    when 5
+      create_achievement(user, 'Five Tasks Completed', 'You have completed five tasks!')
+    when 10
+      create_achievement(user, 'Ten Tasks Completed', 'You have completed ten tasks!')
+    end
+  end
+
+  def create_achievement(user, title, description)
+    Achievement.create!(
+      title: title,
+      description: description,
+      user: user,
+    )
+  end
+
+    def update_user_stats(task)
+      user = task.user
+      user.increment!(:completed_tasks_count)
+    end
 
     def set_default_status
       params[:status] ||= 'in_progress'

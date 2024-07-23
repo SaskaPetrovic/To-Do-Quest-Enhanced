@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   validates :title, :description, :sub_category, :urgence, presence: true
   validates :urgence, inclusion: { in: ['low', 'medium', 'high'] }
   validates :status, inclusion: { in: ['not_started', 'in_progress', 'completed'] }
-  after_update
+
   scope :with_completed_steps, -> {
     joins(:steps).where(steps: { completed: true }).distinct
   }
@@ -50,12 +50,6 @@ class Task < ApplicationRecord
 
   def completed?
     status == 'completed'
-  end
-
-  def check_and_create_achievement
-    if completed_tasks_count == 1
-      user.achievements.create(title: 'First Task Completed', description: 'You have completed your first task!')
-    end
   end
 
   def completed_tasks_count
