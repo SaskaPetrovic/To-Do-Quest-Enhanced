@@ -99,7 +99,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.status == "in_progress"
       if @task.update(status: "completed")
-        update_user_stats(@user, @task)
+        @user.update_user_stats(@task)
+        @user.add_experience(@task.xp_reward)
         redirect_to tasks_path, notice: 'Task was successfully completed.'
       else
         render :show, alert: 'Could not update the task.'

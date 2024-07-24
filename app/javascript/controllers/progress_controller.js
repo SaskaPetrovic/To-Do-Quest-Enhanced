@@ -85,4 +85,29 @@ export default class extends Controller {
       console.error("Error:", error)
     })
   }
+
+  completeTask(event) {
+    event.preventDefault()
+    const button = event.currentTarget
+    const taskId = button.dataset.taskId
+
+    fetch(`/tasks/${taskId}/completed`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        this.showPopup()
+      } else {
+        alert("An error occurred while completing the task.")
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error)
+    })
+  }
 }
