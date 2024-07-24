@@ -59,9 +59,15 @@ class TasksController < ApplicationController
 
   def destroy
     if @task.destroy
-      redirect_to tasks_path, notice: 'Task was successfully destroyed.'
+      respond_to do |format|
+        format.html { redirect_to tasks_path, notice: 'Task was successfully destroyed.' }
+        format.json { render json: { success: true } }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: { error: 'Failed to delete task.' }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -91,13 +97,13 @@ class TasksController < ApplicationController
 
   def completed
     @task = Task.find(params[:id])
-    if @task.status == 'in_progress'# Vérifie si la tâche est en cours
-      if @task.update(status: 'completed') # Met à jour le statut de la tâche
-        update_user_stats(@task) # Met à jour les statistiques de l'utilisateur
-        check_and_create_achievement(@task.user) # Vérifie et crée des achievements après la mise à jour des stats de l'utilisateur
-        redirect_to tasks_path, notice: 'Task completed successfully.'
+    if @task.status == "in_progress"
+      if @task.update(status: "completed")
+        @user.update_user_stats(@task)
+        @user.add_experience(@task.xp_reward)
+        redirect_to tasks_path, notice: 'Task was successfully completed.'
       else
-        redirect_to @task, alert: 'Task could not be completed.'
+        render :show, alert: 'Could not update the task.'
       end
     else
       redirect_to @task, alert: 'Task is not in a state that can be completed.'

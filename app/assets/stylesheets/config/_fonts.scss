@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Retro Gaming";
-  src: url('Retro Gaming.ttf') format('truetype');
+  //src: font_url('fonts/Retro Gaming.ttf'), format('truetype');
+  src: font-url('Retro-Gaming.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
@@ -13,7 +14,7 @@ $body-font: "Retro Gaming", sans-serif;
 $headers-font: "Press Start 2P", sans-serif;
 
 body {
-  font-family: 'Retro Gaming', sans-serif;
+  font-family: 'Retro Gaming', sans-serif !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
