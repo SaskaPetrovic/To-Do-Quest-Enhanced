@@ -359,34 +359,139 @@ hr {
   position: relative;
   width: 100%;
 }
-
-.pixel-corners {
-  clip-path: polygon(
-    0px calc(100% - 8px),
-    4px calc(100% - 8px),
-    4px calc(100% - 4px),
-    8px calc(100% - 4px),
-    8px 100%,
-    calc(100% - 8px) 100%,
-    calc(100% - 8px) calc(100% - 4px),
-    calc(100% - 4px) calc(100% - 4px),
-    calc(100% - 4px) calc(100% - 8px),
-    100% calc(100% - 8px),
-    100% 8px,
-    calc(100% - 4px) 8px,
-    calc(100% - 4px) 4px,
-    calc(100% - 8px) 4px,
-    calc(100% - 8px) 0px,
-    8px 0px,
-    8px 4px,
-    4px 4px,
-    4px 8px,
-    0px 8px
-  );
+// bar xp pixel
+.pixel-corners-2,
+.pixel-corners-2--wrapper {
+  clip-path: polygon(0px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 5px,
+    10px 5px,
+    10px 10px,
+    5px 10px,
+    5px 20px,
+    0px 20px);
+  position: relative;
 }
-
+.pixel-corners-2 {
+  border: 5px solid transparent;
+}
+.pixel-corners-2--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+.pixel-corners-2--wrapper .pixel-corners-2 {
+  display: block;
+  clip-path: polygon(5px 20px,
+    10px 20px,
+    10px 10px,
+    20px 10px,
+    20px 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 20px),
+    5px calc(100% - 20px));
+}
+.pixel-corners-2::after,
+.pixel-corners-2--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 5px,
+    10px 5px,
+    10px 10px,
+    5px 10px,
+    5px 20px,
+    0px 20px,
+    0px 50%,
+    5px 50%,
+    5px 20px,
+    10px 20px,
+    10px 10px,
+    20px 10px,
+    20px 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px 50%,
+    0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #335732;
+  display: block;
+  pointer-events: none;
+}
+.pixel-corners-2::after {
+  margin: -5px;
+}
+//fin bar xp
 .progress {
-  border: 3px solid rgb(81, 100, 61) !important;
+
 }
 
 .progress-bar {
