@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :accept]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :accept, :completed]
   before_action :set_user
   before_action :set_default_status, only: [:index]
 
@@ -9,7 +9,10 @@ class TasksController < ApplicationController
 
   def index
     # Vérifie si le paramètre 'status' est présent
-    if params[:status].present?
+    if params[:status] == "in_progress"
+      @tasks_current_user = Task.where(user: current_user)
+      @tasks = @tasks_current_user.where(status: params[:status]).order(created_at: :desc)
+    elsif params[:status].present?
       # Si oui, récupère les tâches avec le statut spécifié et les trie par date de création décroissante
       @tasks = Task.where(status: params[:status]).order(created_at: :desc)
     else
@@ -59,9 +62,15 @@ class TasksController < ApplicationController
 
   def destroy
     if @task.destroy
-      redirect_to tasks_path, notice: 'Task was successfully destroyed.'
+      respond_to do |format|
+        format.html { redirect_to tasks_path, notice: 'Task was successfully destroyed.' }
+        format.json { render json: { success: true } }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: { error: 'Failed to delete task.' }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -71,7 +80,8 @@ class TasksController < ApplicationController
 
   def accept
     if @task.status == "not_started"
-      if @task.update(status: "in_progress")
+
+      if @task.update(status: "in_progress", user: current_user)
         redirect_to tasks_path, notice: 'Task was successfully accepted.'
       else
         render :show, alert: 'Could not update the task.'
@@ -93,8 +103,11 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.status == "in_progress"
       if @task.update(status: "completed")
-        update_user_stats(@user, @task)
-        redirect_to tasks_path, notice: 'Task was successfully completed.'
+        @user.update_user_stats(@task)
+        @user.add_experience(@task.xp_reward)
+        @user.completed_tasks_count += 1
+        achievement = check_and_create_achievement
+        redirect_to tasks_path, notice:   achievement ? "You have new achievement" : 'Task was successfully completed.'
       else
         render :show, alert: 'Could not update the task.'
       end
@@ -103,25 +116,61 @@ class TasksController < ApplicationController
     end
   end
 
-    private
+  private
 
-    def set_default_status
-      params[:status] ||= 'in_progress'
-    end
+def check_and_create_achievement
+    # vérifier le nombre de tâches terminées par l'utilisateur
+  case @user.completed_tasks_count
+  when 1
+    # Si l'utilisateur a terminé une tâche
+    # créer un nouvel achievement avec un titre et une description spécifiques
+    create_achievement( 'First Task Completed', 'You have completed your first task!')
+    return true
+  when 3
+    create_achievement( 'Three Tasks Completed', 'You have completed three tasks!')
+    return true
+  when 5
+    create_achievement( 'Five Tasks Completed', 'You have completed five tasks!')
+    return true
+  when 10
+    create_achievement( 'Ten Tasks Completed', 'You have completed ten tasks!')
+    return true
+  end
+  if @user.completed_tasks_count == 15
+    create_achievement( 'Fifteen Tasks Completed', 'You have completed fifteen tasks!')
+    return true
+  end
+  return false
+end
 
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  # titre et une description en paramètres
+def create_achievement(title, description)
+  # Création d'un nouvel achievement avec les paramètres spécifiés
+  Achievement.create!(
+    title: title,
+    description: description,
+    user: @user,
+    sub_category: SubCategory.first
+  )
+end
 
-    def set_user
-      @user = current_user
-    end
+  def set_default_status
+    params[:status] ||= 'in_progress'
+  end
 
-    def task_params
-      params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed])
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    def find_sub_category_id(category_id)
-      SubCategory.find_by(category_id: category_id)&.id
-    end
+  def set_user
+    @user = current_user
+  end
+
+  def task_params
+    params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed])
+  end
+
+  def find_sub_category_id(category_id)
+    SubCategory.find_by(category_id: category_id)&.id
+  end
 end

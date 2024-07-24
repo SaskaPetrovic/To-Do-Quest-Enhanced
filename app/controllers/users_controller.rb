@@ -10,6 +10,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def achievements
+    @user = User.find(params[:id])
+    @achievements = @user.achievements
+  end
+  
+  def show
+  end
+
   private
 
   def set_user
@@ -20,6 +28,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation, :experience, :level)
   end
 
-  def show
-  end
 end

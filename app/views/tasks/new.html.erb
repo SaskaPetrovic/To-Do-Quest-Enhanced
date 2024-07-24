@@ -57,12 +57,17 @@
       </div>
     </template>
 
-
     <div class="pixel-corners margin-button">
       <h2 class="button-style colored">
-        <%= form.button :submit, 'Confirm' %>
+        <%= form.button :submit, 'Confirm', onclick: 'playAudio()'%>
       </h2>
     </div>
-
   <% end %>
 </div>
+
+<script>
+  function playAudio() {
+    var audio = new Audio("<%= asset_path('accept.mp3') %>");
+    audio.play();
+  }
+</script>

@@ -25,7 +25,7 @@
     <p class="desc-body"><%= @task.description %></p>
 
     <h5 class="desc-title">Estimated Duration</h5>
-    <p class="desc-body"><%= @task.time %></p>
+    <p class="desc-body"><%= @task.time.strftime('%I:%M') %></p>
 
     <h5 class="desc-title">Priority</h5>
     <p class="desc-body"><%= @task.urgence %></p>
@@ -33,7 +33,7 @@
     <h5 class="desc-title">Rewards</h5>
     <p class="desc-reward">+ <%= @task.xp_reward %> XP</p>
     <% @task.category_rewards.each do |reward| %>
-      <p class="desc-reward">+1 <%= reward %></p>
+      <p class="desc-reward">+ 1 <%= reward %></p>
     <% end %>
 
 
@@ -90,15 +90,16 @@
     <% @task.category_rewards.each do |reward| %>
       <p class="desc-reward"><%= reward %></p>
     <% end %>
-    <form id="validate-rewards-form" action="/rewards/validate" method="post" data-controller="progress" data-action="submit->progress#handleRewardValidation">
+    <form id="validate-rewards-form" action="/rewards/validate" method="post" data-action="submit->progress#handleRewardValidation">
       <input type="hidden" name="xp_reward" value="<%= @task.xp_reward %>">
       <% @task.category_rewards.each do |reward| %>
-        <input type="hidden" name="rewards[]" value="+1 <%= reward %>">
+        <input type="hidden" name="rewards[]" value="+ 1 <%= reward %>">
          <input type="hidden" name="task[]" value="<%= @task.id %>">
       <% end %>
       <button type="submit" class="btn btn-primary">Confirm</button>
     </form>
 <style>
+
 .popup {
   position: fixed;
   top: 0;

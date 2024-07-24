@@ -58,13 +58,14 @@
 </div>
 
 <div class="container" style="width: 100%; max-width: 390px;">
-  <!-- exp -->
-  <div class="mt-4">
-    <div class="pixel-corners-container">
-      <div class="pixel-corners">
-        <div class="progress" style="height: 30px;">
-          <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
+    <!-- Experience Bar -->
+    <div class="mt-4">
+      <div class="progress" style="height: 30px;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%; color:black;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <h6 class="text-start pt-3">To Next Lv.</h6>
+        <h6 class="pt-3"><%= @user.experience_to_next_level %> XP</h6> <!-- Afficher l'XP manquante -->
       </div>
     </div>
     <div class="d-flex justify-content-between">
@@ -100,17 +101,16 @@
             </div>
           </div>
 
-          <div>
-            <h5>STATUS</h5>
-            <div class="background-color">
-              <div class="pixel-corners mb-4">
-                <div class="margins p-2">
-                  <p>
-                    <%= image_tag "icons/ongoing-quests.png", class: "info-icon", style: "height: 25px"  %> Ongoing Quests
-                  </p>
-                  <hr>
-                  <p><%= @user.status %></p>
-                </div>
+        </div>
+        <div>
+          <h5>STATUS</h5>
+          <div class="background-color">
+            <div class="pixel-corners mb-4">
+              <div class="margins p-2">
+                <p> <%= image_tag "icons/ongoing-quests.png", class: "info-icon", style: "height: 25px"  %> Ongoing Quests
+                </p>
+                <hr>
+                <p> <%= @ongoing_quests_count %> </p>
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <%= javascript_tag do %>
 
-            Chart.defaults.font.family = "'Press Start 2P', sans-serif";
+              Chart.defaults.font.family =  "'Press Start 2P', sans-serif";
 
               new Chart(document.getElementById('myChart'), {
                 type: "radar",
@@ -161,7 +161,6 @@
                     labels: {
                       font: {
                         size: 10
-
                       }
                     },
                   },
@@ -180,7 +179,6 @@
                         stepSize: 5,
                         font: {
                           size: 10,
-
                         }
                       },
                       pointLabels: {
