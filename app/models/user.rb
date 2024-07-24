@@ -94,4 +94,8 @@ class User < ApplicationRecord
     end
     save
   end
+
+  def completed_tasks_count
+    tasks.where(status: 'completed').count
+  end
 end

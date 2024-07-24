@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def achievements
+    @user = User.find(params[:id])
+    @achievements = @user.achievements
+  end
+
   private
 
   def set_user

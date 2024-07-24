@@ -2,7 +2,7 @@ class AchievementsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @achievements = current_user.achievements.includes(:sub_category)
+    @achievements = current_user.achievements
     @user = current_user
   end
 
@@ -15,6 +15,10 @@ class AchievementsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def new
+    @achievement = Achievement.new
   end
 
   private

@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-
   resources :achievements, only: [:index, :create]
 
   resources :users, only: [:update]

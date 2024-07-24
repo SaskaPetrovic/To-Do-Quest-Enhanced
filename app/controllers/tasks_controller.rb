@@ -106,29 +106,40 @@ class TasksController < ApplicationController
 
   private
 
-  def check_and_create_achievement(user)
-    case user.completed_tasks_count
-    when 1
-      create_achievement(user, 'First Task Completed', 'You have completed your first task!')
-    when 5
-      create_achievement(user, 'Five Tasks Completed', 'You have completed five tasks!')
-    when 10
-      create_achievement(user, 'Ten Tasks Completed', 'You have completed ten tasks!')
-    end
+    # Utilisateur en paramètre
+def check_and_create_achievement(user)
+    # vérifier le nombre de tâches terminées par l'utilisateur
+  case user.completed_tasks_count
+  when 1
+    # Si l'utilisateur a terminé une tâche
+    # créer un nouvel achievement avec un titre et une description spécifiques
+    create_achievement(user, 'First Task Completed', 'You have completed your first task!')
+  when 5
+    create_achievement(user, 'Five Tasks Completed', 'You have completed five tasks!')
+  when 10
+    create_achievement(user, 'Ten Tasks Completed', 'You have completed ten tasks!')
   end
+end
 
-  def create_achievement(user, title, description)
-    Achievement.create!(
-      title: title,
-      description: description,
-      user: user,
-    )
-  end
+  # titre et une description en paramètres
+def create_achievement(user, title, description)
+  # Création d'un nouvel achievement avec les paramètres spécifiés
+  Achievement.create!(
+    title: title,
+    description: description,
+    user: user
+  )
+end
 
-    def update_user_stats(task)
-      user = task.user
-      user.increment!(:completed_tasks_count)
-    end
+# task en paramètre
+def update_user_stats(task)
+  # Récupération de l'utilisateur associé à la tâche
+  user = task.user
+  # Incrémentation du compteur de tâches terminées du user
+  user.increment!(:completed_tasks_count)
+  # vérifie si user a atteint un certain nombre de tâches terminées
+  check_and_create_achievement(user)
+end
 
     def set_default_status
       params[:status] ||= 'in_progress'

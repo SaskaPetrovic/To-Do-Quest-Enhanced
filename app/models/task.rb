@@ -52,7 +52,4 @@ class Task < ApplicationRecord
     status == 'completed'
   end
 
-  def completed_tasks_count
-    user.tasks.where(status: 'completed').count
-  end
 end
