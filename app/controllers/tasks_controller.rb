@@ -9,7 +9,10 @@ class TasksController < ApplicationController
 
   def index
     # Vérifie si le paramètre 'status' est présent
-    if params[:status].present?
+    if params[:status] == "in_progress"
+      @tasks_current_user = Task.where(user: current_user)
+      @tasks = @tasks_current_user.where(status: params[:status]).order(created_at: :desc)
+    elsif params[:status].present?
       # Si oui, récupère les tâches avec le statut spécifié et les trie par date de création décroissante
       @tasks = Task.where(status: params[:status]).order(created_at: :desc)
     else
@@ -71,7 +74,8 @@ class TasksController < ApplicationController
 
   def accept
     if @task.status == "not_started"
-      if @task.update(status: "in_progress")
+
+      if @task.update(status: "in_progress", user: current_user)
         redirect_to tasks_path, notice: 'Task was successfully accepted.'
       else
         render :show, alert: 'Could not update the task.'
@@ -103,25 +107,25 @@ class TasksController < ApplicationController
     end
   end
 
-    private
+  private
 
-    def set_default_status
-      params[:status] ||= 'in_progress'
-    end
+  def set_default_status
+    params[:status] ||= 'in_progress'
+  end
 
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    def set_user
-      @user = current_user
-    end
+  def set_user
+    @user = current_user
+  end
 
-    def task_params
-      params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed])
-    end
+  def task_params
+    params.require(:task).permit(:title, :description, :category_id, :sub_category_id, :time, :urgence, steps_attributes: [:id, :title, :content, :completed])
+  end
 
-    def find_sub_category_id(category_id)
-      SubCategory.find_by(category_id: category_id)&.id
-    end
+  def find_sub_category_id(category_id)
+    SubCategory.find_by(category_id: category_id)&.id
+  end
 end

@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def set_user
@@ -20,6 +23,4 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation, :experience, :level)
   end
 
-  def show
-  end
 end
