@@ -83,7 +83,7 @@
           <div class="background-color">
             <div class="pixel-corners mb-4">
               <div class="margins p-2">
-                <p>Mission <br>
+                <p><%= image_tag "icons/mission.png", class: "info-icon", style: "height: 25px" %> Mission <br>
                 <hr> </p>
                 <!--<p> <%= @user.memo %> </p>-->
                 <p>Complete at least 5 quests this week !</p>
@@ -96,7 +96,7 @@
           <div class="background-color">
             <div class="pixel-corners mb-4">
               <div class="margins p-2">
-                <p>Ongoing Quests</p>
+                <p><%= image_tag "icons/ongoing-quests.png", class: "info-icon", style: "height: 25px"  %> Ongoing Quests </p>
                 <hr>
                 <p> <%= @ongoing_quests_count %> </p>
               </div>
@@ -175,7 +175,7 @@
                         font: {
                           size: 11,
                         },
-                        color: '#5F8E56',
+                        color: '#455EB2',
                         padding: 20,
                       }
                     }

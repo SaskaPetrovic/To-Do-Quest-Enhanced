@@ -90,7 +90,7 @@
     <% @task.category_rewards.each do |reward| %>
       <p class="desc-reward"><%= reward %></p>
     <% end %>
-    <form id="validate-rewards-form" action="/rewards/validate" method="post" data-controller="progress" data-action="submit->progress#handleRewardValidation">
+    <form id="validate-rewards-form" action="/rewards/validate" method="post" data-action="submit->progress#handleRewardValidation">
       <input type="hidden" name="xp_reward" value="<%= @task.xp_reward %>">
       <% @task.category_rewards.each do |reward| %>
         <input type="hidden" name="rewards[]" value="+ 1 <%= reward %>">

@@ -82,14 +82,29 @@ class User < ApplicationRecord
       case stat
       when 'STR'
         self.str += 1
+        if self.str >= 5
+          self.roles = "Knight"
+        end
       when 'INT'
         self.int += 1
+        if self.int >= 5
+          self.roles = "Rogue"
+        end
       when 'MANA'
         self.mana += 1
+        if self.mana >= 5
+          self.roles = "Mage"
+        end
       when 'DEX'
         self.dex += 1
+        if self.dex >= 5
+          self.roles = "Ranger"
+        end
       when 'CHA'
         self.cha += 1
+        if self.cha >= 5
+          self.roles = "Bard"
+        end
       end
     end
     save
