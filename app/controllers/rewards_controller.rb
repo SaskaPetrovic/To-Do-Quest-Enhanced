@@ -74,15 +74,15 @@ class RewardsController < ApplicationController
     sub_category = SubCategory.find(task.first.sub_category_id)
     case sub_category.category.title
     when 'Domestic'
-      ['STR']
-    when 'Work/School'
       ['INT']
-    when 'Leisure & Social'
-      ['CHA']
-    when 'Health & Wellness'
-      ['DEX']
-    when 'Personal Growth'
+    when 'Work/School'
       ['MANA']
+    when 'Leisure & Social'
+      ['DEX']
+    when 'Health & Wellness'
+      ['STR']
+    when 'Personal Growth'
+      ['CHA']
     end
   end
 end
