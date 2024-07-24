@@ -107,7 +107,7 @@ class TasksController < ApplicationController
         @user.add_experience(@task.xp_reward)
         @user.completed_tasks_count += 1
         achievement = check_and_create_achievement
-        redirect_to tasks_path, notice:   achievement ? "You have new achievement" : 'Task was successfully completed.'
+        redirect_to tasks_path, notice:   achievement ? "You have unlocked a new achievement ! 🏆" : 'Task was successfully completed.'
       else
         render :show, alert: 'Could not update the task.'
       end
@@ -124,20 +124,20 @@ def check_and_create_achievement
   when 1
     # Si l'utilisateur a terminé une tâche
     # créer un nouvel achievement avec un titre et une description spécifiques
-    create_achievement( 'First Task Completed', 'You have completed your first task!')
+    create_achievement( 'First Task Completed', 'You have completed your first task! 🥉')
     return true
   when 3
-    create_achievement( 'Three Tasks Completed', 'You have completed three tasks!')
+    create_achievement( 'Three Tasks Completed', 'You have completed three tasks! 🥈')
     return true
   when 5
-    create_achievement( 'Five Tasks Completed', 'You have completed five tasks!')
+    create_achievement( 'Five Tasks Completed', 'You have completed five tasks! 🥇')
     return true
   when 10
-    create_achievement( 'Ten Tasks Completed', 'You have completed ten tasks!')
+    create_achievement( 'Ten Tasks Completed', 'You have completed ten tasks! 🏅')
     return true
   end
   if @user.completed_tasks_count == 15
-    create_achievement( 'Fifteen Tasks Completed', 'You have completed fifteen tasks!')
+    create_achievement( 'Fifteen Tasks Completed', 'You have completed fifteen tasks! 🎖')
     return true
   end
   return false

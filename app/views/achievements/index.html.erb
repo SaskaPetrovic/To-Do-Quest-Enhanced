@@ -14,23 +14,23 @@
 
 <div class="container">
   <h2 class="title-achievement"> <%= current_user.username %>'s Trophies </h2>
-  <h5 class="title-achievement">Total: <%= @achievements.count %> / 200</h5>
+  <h5 class="title-achievement">Total: <%= @achievements.count %> / 75</h5>
   <h5 class="title-achievement">Progress: <%= (@achievements.count / 10.0 * 10).to_i %>%</h5>
 
   <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: <%= (@achievements.count / 200.0 * 100).to_i %>%;" aria-valuenow="<%= (@achievements.count / 200.0 * 100).to_i %>" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar" role="progressbar" style="width: <%= (@achievements.count / 75.0 * 100).to_i %>%;" aria-valuenow="<%= (@achievements.count / 75.0 * 100).to_i %>" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
 
   <% if @achievements.any? %>
     <div class="tasks-list">
-      <% @achievements.each do |achievement| %>
+      <% @achievements.order(created_at: :desc).each do |achievement| %>
         <div class="task-item mb-2">
           <div class="p-1">
             <%= link_to achievements_path(achievement), class: 'text-decoration-none' do %>
               <div class="pixel-corners mb-1">
                 <div class="p-3 colored">
                   <h3 class="mb-2 title-quest"><%= achievement.title.upcase %></h3>
-                  <h4 class="mb-1 body-quest"><%= achievement.description %> 📜 ✔️</h4>
+                  <h4 class="mb-1 body-quest"><%= achievement.description %> </h4>
                 </div>
               </div>
             <% end %>
