@@ -101,7 +101,9 @@ class TasksController < ApplicationController
       if @task.update(status: "completed")
         @user.update_user_stats(@task)
         @user.add_experience(@task.xp_reward)
-        redirect_to tasks_path, notice: 'Task was successfully completed.'
+        @user.completed_tasks_count += 1
+        achievement = check_and_create_achievement
+        redirect_to tasks_path, notice:   achievement ? "You have new achievement" : 'Task was successfully completed.'
       else
         render :show, alert: 'Could not update the task.'
       end
@@ -112,39 +114,40 @@ class TasksController < ApplicationController
 
   private
 
-    # Utilisateur en paramètre
-def check_and_create_achievement(user)
+def check_and_create_achievement
     # vérifier le nombre de tâches terminées par l'utilisateur
-  case user.completed_tasks_count
+  case @user.completed_tasks_count
   when 1
     # Si l'utilisateur a terminé une tâche
     # créer un nouvel achievement avec un titre et une description spécifiques
-    create_achievement(user, 'First Task Completed', 'You have completed your first task!')
+    create_achievement( 'First Task Completed', 'You have completed your first task!')
+    return true
+  when 3
+    create_achievement( 'Three Tasks Completed', 'You have completed three tasks!')
+    return true
   when 5
-    create_achievement(user, 'Five Tasks Completed', 'You have completed five tasks!')
+    create_achievement( 'Five Tasks Completed', 'You have completed five tasks!')
+    return true
   when 10
-    create_achievement(user, 'Ten Tasks Completed', 'You have completed ten tasks!')
+    create_achievement( 'Ten Tasks Completed', 'You have completed ten tasks!')
+    return true
   end
+  if @user.completed_tasks_count == 15
+    create_achievement( 'Fifteen Tasks Completed', 'You have completed fifteen tasks!')
+    return true
+  end
+  return false
 end
 
   # titre et une description en paramètres
-def create_achievement(user, title, description)
+def create_achievement(title, description)
   # Création d'un nouvel achievement avec les paramètres spécifiés
   Achievement.create!(
     title: title,
     description: description,
-    user: user
+    user: @user,
+    sub_category: SubCategory.first
   )
-end
-
-# task en paramètre
-def update_user_stats(task)
-  # Récupération de l'utilisateur associé à la tâche
-  user = task.user
-  # Incrémentation du compteur de tâches terminées du user
-  user.increment!(:completed_tasks_count)
-  # vérifie si user a atteint un certain nombre de tâches terminées
-  check_and_create_achievement(user)
 end
 
     def set_default_status
