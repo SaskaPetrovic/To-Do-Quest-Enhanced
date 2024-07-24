@@ -24,9 +24,9 @@
 
     <!-- Stats and Class, rajouter la bonne classe en fonction des stats -->
   <div class="col-5 d-flex flex-column align-items-start padding-fixed">
-      <div class="d-flex justify-content-between w-100 pb-1 align-items-end border-bottom">
+      <div class="d-flex justify-content-between w-100 pb-1 align-items-end coloredBorder">
         <% if @user.roles.present? && @user.roles != 'None' %>
-          <h6><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
+          <h6 class="blueTitle"><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
           <%= image_tag "icons/class/#{@user.roles.downcase}.png", class: "icons mb-1" %>
         <% else %>
           <h6>Starter</h6>
@@ -79,11 +79,11 @@
 
            <div id="activity" class="tab-content" data-tabs-target="tab">
         <div>
-          <h5>MEMO</h5>
+          <h6>MEMO</h6>
           <div class="background-color">
             <div class="pixel-corners mb-4">
               <div class="margins p-2">
-                <p><%= image_tag "icons/mission.png", class: "info-icon", style: "height: 25px" %> Mission <br>
+                <p><%= image_tag "icons/mission.png", class: "info-icon pb-1", style: "height: 25px" %> Mission <br>
                 <hr> </p>
                 <!--<p> <%= @user.memo %> </p>-->
                 <p>Complete at least 5 quests this week !</p>
@@ -92,11 +92,11 @@
           </div>
         </div>
         <div>
-          <h5>STATUS</h5>
+          <h6>STATUS</h6>
           <div class="background-color">
             <div class="pixel-corners mb-4">
               <div class="margins p-2">
-                <p><%= image_tag "icons/ongoing-quests.png", class: "info-icon", style: "height: 25px"  %> Ongoing Quests </p>
+                <p><%= image_tag "icons/ongoing-quests.png", class: "info-icon pb-1", style: "height: 25px"  %> Ongoing Quests </p>
                 <hr>
                 <p> You have <%= @ongoing_quests_count %> ongoing quests.</p>
               </div>
@@ -162,12 +162,12 @@
                         display: false
                       },
                       suggestedMin: 0,
-                      suggestedMax: 25,
+                      suggestedMax: 10,
                       ticks: {
                         beginAtZero: true,
-                        stepSize: 5,
+                        stepSize: 2,
                         font: {
-                          size: 10,
+                          size: 11,
 
                         }
                       },

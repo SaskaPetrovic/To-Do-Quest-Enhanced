@@ -5,7 +5,8 @@
 
 body{
  // background: url(bg.jpg) !important ;
-  background-color: #F1EEE6 !important;
+ // background-color: #F1EEE6 !important;
+ background-color: #fefefe !important;
 }
 
 //fond de couleur des border quest
@@ -64,6 +65,13 @@ h5 {
 
 h6 {
   font-size: 14px;
+}
+.blueTitle{
+  color: #455eb2;
+}
+.coloredBorder{
+  border-bottom: 2px solid black;
+  //border-color:#455eb2 ;
 }
 
 // end font size
@@ -388,7 +396,7 @@ hr {
 // icones
 
 p .info-icon {
-  max-width: 20px !important;
-  max-height: 20px !important;
-  margin: 0 10px 0 0;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  margin: 0 2px 0 0;
 }
