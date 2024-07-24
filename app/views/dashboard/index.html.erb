@@ -98,7 +98,7 @@
               <div class="margins p-2">
                 <p><%= image_tag "icons/ongoing-quests.png", class: "info-icon", style: "height: 25px"  %> Ongoing Quests </p>
                 <hr>
-                <p> <%= @ongoing_quests_count %> </p>
+                <p> You have <%= @ongoing_quests_count %> ongoing quests.</p>
               </div>
             </div>
           </div>
@@ -127,8 +127,9 @@
                       label: 'User Stats',
                       data: [<%= @user.int %>, <%= @user.mana %>, <%= @user.dex %>, <%= @user.str %>, <%= @user.cha %>],
                       borderWidth: 2,
-                      backgroundColor: 'rgba(161, 103, 117, 0.3)',
-                      borderColor: 'rgba(124, 78, 89, 0.8)'
+                      backgroundColor: 'rgba(5, 126, 64, 0.3)',
+                      borderColor: 'rgba(4, 76, 39, 0.8)'
+
                     }
                   ]
                 },
