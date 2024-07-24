@@ -36,7 +36,17 @@
               <div class="pixel-corners mb-1">
                 <div class="p-3 colored">
                   <h3 class="mb-2 title-quest"><%= task.title %></h3>
-                  <h4 class="mb-1 body-quest">Priority: <%= task.urgence %></h4>
+                  <h4 class="mb-1 body-quest">Priority:
+                    <% if task.urgence == 'high' %>
+                      <%= image_tag 'icons/priority/red-book.png', alt: 'High Priority', class: 'priority-book pb-2' %>
+                    <% elsif task.urgence == 'medium' %>
+                      <%= image_tag 'icons/priority/yellow-book.png', alt: 'Medium Priority', class: 'priority-book pb-2' %>
+                    <% elsif task.urgence == 'low' %>
+                      <%= image_tag 'icons/priority/green-book.png', alt: 'Low Priority', class: 'priority-book pb-2' %>
+                    <% else %>
+                      <%= task.urgence %>
+                    <% end %>
+                  </h4>
                 </div>
               </div>
             <% end %>
