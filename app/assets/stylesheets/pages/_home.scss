@@ -2,7 +2,7 @@
 
 .home {
   margin: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('Ocean-and-Clouds-Pixelart-1536x1024.webp');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('Night-City-Pixelart.webp');
   background-color: #333;
   background-position: top center;
   background-size: cover;
@@ -62,10 +62,6 @@
 }
 
 // pixel-box
-.margins {
-  background-color: antiquewhite;
-}
-
 .pixel-corners,
 .pixel-corners--wrapper {
   clip-path: polygon(
@@ -244,5 +240,5 @@
 }
 
 .continue-btn .button-edit-home {
-  background-color: #92cc42;
+  background-color: #92cc42 !important;
 }

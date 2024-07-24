@@ -335,3 +335,50 @@ hr {
 hr {
   border: solid 1.5px #163290;
 }
+
+// exp bar
+.pixel-corners-container {
+  position: relative;
+  width: 100%;
+}
+
+.pixel-corners {
+  clip-path: polygon(
+    0px calc(100% - 8px),
+    4px calc(100% - 8px),
+    4px calc(100% - 4px),
+    8px calc(100% - 4px),
+    8px 100%,
+    calc(100% - 8px) 100%,
+    calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 4px) calc(100% - 8px),
+    100% calc(100% - 8px),
+    100% 8px,
+    calc(100% - 4px) 8px,
+    calc(100% - 4px) 4px,
+    calc(100% - 8px) 4px,
+    calc(100% - 8px) 0px,
+    8px 0px,
+    8px 4px,
+    4px 4px,
+    4px 8px,
+    0px 8px
+  );
+}
+
+.progress {
+  background-color: transparent;
+}
+
+.progress-bar {
+  background-color: #06AA55 !important;
+}
+
+// icones
+
+p .info-icon {
+  max-width: 20px !important;
+  max-height: 20px !important;
+  margin: 0 10px 0 0;
+}
