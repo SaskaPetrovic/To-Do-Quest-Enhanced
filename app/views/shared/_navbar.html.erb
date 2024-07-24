@@ -27,7 +27,7 @@
           <%= image_tag 'icons/Kebab_Menu_Vertical.svg', alt: "dropdown menu" %>
         </button>
         <div class="dropdown-menu dropdown-menu-end full-screen-dropdown" aria-labelledby="navbarDropdown">
-          <h5 class="menu-font"> <%= link_to "Menu", "#", class: "dropdown-item mb-5 mt-5" %></h5>
+            <h5 class="menu-font"> <%= link_to "Menu", root_path, class: "dropdown-item mb-5 mt-5" %></h5>
           <div class="menu-line-height">
             <h6 class="menu-font"> <%= link_to "Profile", dashboard_path, class: "dropdown-item" %></h6>
             <h6 class="menu-font"> <%= link_to "Achievements", achievements_path, class: "dropdown-item" %></h6>

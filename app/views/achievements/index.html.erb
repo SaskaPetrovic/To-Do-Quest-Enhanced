@@ -5,15 +5,15 @@
         <%= image_tag 'icons/return.svg', alt: 'Return'%>
       <% end %>
       <div class="flex-grow-1 text-center">
-        <h2>Achievements <%= current_user.username %></h2>
+        <h2>Achievements <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm9zaGtvM3JrbXI1YWdwaXAxc3lueDd0ano3eWt0M3d3Y2x1d25oNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/hqDeZrQogBnxWaJC5v/giphy.webp" alt="Achievements" width="50px"></h2>
       </div>
       <!-- An empty div to take the same space as the link to ensure the title is centered -->
       <div style="width: 10px;"></div>
     </div>
   </div>
 
-<!--Je n ai pas reussi-->
 <div class="container">
+  <h2 class="title-achievement"> <%= current_user.username %>'s Trophies </h2>
   <h5 class="title-achievement">Total: <%= @achievements.count %> / 200</h5>
   <h5 class="title-achievement">Progress: <%= (@achievements.count / 10.0 * 10).to_i %>%</h5>
 

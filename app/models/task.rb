@@ -45,4 +45,11 @@ class Task < ApplicationRecord
       ['MANA']
     end
   end
+
+  private
+
+  def completed?
+    status == 'completed'
+  end
+
 end
