@@ -61,8 +61,7 @@
     <!-- Experience Bar -->
     <div class="mt-4">
       <div class="progress" style="height: 30px;">
-        <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
-        <h6 class="text-center">Exp.</h6>
+        <div class="progress-bar" role="progressbar" style="width: <%= @user.experience_percentage %>%; color:black;" aria-valuenow="<%= @user.experience_percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <div class="d-flex justify-content-between">
         <h6 class="text-start pt-3">To Next Lv.</h6>
@@ -99,7 +98,7 @@
               <div class="margins p-2">
                 <p>Ongoing Quests</p>
                 <hr>
-                <p> <%= @user.status %> </p>
+                <p> <%= @ongoing_quests_count %> </p>
               </div>
             </div>
           </div>
