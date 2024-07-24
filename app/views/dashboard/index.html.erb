@@ -29,7 +29,7 @@
           <h6><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
           <%= image_tag "icons/class/#{@user.roles.downcase}.png", class: "icons mb-1" %>
         <% else %>
-          <h6>Starter</h6>
+          <h6>Newbie</h6>
           <%= image_tag "icons/class/noob.png", class: "icons mb-1" %>
         <% end %>
       </div>
@@ -68,6 +68,13 @@
         <h6 class="pt-3"><%= @user.experience_to_next_level %> XP</h6> <!-- Afficher l'XP manquante -->
       </div>
     </div>
+    <div class="d-flex justify-content-between">
+      <h6 class="text-start pt-3">To Next Lv.</h6>
+      <h6 class="pt-3"><%= @user.experience_to_next_level %> XP</h6>
+    </div>
+  </div>
+</div>
+
 
 
     <!-- tabs -->
@@ -78,32 +85,37 @@
       </div>
 
            <div id="activity" class="tab-content" data-tabs-target="tab">
-        <div>
-          <h5>MEMO</h5>
-          <div class="background-color">
-            <div class="pixel-corners mb-4">
-              <div class="margins p-2">
-                <p>Mission <br>
-                <hr> </p>
-                <!--<p> <%= @user.memo %> </p>-->
-                <p>Complete at least 5 quests this week !</p>
+            <div>
+            <h5>MEMO</h5>
+            <div class="background-color">
+              <div class="pixel-corners mb-4">
+                <div class="margins p-2">
+                  <p>
+                    <%= image_tag "icons/mission.png", class: "info-icon", style: "height: 25px" %> Mission <br>
+                    <hr>
+                  </p>
+                  <!--<p> <%= @user.memo %> </p>-->
+                  <p>Complete at least 5 quests this week!</p>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
         <div>
           <h5>STATUS</h5>
           <div class="background-color">
             <div class="pixel-corners mb-4">
               <div class="margins p-2">
-                <p>Ongoing Quests</p>
+                <p> <%= image_tag "icons/ongoing-quests.png", class: "info-icon", style: "height: 25px"  %> Ongoing Quests
+                </p>
                 <hr>
                 <p> <%= @ongoing_quests_count %> </p>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+
+          </div>
 
       <div id="stats" class="tab-content" data-tabs-target="tab">
          <!--<h5>CHART</h5> -->
@@ -173,7 +185,7 @@
                         font: {
                           size: 11,
                         },
-                        color: '#5F8E56',
+                        color: '#455EB2,
                         padding: 20,
                       }
                     }
