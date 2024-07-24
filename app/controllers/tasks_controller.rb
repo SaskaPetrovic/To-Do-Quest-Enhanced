@@ -59,9 +59,15 @@ class TasksController < ApplicationController
 
   def destroy
     if @task.destroy
-      redirect_to tasks_path, notice: 'Task was successfully destroyed.'
+      respond_to do |format|
+        format.html { redirect_to tasks_path, notice: 'Task was successfully destroyed.' }
+        format.json { render json: { success: true } }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: { error: 'Failed to delete task.' }, status: :unprocessable_entity }
+      end
     end
   end
 
