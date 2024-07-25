@@ -18,7 +18,7 @@ export default class extends Controller {
     this.total = this.checkboxTargets.length
     this.percentage = this.count * 100 / this.total
     this.barTarget.outerHTML = `
-      <div class="progress" data-progress-target="bar">
+      <div class="progress" data-progress-target="bar" style="height: 40px;">
         <div class="progress-bar" role="progressbar" style="width: ${this.percentage}%;" aria-valuenow="${this.percentage}" aria-valuemin="0" aria-valuemax="100">
           ${this.percentage}%
         </div>
