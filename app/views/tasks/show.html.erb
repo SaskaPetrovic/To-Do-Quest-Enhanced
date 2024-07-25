@@ -18,21 +18,19 @@
 
   <div class="container">
     <h5 class="desc-title">
-     <%= image_tag 'icons/return.svg' %>Category</h5>
-    <p class="desc-body text-wrap">
-    <%= @task.sub_category.category.title %>
-    </p>
+     <%= image_tag 'icons/new-show/category.png', class:"icons mb-2" %> Category</h5>
+    <p class="desc-body text-wrap"><%= @task.sub_category.category.title %></p>
 
-    <h5 class="desc-title"> <%= image_tag 'icons/return.svg' %>Description</h5>
+    <h5 class="desc-title"> <%= image_tag 'icons/mission.png', class:"icons mb-2" %> Description</h5>
     <p class="desc-body text-wrap"><%= @task.description %></p>
 
-    <h5 class="desc-title"> <%= image_tag 'icons/return.svg' %>Estimated Duration</h5>
+    <h5 class="desc-title"> <%= image_tag 'icons/new-show/time.png', class:"icons mb-2" %> Estimated Duration</h5>
     <p class="desc-body text-wrap"><%= @task.time.strftime('%I:%M') %></p>
 
-    <h5 class="desc-title"> <%= image_tag 'icons/return.svg' %>Priority</h5>
+    <h5 class="desc-title"> <%= image_tag 'icons/new-show/priority.png', class:"icons mb-2" %> Priority</h5>
     <p class="desc-body text-wrap"><%= @task.urgence %></p>
 
-    <h5 class="desc-title"> <%= image_tag 'icons/return.svg' %>Rewards</h5>
+    <h5 class="desc-title"> <%= image_tag 'icons/new-show/chest.png', class:"icons mb-1" %> Rewards</h5>
     <p class="desc-reward text-wrap">+ <%= @task.xp_reward %> XP</p>
     <% @task.category_rewards.each do |reward| %>
       <p class="desc-reward pb-3 text-wrap">+ 1 <%= reward %></p>
@@ -40,7 +38,7 @@
 
     <div class="pixel-corners">
       <div class="p-3 colored">
-        <h5 class="desc-title pt-3"><%= image_tag 'icons/return.svg' %>Checkpoints</h5>
+        <h5 class="desc-title pt-3"><%= image_tag 'icons/new-show/map.png', class:"icons mb-1" %> Checkpoints</h5>
 
         <%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
           <% if @task.steps.any? %>

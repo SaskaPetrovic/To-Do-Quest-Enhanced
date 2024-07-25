@@ -120,28 +120,25 @@ class TasksController < ApplicationController
 
 def check_and_create_achievement
     # vérifier le nombre de tâches terminées par l'utilisateur
-  case @user.completed_tasks_count
-  when 1
-    # Si l'utilisateur a terminé une tâche
-    # créer un nouvel achievement avec un titre et une description spécifiques
-    create_achievement( 'First Task Completed', 'You have completed your first task! 🥉')
-    return true
-  when 3
-    create_achievement( 'Three Tasks Completed', 'You have completed three tasks! 🥈')
-    return true
-  when 5
-    create_achievement( 'Five Tasks Completed', 'You have completed five tasks! 🥇')
-    return true
-  when 10
-    create_achievement( 'Ten Tasks Completed', 'You have completed ten tasks! 🏅')
-    return true
+    case @user.completed_tasks_count
+    when 1
+      create_achievement('First Task Completed', 'You have completed your first task! 🥉')
+      return true
+    when 3
+      create_achievement('Three Tasks Completed', 'You have completed three tasks! 🥈')
+      return true
+    when 5
+      create_achievement('Five Tasks Completed', 'You have completed five tasks! 🥇')
+      return true
+    when 10
+      create_achievement('Ten Tasks Completed', 'You have completed ten tasks! 🏅')
+      return true
+    when 15
+      create_achievement('Fifteen Tasks Completed', 'You have completed fifteen tasks! 🎖')
+      return true
+    end
+    return false
   end
-  if @user.completed_tasks_count == 15
-    create_achievement( 'Fifteen Tasks Completed', 'You have completed fifteen tasks! 🎖')
-    return true
-  end
-  return false
-end
 
   # titre et une description en paramètres
 def create_achievement(title, description)

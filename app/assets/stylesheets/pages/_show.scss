@@ -1,16 +1,17 @@
 .desc-title{
   font-size: 15px !important;
+  margin-bottom: 0 !important;
 }
 
 .desc-body{
-  padding-left: 15px;
+  padding-left: 44px;
   padding-bottom: 16px;
 }
 
 // Titre de la reward
 .desc-reward{
   text-transform: uppercase;
-  padding-left: 10px;
+  padding-left: 44px;
 }
 
 .desc-steps{
@@ -81,6 +82,9 @@
   white-space: normal;
 }
 
+.lessMargin{
+  margin: 5px 0px !important;
+}
 
 //bouton accept bleu
 .bgBlue{
