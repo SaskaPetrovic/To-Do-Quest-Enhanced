@@ -39,30 +39,47 @@ class RewardsController < ApplicationController
       case cleaned_reward
       when /STR/i
         user.str += 1
-        if user.str >= 5
-          user.roles = "Knight"
-        end
       when /INT/i
         user.int += 1
-        if user.int >= 5
-          user.roles = "Rogue"
-        end
       when /MANA/i
         user.mana += 1
-        if user.mana >= 5
-          user.roles = "Mage"
-        end
       when /DEX/i
         user.dex += 1
-        if user.dex >= 5
-          user.roles = "Ranger"
-        end
       when /CHA/i
         user.cha += 1
-        if user.cha >= 5
+      end
+      user_stat = {
+        "STR" => user.str,
+        "INT" => user.int,
+        "MANA" => user.mana,
+        "DEX" => user.dex,
+        "CHA" => user.cha
+      }
+      user_max = user_stat.max_by {|k,v|v}.first
+
+      case user_max
+      when "STR"
+        if user.str > 5
+          user.roles = "Knight"
+        end
+      when "INT"
+        if user.int > 5
+          user.roles = "Rogue"
+        end
+      when "MANA"
+        if user.mana > 5
+          user.roles = "Mage"
+        end
+      when "DEX"
+        if user.dex > 5
+          user.roles = "Ranger"
+        end
+      when "CHA"
+        if user.cha > 5
           user.roles = "Bard"
         end
       end
+
     if user.save
       Rails.logger.debug("User stats updated successfully.")
     else
@@ -74,15 +91,15 @@ class RewardsController < ApplicationController
     sub_category = SubCategory.find(task.first.sub_category_id)
     case sub_category.category.title
     when 'Domestic'
-      ['INT']
-    when 'Work/School'
-      ['MANA']
-    when 'Leisure & Social'
-      ['DEX']
-    when 'Health & Wellness'
       ['STR']
-    when 'Personal Growth'
+    when 'Work/School'
+      ['INT']
+    when 'Leisure & Social'
       ['CHA']
+    when 'Health & Wellness'
+      ['DEX']
+    when 'Personal Growth'
+      ['MANA']
     end
   end
 end
