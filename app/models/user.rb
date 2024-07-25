@@ -74,41 +74,59 @@ class User < ApplicationRecord
     self[:level] || 1
   end
 
+
   def update_user_stats(task)
     rewards = task.category_rewards
+    cleaned_reward = ""
     rewards.each do |reward|
-      stat = reward.sub('+1 ', '')
-
-      case stat
-      when 'STR'
+      cleaned_reward = reward.gsub(' ', '').strip
+    end
+      case cleaned_reward
+      when /STR/i
         self.str += 1
-        if self.str >= 5
+      when /INT/i
+        self.int += 1
+      when /MANA/i
+        self.mana += 1
+      when /DEX/i
+        self.dex += 1
+      when /CHA/i
+        self.cha += 1
+      end
+      user_stat = {
+        "STR" => self.str,
+        "INT" => self.int,
+        "MANA" => self.mana,
+        "DEX" => self.dex,
+        "CHA" => self.cha
+      }
+      user_max = user_stat.max_by {|k,v|v}.first
+
+      case user_max
+      when "STR"
+        if self.str > 5
           self.roles = "Knight"
         end
-      when 'INT'
-        self.int += 1
-        if self.int >= 5
+      when "INT"
+        if self.int > 5
           self.roles = "Rogue"
         end
-      when 'MANA'
-        self.mana += 1
-        if self.mana >= 5
+      when "MANA"
+        if self.mana > 5
           self.roles = "Mage"
         end
-      when 'DEX'
-        self.dex += 1
-        if self.dex >= 5
+      when "DEX"
+
+        if self.dex > 5
           self.roles = "Ranger"
         end
-      when 'CHA'
-        self.cha += 1
-        if self.cha >= 5
+      when "CHA"
+        if self.cha > 5
           self.roles = "Bard"
         end
       end
+      self.save
     end
-    save
-  end
 
   def completed_tasks_count
     tasks.where(status: 'completed').count
