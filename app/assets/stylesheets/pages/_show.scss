@@ -80,3 +80,276 @@
   word-wrap: break-word;
   white-space: normal;
 }
+
+
+//bouton accept bleu
+.bgBlue{
+  background-color: #455eb2;
+}
+.pixel-corners-3,
+.pixel-corners-3--wrapper {
+  clip-path: polygon(0px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 5px,
+    10px 5px,
+    10px 10px,
+    5px 10px,
+    5px 20px,
+    0px 20px);
+  position: relative;
+}
+.pixel-corners-3 {
+  border: 5px solid transparent;
+}
+.pixel-corners-3--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+.pixel-corners-3--wrapper .pixel-corners-3 {
+  display: block;
+  clip-path: polygon(5px 20px,
+    10px 20px,
+    10px 10px,
+    20px 10px,
+    20px 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 20px),
+    5px calc(100% - 20px));
+}
+.pixel-corners-3::after,
+.pixel-corners-3--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 5px,
+    10px 5px,
+    10px 10px,
+    5px 10px,
+    5px 20px,
+    0px 20px,
+    0px 50%,
+    5px 50%,
+    5px 20px,
+    10px 20px,
+    10px 10px,
+    20px 10px,
+    20px 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px 50%,
+    0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #163290;
+  display: block;
+  pointer-events: none;
+}
+.pixel-corners-3::after {
+  margin: -5px;
+}
+
+
+//bouton complete vert
+.bgGreen{
+  background-color:#85a465 ;
+}
+
+
+
+.pixel-corners-4,
+.pixel-corners-4--wrapper {
+  clip-path: polygon(0px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 5px,
+    10px 5px,
+    10px 10px,
+    5px 10px,
+    5px 20px,
+    0px 20px);
+  position: relative;
+}
+.pixel-corners-4 {
+  border: 5px solid transparent;
+}
+.pixel-corners-4--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+.pixel-corners-4--wrapper .pixel-corners-4 {
+  display: block;
+  clip-path: polygon(5px 20px,
+    10px 20px,
+    10px 10px,
+    20px 10px,
+    20px 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 20px),
+    5px calc(100% - 20px));
+}
+.pixel-corners-4::after,
+.pixel-corners-4--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 5px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 10px),
+    calc(100% - 5px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 0px,
+    20px 0px,
+    20px 5px,
+    10px 5px,
+    10px 10px,
+    5px 10px,
+    5px 20px,
+    0px 20px,
+    0px 50%,
+    5px 50%,
+    5px 20px,
+    10px 20px,
+    10px 10px,
+    20px 10px,
+    20px 5px,
+    calc(100% - 20px) 5px,
+    calc(100% - 20px) 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 20px,
+    calc(100% - 5px) 20px,
+    calc(100% - 5px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 20px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 20px) calc(100% - 5px),
+    20px calc(100% - 5px),
+    20px calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px calc(100% - 20px),
+    5px calc(100% - 20px),
+    5px 50%,
+    0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #335732;
+  display: block;
+  pointer-events: none;
+}
+.pixel-corners-4::after {
+  margin: -5px;
+}
