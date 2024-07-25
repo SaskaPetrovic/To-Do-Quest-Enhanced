@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def set_user
     @user = current_user
   end
+
+  def default_url_options
+    { hôte: ENV["DOMAIN"] || "localhost:3000" }
+  end
 end
