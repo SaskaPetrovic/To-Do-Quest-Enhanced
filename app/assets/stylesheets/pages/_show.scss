@@ -4,7 +4,7 @@
 
 .desc-body{
   padding-left: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
 }
 
 // Titre de la reward
@@ -74,4 +74,9 @@
   font-size: 1.2em;
   margin-left: 10px;
 
+}
+
+.text-wrap {
+  word-wrap: break-word;
+  white-space: normal;
 }
