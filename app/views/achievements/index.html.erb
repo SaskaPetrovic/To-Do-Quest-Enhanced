@@ -1,7 +1,7 @@
  <!----------------Title and return link---------------->
   <div class="container lessPadding">
     <div class="d-flex align-items-center justify-content-between">
-      <%= link_to dashboard_path, class: 'button-return mb-2' do %>
+      <%= link_to dashboard_path, data:{ turbo: false },  class: 'button-return mb-2' do %>
         <%= image_tag 'icons/return.svg', alt: 'Return'%>
       <% end %>
       <div class="flex-grow-1 text-center">
