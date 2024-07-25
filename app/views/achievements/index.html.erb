@@ -1,25 +1,28 @@
  <!----------------Title and return link---------------->
-  <div class="container lessPadding">
-    <div class="d-flex align-items-center justify-content-between">
-      <%= link_to dashboard_path, data:{ turbo: false },  class: 'button-return mb-2' do %>
-        <%= image_tag 'icons/return.svg', alt: 'Return'%>
-      <% end %>
-      <div class="flex-grow-1 text-center">
-        <h2>Achievements <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm9zaGtvM3JrbXI1YWdwaXAxc3lueDd0ano3eWt0M3d3Y2x1d25oNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/hqDeZrQogBnxWaJC5v/giphy.webp" alt="Achievements" width="50px"></h2>
-      </div>
-      <!-- An empty div to take the same space as the link to ensure the title is centered -->
-      <div style="width: 10px;"></div>
+<div class="container lessPadding">
+  <div class="d-flex align-items-center justify-content-between">
+    <%= link_to dashboard_path, data:{ turbo: false },  class: 'button-return mb-2' do %>
+      <%= image_tag 'icons/return.svg', alt: 'Return'%>
+    <% end %>
+    <div class="flex-grow-1 text-center">
+      <h2>Achievements
     </div>
+    <!-- An empty div to take the same space as the link to ensure the title is centered -->
+    <div style="width: 10px;"></div>
   </div>
-
+</div>
+<!--<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm9zaGtvM3JrbXI1YWdwaXAxc3lueDd0ano3eWt0M3d3Y2x1d25oNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/hqDeZrQogBnxWaJC5v/giphy.webp" alt="Achievements" width="50px"></h2>-->
 <div class="container">
-  <h2 class="title-achievement"> <%= current_user.username %>'s Trophies </h2>
   <h5 class="title-achievement">Total: <%= @achievements.count %> / 75</h5>
-  <h5 class="title-achievement">Progress: <%= (@achievements.count / 10.0 * 10).to_i %>%</h5>
-
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: <%= (@achievements.count / 75.0 * 100).to_i %>%;" aria-valuenow="<%= (@achievements.count / 75.0 * 100).to_i %>" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
+  <h5 class="title-achievement mb-4">Progress: <%= (@achievements.count / 10.0 * 10).to_i %>%</h5>
+<!--
+  <div class="pixel-corners-container my-4">
+    <div class="pixel-corners-2">
+      <div class="progress" style="height: 30px;">
+        <div class="progress-bar" role="progressbar" style="width: <%= (@achievements.count / 75.0 * 100).to_i %>%;" aria-valuenow="<%= (@achievements.count / 75.0 * 100).to_i %>" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+  </div>-->
 
   <% if @achievements.any? %>
     <div class="tasks-list">
@@ -29,8 +32,9 @@
             <%= link_to achievements_path(achievement), class: 'text-decoration-none' do %>
               <div class="pixel-corners mb-1">
                 <div class="p-3 colored">
-                  <h3 class="mb-2 title-quest"><%= achievement.title.upcase %></h3>
-                  <h4 class="mb-1 body-quest"><%= achievement.description %> </h4>
+                  <h3 class="mb-2 achiTitle"><%= achievement.title %></h3>
+                  <h4 class="mb-1 bodyTitle"><%= achievement.description %> </h4>
+
                 </div>
               </div>
             <% end %>
