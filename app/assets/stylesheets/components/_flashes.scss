@@ -1,0 +1,84 @@
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.m-1 {
+  margin: 5px;
+}
+
+.custom-notice {
+  background-color: #d1ecf1 !important; /* Couleur de fond pour les notifications de type notice */
+  color: #0c5460 !important; /* Couleur du texte pour les notifications de type notice */
+  border-color: #bee5eb !important; /* Couleur de la bordure pour les notifications de type notice */
+}
+
+.custom-alert {
+  background-color: #f8d7da !important; /* Couleur de fond pour les notifications de type alert */
+  color: #721c24 !important; /* Couleur du texte pour les notifications de type alert */
+  border-color: #f5c6cb !important; /* Couleur de la bordure pour les notifications de type alert */
+}
+
+.alert {
+  padding: 15px !important; /* Espacement interne pour toutes les notifications */
+  margin-bottom: 20px !important; /* Marges pour toutes les notifications */
+  border: 1px solid transparent !important; /* Bordure pour toutes les notifications */
+  border-radius: 4px !important; /* Bordure arrondie pour toutes les notifications */
+}
+
+.btn-close {
+  visibility: visible !important; /* Rendre le bouton visible */
+  border: none !important; /* Suppression de la bordure par défaut du bouton */
+  font-size: 1.5rem !important; /* Taille de la police pour le bouton de fermeture */
+  margin-left: 5px; /* Ajouter une marge à gauche pour séparer le bouton du texte */
+}
+// ne fonctionne pas
+// .custom-width {
+//   width: 100% !important; /* Modifier cette valeur pour ajuster la largeur */
+// }
+
+.alert-info,
+.alert-warning,
+.custom-notice,
+.custom-alert,
+.alert {
+  border: none !important;
+  box-shadow: none !important;
+  &::before {
+    display: inline-block; /* Affiche l'emoji avant le texte */
+    margin-right: 5px; /* Ajoute un espacement entre l'emoji et le texte */
+  }
+}
+
+.alert-info::before {
+  content: "\1F4AC"; /* Ajoute l'emoji de la bulle de dialogue en tant que contenu avant l'alerte info */
+}
+
+.alert-warning::before {
+  content: "\1F6A8"; /* Ajoute l'emoji d'avertissement en tant que contenu avant l'alerte de mise en garde */
+}
+
+.custom-notice::before {
+  content: "\1F4CC"; /* Ajoute l'emoji de mémo en tant que contenu avant l'alerte personnalisée de type notice */
+}
+
+.custom-alert::before {
+  content: "\1F525"; /* Ajoute l'emoji de feu en tant que contenu avant l'alerte personnalisée de type alert */
+}
+
+
+.btn-close {
+  font-size: 10px !important;
+}
