@@ -9,7 +9,6 @@
     <div class="col padding-lv">
       <h6>Lv.<%= @user.level %></h6>
     </div>
-    <div class="w-100"></div>
   </div>
 
   <!-- Profile Image -->
@@ -21,9 +20,8 @@
       </div>
     </div>
 
-
     <!-- Stats and Class, rajouter la bonne classe en fonction des stats -->
-  <div class="col-5 d-flex flex-column align-items-start padding-fixed">
+    <div class="col-5 d-flex flex-column align-items-start padding-fixed">
       <div class="d-flex justify-content-between w-100 pb-1 align-items-end coloredBorder">
         <% if @user.roles.present? && @user.roles != 'None' %>
           <h6 class="blueTitle"><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
@@ -33,28 +31,28 @@
           <%= image_tag "icons/class/noob.png", class: "icons mb-1" %>
         <% end %>
       </div>
-    <div class="d-flex justify-content-between w-100 mt-3">
-      <h6>INT</h6>
-      <h6><%= @user.int %></h6> <!-- Remplacez 78 par @user.int -->
-    </div>
-    <div class="d-flex justify-content-between w-100">
-      <h6>MANA</h6>
-      <h6><%= @user.mana %></h6> <!-- Remplacez 99 par @user.mana -->
-    </div>
-    <div class="d-flex justify-content-between w-100">
-      <h6>DEX</h6>
-      <h6><%= @user.dex %></h6> <!-- Remplacez 54 par @user.dex -->
-    </div>
-    <div class="d-flex justify-content-between w-100">
-      <h6>STR</h6>
-      <h6><%= @user.str %></h6> <!-- Remplacez 76 par @user.str -->
-    </div>
-    <div class="d-flex justify-content-between w-100">
-      <h6>CHA</h6>
-      <h6><%= @user.cha %></h6> <!-- Remplacez 90 par @user.cha -->
+      <div class="d-flex justify-content-between w-100 mt-3">
+        <h6>INT</h6>
+        <h6><%= @user.int %></h6>
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>MANA</h6>
+        <h6><%= @user.mana %></h6>
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>DEX</h6>
+        <h6><%= @user.dex %></h6>
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>STR</h6>
+        <h6><%= @user.str %></h6>
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <h6>CHA</h6>
+        <h6><%= @user.cha %></h6>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="container" style="width: 100%; max-width: 390px;">
@@ -73,127 +71,113 @@
     </div>
   </div>
 
+  <!-- tabs -->
+  <div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
+    <div class="tabs pt-3 pb-3">
+      <button id="activity-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Activity</button>
+      <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
+    </div>
 
-
-
-    <!-- tabs -->
-    <div data-controller="tabs" data-tabs-default-tab-value="activity" data-tabs-active-class="active">
-      <div class="tabs pt-3 pb-3">
-        <button id="activity-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Activity</button>
-        <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
-      </div>
-
-           <div id="activity" class="tab-content" data-tabs-target="tab">
-
-        <div>
-          <h6>MEMO</h6>
-          <div class="background-color">
-            <div class="pixel-corners mb-4">
-              <div class="margins p-2">
-                <p><%= image_tag "icons/mission.png", class: "info-icon pb-1", style: "height: 25px" %> Mission <br>
+    <div id="activity" class="tab-content" data-tabs-target="tab">
+      <div>
+        <h6>MEMO</h6>
+        <div class="background-color">
+          <div class="pixel-corners mb-4">
+            <div class="margins p-2">
+              <p><%= image_tag "icons/mission.png", class: "info-icon pb-1", style: "height: 25px" %> Mission <br>
                 <hr> </p>
-                <!--<p> <%= @user.memo %> </p>-->
-                <p>Complete at least 5 quests this week !</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h6>STATUS</h6>
-          <div class="background-color">
-            <div class="pixel-corners mb-4">
-              <div class="margins p-2">
-                <p><%= image_tag "icons/ongoing-quests.png", class: "info-icon pb-1", style: "height: 25px"  %> Ongoing Quests </p>
-                <hr>
-                <p> You have <%= @ongoing_quests_count %> ongoing quests.</p>
-              </div>
+              <!--<p> <%= @user.memo %> </p>-->
+              <p>Complete at least 5 quests this week !</p>
             </div>
           </div>
         </div>
       </div>
-
-      <div id="stats" class="tab-content" data-tabs-target="tab">
-         <!--<h5>CHART</h5> -->
-
-
-            <div class="container pb-5 d-flex justify-content-center align-items-center">
-              <canvas id="myChart" style="height:300px; width:350px;"></canvas>
+      <div>
+        <h6>STATUS</h6>
+        <div class="background-color">
+          <div class="pixel-corners mb-4">
+            <div class="margins p-2">
+              <p><%= image_tag "icons/ongoing-quests.png", class: "info-icon pb-1", style: "height: 25px" %> Ongoing Quests </p>
+              <hr>
+              <p> You have <%= @ongoing_quests_count %> ongoing quests.</p>
             </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <%= javascript_tag do %>
-
-            Chart.defaults.font.family = "'Press Start 2P', sans-serif";
-
-              new Chart(document.getElementById('myChart'), {
-                type: "radar",
-                data: {
-                  labels: ["INT", "MANA", "DEX", "STR", "CHA"],
-                  datasets: [
-                    {
-                      label: 'User Stats',
-                      data: [<%= @user.int %>, <%= @user.mana %>, <%= @user.dex %>, <%= @user.str %>, <%= @user.cha %>],
-                      borderWidth: 2,
-                      backgroundColor: 'rgba(133,164,101,0.3)',
-                      borderColor: 'rgba(51,87,50, 0.8)'
-
-                    }
-                  ]
-                },
-                options: {
-                  responsive: false,
-                  maintainAspectRatio: false,
-                  animation: false,
-                  plugins: {
-                    legend: {
-                      display: false
-
-                    },
-                    elements: {
-                      line: {
-                        borderWidth: 20
-                      }
-                    },
-                    labels: {
-                      font: {
-                        size: 10
-
-                      }
-                    },
-                  },
-                  scales: {
-                    r: {
-                      gridLines: {
-                          color: "rgba(245, 40, 145, 1)"
-                      },
-                      angleLines: {
-                        display: false
-                      },
-                      suggestedMin: 0,
-                      suggestedMax: 10,
-                      ticks: {
-                        beginAtZero: true,
-                        stepSize: 2,
-                        font: {
-                          size: 10,
-
-                        }
-                      },
-                      pointLabels: {
-                        font: {
-                          size: 13,
-                        },
-                        color: '#455EB2',
-                        padding: 20,
-                      }
-                    }
-                  }
-                }
-              });
-            <% end %>
-
+          </div>
+        </div>
       </div>
     </div>
 
+    <div id="stats" class="tab-content" data-tabs-target="tab">
+      <!--<h5>CHART</h5> -->
+      <div class="container d-flex justify-content-center align-items-center coloredChart">
+        <canvas id="myChart" style="height:300px; width:350px;"></canvas>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <%= javascript_tag do %>
+      Chart.defaults.font.family = "'Press Start 2P', sans-serif";
+
+      new Chart(document.getElementById('myChart'), {
+        type: "radar",
+        data: {
+          labels: ["INT", "MANA", "DEX", "STR", "CHA"],
+          datasets: [
+            {
+              label: 'User Stats',
+              data: [<%= @user.int %>, <%= @user.mana %>, <%= @user.dex %>, <%= @user.str %>, <%= @user.cha %>],
+              borderWidth: 2,
+              backgroundColor: 'rgba(133,164,101,0.3)',
+              borderColor: 'rgba(51,87,50, 0.8)'
+            }
+          ]
+        },
+        options: {
+          responsive: false,
+          maintainAspectRatio: false,
+          animation: false,
+          plugins: {
+            legend: {
+              display: false
+            },
+            elements: {
+              line: {
+                borderWidth: 20
+              }
+            },
+            labels: {
+              font: {
+                size: 10
+              }
+            },
+          },
+          scales: {
+            r: {
+              gridLines: {
+                color: "rgba(245, 40, 145, 1)"
+              },
+              angleLines: {
+                display: false
+              },
+              suggestedMin: 0,
+              suggestedMax: 10,
+              ticks: {
+                beginAtZero: true,
+                stepSize: 2,
+                font: {
+                  size: 10,
+                }
+              },
+              pointLabels: {
+                font: {
+                  size: 13,
+                },
+                color: '#455EB2',
+                padding: 20,
+              }
+            }
+          }
+        }
+      });
+      <% end %>
+    </div>
   </div>
 </div>
