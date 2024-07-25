@@ -39,12 +39,12 @@
     <div class="pixel-corners">
       <div class="p-3 colored">
         <h5 class="desc-title pt-3"><%= image_tag 'icons/new-show/map.png', class:"icons mb-1" %> Checkpoints</h5>
-
+        <hr>
         <%= simple_form_for @task, url: update_steps_task_path(@task), method: :patch, html: { local: true } do |form| %>
           <% if @task.steps.any? %>
             <div id="steps-list">
               <div class="mb-2" data-progress-target="checkboxes">
-                <hr>
+
                 <% @task.steps.each do |step| %>
                   <div class="step-item d-flex align-items-center mb-2 text-wrap" data-step-id="<%= step.id %>">
                     <%= form.check_box :completed, checked: step.completed, name: "task[steps_attributes][#{step.id}][completed]", class: 'id me-2 large-checkbox', data: { type: step.completed ? "true" : "false", action: 'change->progress#updateProgressBar', progress_target: "checkbox" } %>
