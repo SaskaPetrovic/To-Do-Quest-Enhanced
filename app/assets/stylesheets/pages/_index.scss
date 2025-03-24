@@ -92,9 +92,9 @@ h6 {
 
 }
 
-.username-profile{
+/*.username-profile{
   margin-left: 5px;
-}
+}*/
 
 
 .padding-user{
@@ -110,6 +110,7 @@ h6 {
   position: relative;
   width: 90%;
   display: inline-block;
+  height: auto;
 }
 
 .profile-image {
@@ -509,4 +510,98 @@ p .info-icon {
 // chart
 .coloredChart{
   background-color: #FFFDF5;
+}
+
+
+@media (max-width: 800px) {
+  #container-pc {
+    max-width: 390px;  /* Garder le style actuel pour mobile */
+  }
+}
+
+/* Pour les grands écrans (PC), ajustons la hauteur des éléments */
+@media (min-width: 801px) {
+
+  h2{
+    padding-bottom: 6%;
+  }
+
+  .padding-user{
+    margin-left: 6%;
+  }
+
+  .padding-lv{
+    margin-left: 9%;
+  }
+
+  // profile avatar
+  .profile-container {
+    position: relative;
+    width: 80%;
+    height:390px;
+    display: inline-block;
+    margin: 0 0  auto 0;
+  }
+
+  .profile-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 93%;
+    height: 85%;
+    object-fit: fill;
+  }
+
+  .big-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110%;
+    height: 110%;
+    z-index: -1;
+
+  }
+
+  .col-7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .col-5 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .padding-fixed {
+    padding: 20px;  /* Augmenter les marges pour les stats */
+  }
+
+  .d-flex {
+    margin-bottom: 15px;
+  }
+
+  .coloredBorder {
+    border-bottom: 2px solid #1E90FF; /* Exemple de couleur de bordure */
+  }
+
+  /* Ajuster la taille des stats */
+  .d-flex h6 {
+    font-size: 1.2rem;  /* Agrandir les textes pour les stats */
+  }
+
+  .icons {
+    width: 30px;  /* Ajuste la taille des icônes */
+    height: 30px;  /* Ajuste la hauteur des icônes */
+  }
+
+  /* Plus d'espace entre les lignes des stats */
+  .d-flex.justify-content-between {
+    margin-bottom: 15px;
+  }
 }
