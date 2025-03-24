@@ -65,18 +65,20 @@ This project aims to offer a dynamic and engaging way to manage tasks, set prior
 - Background music for a more immersive experience.
 
 𖤝 **Homepage (Character Dashboard)**  
-- Displays player's **username**, **level**, **points** in different stats (INT, MANA, DEX, STR, CHA).  
+- Displays player's **username**, **level**, **points** and different stats (INT, MANA, DEX, STR, CHA).  
 - **Class** unlocks after 5 points are earned.  
 - **Progress bar** shows the XP progress to the next level.  
 - Profile photo.
 
 𖤝 **Activity Tab**  
-- **Memo** (unchangeable): "Complete 5 quests this week."  
-- **Current active quests**: Shows ongoing tasks.  
-- **Stats Tab**: Interactive **Chart.js** spider chart showing detailed stats (INT, MANA, DEX, etc.).
+- Displays your weekly quest goal (unchangeable)
+- Shows the number of active quests.  
+
+𖤝 **Stats Tab**  
+- Visualizes your current stats (INT, MANA, DEX, STR, CHA) with an interactive spider chart (Chart.js).  
 
 𖤝 **Quest Page**  
-- View available quests in various categories (e.g., well-being, strength, etc.).  
+- View available quests
 - **Predefined quests**: 5 quests per category.  
 - **Create custom quests**: Add title, description, category, duration, priority level, and checkpoints.  
 - **Quest details**: Click on a quest for detailed info and accept it to start the quest.
@@ -87,8 +89,7 @@ This project aims to offer a dynamic and engaging way to manage tasks, set prior
 
 𖤝 **Achievements**  
 - Achievements pop up as you complete quests.  
-- View progress on the **Achievements Page**: Shows the total number of achievements received, e.g., "3 achievements out of 100."  
-- Unlock achievements like "Complete 1 quest," "Complete 3 quests," etc.
+- View progress on the **Achievements Page**
 
 </br> 
 
@@ -155,24 +156,16 @@ http://localhost:3000
 </br> 
 <h2 name="usage">𐙚 Usage </h2>
 
-𖹭 **Start a New Game**: On the intro page, you can either create a new account or continue from your previous progress. You'll be greeted with a background music to set the mood.
+𖹭 Start a new game or continue from your last save on the introduction page.
 
-𖹭 **Main Dashboard**: Once logged in, the homepage displays essential information:  
-- Your username, level, and points in stats such as INT, MANA, DEX, STR, and CHA.  
-- A progress bar showing how far you are from leveling up.  
-- A default profile picture below your username.
+𖹭 Track your level, stats, and progression on the main dashboard.
 
-𖹭 **Activity Tab**: Check your weekly quest goal ("Complete 5 quests this week") and see your ongoing quests' count.
+𖹭 Check weekly goals and current quest progress in the Activity tab.
 
-𖹭 **Quest Management**:  
-- View all available quests by category (e.g., well-being, strength).  
-- Create your own quests by providing a title, description, category, duration, and priority level.  
-- Add checkpoints to track your quest progress.
+𖹭 Browse predefined quests or create your own with custom checkpoints.
+𖹭 Accept quests, complete them, and watch your stats grow.
 
-𖹭 **Quest Details**: Click on any quest for more details, and accept it to add it to your active tasks. Complete quests by fulfilling their objectives, and they will be reflected in your stats.
-
-𖹭 **Achievement Tracking**: The achievements page tracks your total achievements and progress, such as completing 1 quest or 3 quests, unlocking new rewards as you progress.
-
+𖹭 View your unlocked achievements and progress toward new milestones.
 </br> 
 
 <h2 name="screenshots">𐙚 Screenshots </h2>
