@@ -1,44 +1,53 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <div class="d-flex align-items-center">
-       <!--<%= link_to "#", class: "navbar-brand"  do %>
-          <%= image_tag "profile-icon.png", class: "avatar" %>
-      <% end %>-->
-
-     <%= link_to "#", class: "navbar-brand"  do %>
-        <div class="avatar-container">
+      <!-- Avatar de l'utilisateur -->
+      <%= link_to dashboard_path, class: "navbar-brand"  do %>
+        <div class="avatar-container mt-1">
           <%= image_tag "profile-icon.png", class: "avatar" %>
           <%= image_tag "profile-frame.png", class: "avatar-frame" %>
         </div>
       <% end %>
 
-      <div class="d-flex flex-column ms-2">
-
+      <!-- Affichage du nom et du niveau -->
+      <div class="d-md-flex flex-column ms-2 mt-2">
         <% if user_signed_in? %>
           <%= link_to @user.username, dashboard_path, class: "nav-link" %>
           <%= link_to "Lv. #{current_user.level}", "#", class: "nav-link" %>
         <% end %>
-
       </div>
     </div>
 
+    <!-- Menu mobile (hamburger) -->
     <% if user_signed_in? %>
-        <button class="btn" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag 'icons/Kebab_Menu_Vertical.svg', alt: "dropdown menu" %>
-        </button>
-        <div class="dropdown-menu dropdown-menu-end full-screen-dropdown" aria-labelledby="navbarDropdown">
-            <h5 class="menu-font"> <%= link_to "Menu", root_path, class: "dropdown-item mb-5 mt-5" %></h5>
-          <div class="menu-line-height">
-            <h6 class="menu-font"> <%= link_to "Profile", dashboard_path,data: { turbo: false }, class: "dropdown-item" %></h6>
-            <h6 class="menu-font"> <%= link_to "Achievements", achievements_path, class: "dropdown-item" %></h6>
-            <h6 class="menu-font"> <%= link_to "Quests", tasks_path, class: "dropdown-item" %></h6>
+      <button class="btn d-sm-none" type="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= image_tag 'icons/Kebab_Menu_Vertical.svg', alt: "dropdown menu" %>
+      </button>
 
-            <h6 class="menu-font"> <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></h6>
-          </div>
+      <div class="dropdown-menu dropdown-menu-end full-screen-dropdown" aria-labelledby="navbarDropdown">
+        <h5 class="menu-font"> <%= link_to "Menu", root_path, class: "dropdown-item mb-5 mt-5" %></h5>
+        <div class="menu-line-height">
+          <h6 class="menu-font"> <%= link_to "Profile", dashboard_path, data: { turbo: false }, class: "dropdown-item" %></h6>
+          <h6 class="menu-font"> <%= link_to "Quests", tasks_path, class: "dropdown-item" %></h6>
+          <h6 class="menu-font"> <%= link_to "Achievements", achievements_path, class: "dropdown-item" %></h6>
+          <h6 class="menu-font"> <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></h6>
         </div>
+      </div>
     <% else %>
       <%= link_to "Login", new_user_session_path, class: "nav-link" %>
     <% end %>
 
+    <!-- Menu Desktop (Navigation complète en haut) -->
+    <div class="d-none d-md-flex">
+      <% if user_signed_in? %>
+        <%= link_to "Menu", root_path, class: "nav-link ms-4" %>
+        <%= link_to "Profile", dashboard_path, class: "nav-link ms-4" %>
+        <%= link_to "Quests", tasks_path, class: "nav-link ms-4" %>
+        <%= link_to "Achievements", achievements_path, class: "nav-link ms-4" %>
+        <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link ms-4" %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, class: "nav-link ms-4" %>
+      <% end %>
+    </div>
   </div>
 </div>
