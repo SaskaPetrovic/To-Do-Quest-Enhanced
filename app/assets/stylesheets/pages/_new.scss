@@ -1,4 +1,5 @@
 // CSS du formulaire de la page NEW
+
 .form {
   max-width: 600px;
   margin: 0 auto;
@@ -38,4 +39,16 @@
 // Moins de padding dans le container pour le titre
 .lessPadding{
   padding: 15px !important;
+}
+
+@media (max-width: 800px) {
+  #container-pc-add {
+    max-width: 390px;  /* Garder le style actuel pour mobile */
+  }
+
+}
+
+@media (min-width: 801px) {
+
+
 }

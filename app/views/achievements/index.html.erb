@@ -1,11 +1,11 @@
  <!----------------Title and return link---------------->
 <div class="container lessPadding">
   <div class="d-flex align-items-center justify-content-between">
-    <%= link_to dashboard_path, data:{ turbo: false },  class: 'button-return mb-2' do %>
+    <%= link_to dashboard_path, data:{ turbo: false },  class: 'button-return' do %>
       <%= image_tag 'icons/return.svg', alt: 'Return'%>
     <% end %>
     <div class="flex-grow-1 text-center">
-      <h2>Achievements
+      <h2 class="quest-margin">Achievements</h2>
     </div>
     <!-- An empty div to take the same space as the link to ensure the title is centered -->
     <div style="width: 10px;"></div>
