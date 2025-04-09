@@ -67,34 +67,34 @@ The project provides a dynamic and engaging way to manage tasks, set priorities,
 <h2 name="key-features">𐙚 Key Features </h2>
 
 𖤝 **Intro Page & New Game**  
-- Welcome page with an option to create a new game or continue.  
-- Background music for a more immersive experience.
+- Welcome page with an option to create a new game or continue  
+- Background music for a more immersive experience
 
 𖤝 **Homepage (Character Dashboard)**  
-- Displays player's **username**, **level**, **points** and different stats (INT, MANA, DEX, STR, CHA).  
-- **Class** unlocks after 5 points are earned.  
-- **Progress bar** shows the XP progress to the next level.  
-- Profile photo.
+- Displays player's **username**, **level** and different stats (INT, MANA, DEX, STR, CHA)  
+- **Class** unlocks after 5 points are earned
+- **Progress bar** shows the XP progress to the next level
+- Profile photo (unchangeable)
 
 𖤝 **Activity Tab**  
 - Displays your weekly quest goal (unchangeable)
-- Shows the number of active quests.  
+- Shows the number of active quests
 
 𖤝 **Stats Tab**  
-- Visualizes your current stats (INT, MANA, DEX, STR, CHA) with an interactive spider chart (Chart.js).  
+- Visualizes your current stats (INT, MANA, DEX, STR, CHA) with an interactive spider chart (Chart.js)
 
 𖤝 **Quest Page**  
 - View available quests
-- **Predefined quests**: 5 quests per category.  
-- **Create custom quests**: Add title, description, category, duration, priority level, and checkpoints.  
-- **Quest details**: Click on a quest for detailed info and accept it to start the quest.
+- **Predefined quests**: 5 quests per category 
+- **Create custom quests**: Add title, description, category, duration, priority level, and checkpoints  
+- **Quest details**: Click on a quest for detailed info and accept it to start the quest
 
 𖤝 **Active Quests**  
-- Once accepted, quests appear in the **Active Quests** tab.  
-- Track progress and complete quests to gain experience and rewards.
+- Once accepted, quests appear in the **Active Quests** tab 
+- Track progress and complete quests to gain experience and rewards
 
 𖤝 **Achievements**  
-- Achievements pop up as you complete quests.  
+- Achievements pop up as you complete quests
 - View progress on the **Achievements Page**
 
 </br> 
@@ -162,17 +162,17 @@ http://localhost:3000
 </br> 
 <h2 name="usage">𐙚 Usage </h2>
 
-𖹭 Start a new game or continue from your last save on the introduction page.
+𖹭 Start a new game or continue from your last save on the introduction page
 
-𖹭 Track your level, stats, and progression on the main dashboard.
+𖹭 Track your level, stats, and progression on the main dashboard
 
-𖹭 View weekly goals and your current quest count in the Activity tab.
+𖹭 View weekly goals and your current quest count in the Activity tab
 
-𖹭 Browse predefined quests or create your own with custom checkpoints.
+𖹭 Browse predefined quests or create your own with custom checkpoints
 
-𖹭 Accept quests, complete them, and watch your stats grow.
+𖹭 Accept quests, complete them, and watch your stats grow
 
-𖹭 View your unlocked achievements and progress toward new milestones.
+𖹭 View your unlocked achievements and progress toward new milestones
 </br> 
 
 <h2 name="screenshots">𐙚 Screenshots </h2>
