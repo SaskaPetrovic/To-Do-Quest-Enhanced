@@ -24,11 +24,11 @@
     <div class="col-5 d-flex flex-column align-items-start padding-fixed">
       <div class="d-flex justify-content-between w-100 pb-1 align-items-end coloredBorder">
         <% if @user.roles.present? && @user.roles != 'None' %>
-          <h6 class="blueTitle"><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
-          <%= image_tag "icons/class/#{@user.roles.downcase}.png", class: "icons mb-1" %>
+        <h6 class="blueTitle"><%= @user.roles %></h6> <!-- Afficher le rôle actuel du joueur -->
+        <%= image_tag "icons/class/#{@user.roles.downcase}.png", class: "icons mb-1" %>
         <% else %>
-          <h6>Newbie</h6>
-          <%= image_tag "icons/class/noob.png", class: "icons mb-1" %>
+        <h6>Newbie</h6>
+        <%= image_tag "icons/class/noob.png", class: "icons mb-1" %>
         <% end %>
       </div>
       <div class="d-flex justify-content-between w-100 mt-3">
@@ -67,7 +67,7 @@
     </div>
     <div class="d-flex justify-content-between">
       <h6 class="text-start pt-3">To Next Lv.</h6>
-      <h6 class="pt-3"><%= @user.experience_to_next_level %> XP</h6>
+      <h6 class="pt-3 pc-margin"><%= @user.experience_to_next_level %> XP</h6>
     </div>
   </div>
 
@@ -78,21 +78,22 @@
       <button id="stats-btn" class="tab-link" data-action="click->tabs#select" data-tabs-target="btn">Stats</button>
     </div>
 
-    <div id="activity" class="tab-content" data-tabs-target="tab">
-      <div>
+    <!-- LAYOUT PC -->
+    <div class="tab-wrapper d-flex">
+      <!-- ACTIVITY -->
+      <div id="activity" class="tab-content" data-tabs-target="tab">
         <h6>MEMO</h6>
         <div class="background-color">
           <div class="pixel-corners mb-4">
             <div class="margins p-2">
               <p><%= image_tag "icons/mission.png", class: "info-icon pb-1", style: "height: 25px" %> Mission <br>
-                <hr> </p>
-              <!--<p> <%= @user.memo %> </p>-->
+                <hr>
+              </p>
               <p>Complete at least 5 quests this week !</p>
             </div>
           </div>
         </div>
-      </div>
-      <div>
+
         <h6>STATUS</h6>
         <div class="background-color">
           <div class="pixel-corners mb-4">
@@ -103,83 +104,86 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div id="stats" class="tab-content" data-tabs-target="tab">
-      <!--<h5>CHART</h5> -->
-      <div class="pixel-corners mb-3">
-      <div class="container d-flex justify-content-center align-items-center coloredChart py-2">
-        <canvas id="myChart" style="height:300px; width:340px;"></canvas>
-      </div>
       </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <%= javascript_tag do %>
-      Chart.defaults.font.family = "'Press Start 2P', sans-serif";
+      <!-- STATS -->
+      <div id="stats" class="tab-content" data-tabs-target="tab">
 
-      new Chart(document.getElementById('myChart'), {
+        <div class="pixel-corners mb-3">
+          <div class="container d-flex justify-content-center align-items-center coloredChart py-2">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <%= javascript_tag do %>
+        Chart.defaults.font.family = "'Press Start 2P', sans-serif";
+
+        new Chart(document.getElementById('myChart'), {
         type: "radar",
         data: {
-          labels: ["INT", "MANA", "DEX", "STR", "CHA"],
-          datasets: [
-            {
-              label: 'User Stats',
-              data: [<%= @user.int %>, <%= @user.mana %>, <%= @user.dex %>, <%= @user.str %>, <%= @user.cha %>],
-              borderWidth: 2,
-              backgroundColor: 'rgba(133,164,101,0.3)',
-              borderColor: 'rgba(51,87,50, 0.8)'
-            }
-          ]
+        labels: ["INT", "MANA", "DEX", "STR", "CHA"],
+        datasets: [
+        {
+        label: 'User Stats',
+        data: [<%= @user.int %>, <%= @user.mana %>, <%= @user.dex %>, <%= @user.str %>, <%= @user.cha %>],
+        borderWidth: 2,
+        backgroundColor: 'rgba(133,164,101,0.3)',
+        borderColor: 'rgba(51,87,50, 0.8)'
+        }
+        ]
         },
         options: {
-          responsive: false,
-          maintainAspectRatio: false,
-          animation: false,
-          plugins: {
-            legend: {
-              display: false
-            },
-            elements: {
-              line: {
-                borderWidth: 20
-              }
-            },
-            labels: {
-              font: {
-                size: 10
-              }
-            },
-          },
-          scales: {
-            r: {
-              gridLines: {
-                color: "rgba(245, 40, 145, 1)"
-              },
-              angleLines: {
-                display: false
-              },
-              suggestedMin: 0,
-              suggestedMax: 10,
-              ticks: {
-                beginAtZero: true,
-                stepSize: 2,
-                font: {
-                  size: 10,
-                }
-              },
-              pointLabels: {
-                font: {
-                  size: 13,
-                },
-                color: '#455EB2',
-                padding: 18,
-              }
-            }
-          }
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+        legend: {
+        display: false
+        },
+        elements: {
+        line: {
+        borderWidth: 20
         }
-      });
-      <% end %>
+        },
+        labels: {
+        font: {
+        size: 10
+        }
+        },
+        },
+        scales: {
+        r: {
+        gridLines: {
+        color: "rgba(245, 40, 145, 1)"
+        },
+        angleLines: {
+        display: false
+        },
+        suggestedMin: 0,
+        suggestedMax: 10,
+        ticks: {
+        beginAtZero: true,
+        stepSize: 2,
+        font: {
+        size: 10,
+        }
+        },
+        pointLabels: {
+        font: {
+        size: 13,
+        },
+        color: '#455EB2',
+        padding: 18,
+        }
+        }
+        }
+        }
+        });
+        <% end %>
+      </div>
     </div>
   </div>
+
 </div>
