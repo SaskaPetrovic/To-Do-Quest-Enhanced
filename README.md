@@ -29,9 +29,15 @@
 <!-- ## 📖 About the Project  -->
 <h2 name="about-the-project">𐙚 About the project </h2>
 
-To-Do Quest is a task management platform built using Ruby on Rails, with Bootstrap for styling and JavaScript for interactivity. This app combines the practicality of task management with a gamified RPG experience. Users create their personalized character, level up, and complete quests to earn achievements and boost their stats, making productivity fun and rewarding.
+To-Do Quest is a task management platform built using Ruby on Rails, with Bootstrap for styling and JavaScript for interactivity. Initially designed for mobile, this project has now been enhanced to support a desktop version as well, offering a more versatile and user-friendly experience across devices.
 
-This project aims to offer a dynamic and engaging way to manage tasks, set priorities, and track progress with customizable quests and a unique RPG experience. Users can create quests, track their progression through visual stats, and unlock achievements as they complete objectives.
+This app combines the practicality of task management with a gamified RPG experience. Users track their personalized stats and level up by completing quests to earn achievements and boost their abilities, making productivity both fun and rewarding.
+
+The project provides a dynamic and engaging way to manage tasks, set priorities, and track progress through customizable quests and a unique RPG experience. Each user has their own stats, which are updated as they complete objectives. Achievements are unlocked as progress is made, all within the flexibility of both mobile and desktop formats.
+
+</br> 
+
+**Note:** This project builds upon the original [To-Do Quest](https://github.com/SaskaPetrovic/To-Do-Quest.git), which was a collaborative effort with members of my group. I cloned the repository and made changes independently without impacting the original project.
 
 
 </br> 
@@ -160,9 +166,10 @@ http://localhost:3000
 
 𖹭 Track your level, stats, and progression on the main dashboard.
 
-𖹭 Check weekly goals and current quest progress in the Activity tab.
+𖹭 View weekly goals and your current quest count in the Activity tab.
 
 𖹭 Browse predefined quests or create your own with custom checkpoints.
+
 𖹭 Accept quests, complete them, and watch your stats grow.
 
 𖹭 View your unlocked achievements and progress toward new milestones.
@@ -172,33 +179,34 @@ http://localhost:3000
 
 ### Introduction Screen
 <p align="left">
-  <img src="public/screenshot-homepage.png" width="70%" />
+  <img src="public/screenshot-Menu.png" width="30%" />
 </p>
 
 ### Dashboard
 <p align="left">
-  <img src="public/screenshot-cars.png" width="70%" />
+  <img src="public/screenshot-activity.png" width="30%" />
+   <img src="public/screenshot-chart.png" width="30%" />
 </p>
 
 ### Quest Overview
 <p align="left">
-  <img src="public/screenshot-details.png" width="70%" />
-  <img src="public/screenshot-flatpickr.png" width="70%" />
+  <img src="public/screenshot-ongoing.png" width="30%" />
+  <img src="public/screenshot-quests.png" width="30%" />
+  <img src="public/screenshot-add.png" width="30%" />
 </p>
 
 ### Quest Details
 <p align="left">
-  <img src="public/screenshot-rentings.png" width="70%" />
+  <img src="public/screenshot-task.png" width="30%" />
 </p>
 
 ### Achievements Page
 <p align="left">
-  <img src="public/screenshot-rentings.png" width="70%" />
+  <img src="public/screenshot-achievement.png" width="30%" />
 </p>
 
 
-
-[View Demo on youtube]() ( ꈍ◡ꈍ)
+( ꈍ◡ꈍ)
 
 
 </br> 
