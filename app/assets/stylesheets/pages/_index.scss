@@ -182,6 +182,9 @@ hr {
 .tab-content.active {
   display: block;
 }
+.tab-wrapper {
+  display: block;
+}
 
 // pixel-box
 
@@ -490,10 +493,7 @@ hr {
 .pixel-corners-2::after {
   margin: -5px;
 }
-//fin bar xp
-.progress {
-
-}
+// bar xp
 
 .progress-bar {
   background-color:  rgb(133,164,101) !important;
@@ -513,10 +513,16 @@ p .info-icon {
 }
 
 
+
 @media (max-width: 800px) {
   #container-pc {
     max-width: 390px;  /* Garder le style actuel pour mobile */
   }
+  #myChart {
+  width: 300px;
+  height: auto;
+  }
+
 }
 
 /* Pour les grands écrans (PC), ajustons la hauteur des éléments */
@@ -603,5 +609,30 @@ p .info-icon {
   /* Plus d'espace entre les lignes des stats */
   .d-flex.justify-content-between {
     margin-bottom: 15px;
+  }
+
+  .pc-margin{
+    margin-bottom: 2rem;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .tab-wrapper {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tab-wrapper .tab-content {
+    display: block !important;
+    width: 50%;
+  }
+
+  #myChart {
+    width: 400px;
+    height: auto;
   }
 }
