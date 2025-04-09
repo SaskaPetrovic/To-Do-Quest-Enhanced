@@ -71,9 +71,9 @@ The project provides a dynamic and engaging way to manage tasks, set priorities,
 - Background music for a more immersive experience
 
 𖤝 **Homepage (Character Dashboard)**  
-- Displays player's **username**, **level** and different stats (INT, MANA, DEX, STR, CHA)  
-- **Class** unlocks after 5 points are earned
-- **Progress bar** shows the XP progress to the next level
+- Displays player's username, level and different stats (INT, MANA, DEX, STR, CHA)  
+- Class unlocks after 5 points are earned
+- Progress bar shows the XP progress to the next level
 - Profile photo (unchangeable)
 
 𖤝 **Activity Tab**  
@@ -85,17 +85,17 @@ The project provides a dynamic and engaging way to manage tasks, set priorities,
 
 𖤝 **Quest Page**  
 - View available quests
-- **Predefined quests**: 5 quests per category 
-- **Create custom quests**: Add title, description, category, duration, priority level, and checkpoints  
-- **Quest details**: Click on a quest for detailed info and accept it to start the quest
+- Predefined quests : 5 quests per category 
+- Create custom quests : Add title, description, category, duration, priority level, and checkpoints  
+- Quest details : Click on a quest for detailed info and accept it to start the quest
 
 𖤝 **Active Quests**  
-- Once accepted, quests appear in the **Active Quests** tab 
+- Once accepted, quests appear in the Active Quests tab 
 - Track progress and complete quests to gain experience and rewards
 
 𖤝 **Achievements**  
 - Achievements pop up as you complete quests
-- View progress on the **Achievements Page**
+- View progress on the Achievements Page
 
 </br> 
 
